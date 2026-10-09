@@ -1,0 +1,616 @@
+/**
+ * SyrHub — CATEGORIES + APPS
+ * ==========================================
+ * ⚠️ ملف مُولَّد آلياً بواسطة build/build.js — لا تعدّله يدوياً.
+ * عدّل المصدر في data/*.json ثم أعد التشغيل: node build/build.js
+ */
+
+var CATEGORIES = [
+  {
+    "key": "delivery",
+    "label": "توصيل الطعام",
+    "label_en": "Food Delivery",
+    "icon": "🍽️"
+  },
+  {
+    "key": "transport",
+    "label": "نقل ومواصلات",
+    "label_en": "Transport",
+    "icon": "🚗"
+  },
+  {
+    "key": "payments",
+    "label": "دفع إلكتروني",
+    "label_en": "Payments",
+    "icon": "💳"
+  },
+  {
+    "key": "shopping",
+    "label": "تسوق",
+    "label_en": "Shopping",
+    "icon": "🛍️"
+  },
+  {
+    "key": "realestate",
+    "label": "عقارات",
+    "label_en": "Real Estate",
+    "icon": "🏠"
+  },
+  {
+    "key": "education",
+    "label": "تعليم",
+    "label_en": "Education",
+    "icon": "📚"
+  },
+  {
+    "key": "health",
+    "label": "صحة",
+    "label_en": "Health",
+    "icon": "🩺"
+  },
+  {
+    "key": "jobs",
+    "label": "وظائف وخدمات",
+    "label_en": "Jobs & Services",
+    "icon": "💼"
+  },
+  {
+    "key": "other",
+    "label": "أخرى",
+    "label_en": "Other",
+    "icon": "✨"
+  }
+];
+
+var APPS = [
+  {
+    "id": "sufra-food",
+    "name": "سُفرة",
+    "name_en": "Sufra",
+    "category": "delivery",
+    "description": "طلب المأكولات من مطاعم مدينتك مع تتبع مباشر للطلب وخيارات دفع متعددة.",
+    "description_en": "Order food from restaurants in your city with live order tracking and multiple payment options.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/sufra-food",
+    "storeLinks": {
+      "android": "https://example.com/sufra-food/android",
+      "ios": "https://example.com/sufra-food/ios",
+      "web": "https://example.com/sufra-food/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-01"
+  },
+  {
+    "id": "matalab-food",
+    "name": "مطلوب",
+    "name_en": "Matalab",
+    "category": "delivery",
+    "description": "توصيل وجبات سريعة عبر الأحياء مع نظام خصومات للمشتركين.",
+    "description_en": "Fast meal delivery across neighbourhoods with a subscription discount system.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/matalab-food",
+    "storeLinks": {
+      "android": "https://example.com/matalab-food/android",
+      "ios": "https://example.com/matalab-food/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-02"
+  },
+  {
+    "id": "khott-food",
+    "name": "خُطّ التوصيل",
+    "name_en": "Khott Delivery",
+    "category": "delivery",
+    "description": "خدمة توصيل مشتريات وسلع يومية من المحلات القريبة حتى باب المنزل.",
+    "description_en": "Same-day delivery of groceries and daily goods from local shops to your door.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/khott-food",
+    "storeLinks": {
+      "android": "https://example.com/khott-food/android",
+      "ios": "",
+      "web": "https://example.com/khott-food/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-03"
+  },
+  {
+    "id": "raghela-trans",
+    "name": "رحلة",
+    "name_en": "Rahleh",
+    "category": "transport",
+    "description": "حجز سيارات أجرة داخل المدينة مع تسعير مسبق ومتابعة مباشرة للرحلة.",
+    "description_en": "Book taxis within the city with upfront pricing and live trip tracking.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/raghela-trans",
+    "storeLinks": {
+      "android": "https://example.com/raghela-trans/android",
+      "ios": "https://example.com/raghela-trans/ios",
+      "web": "https://example.com/raghela-trans/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-04"
+  },
+  {
+    "id": "waseel-trans",
+    "name": "وصيل",
+    "name_en": "Waseel",
+    "category": "transport",
+    "description": "خدمة توصيل من نقطة إلى نقطة داخل المدن الكبرى بمختلف أنواع المركبات.",
+    "description_en": "Point-to-point delivery service in major cities using various vehicle types.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/waseel-trans",
+    "storeLinks": {
+      "android": "https://example.com/waseel-trans/android",
+      "ios": "https://example.com/waseel-trans/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-05"
+  },
+  {
+    "id": "tarheeb-trans",
+    "name": "ترحّب",
+    "name_en": "Tarhib",
+    "category": "transport",
+    "description": "منصة رحلات مشتركة بين المدن توثّق السائقين وتقارن الأسعار.",
+    "description_en": "Intercity ridesharing platform with vetted drivers and price comparison.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/tarheeb-trans",
+    "storeLinks": {
+      "android": "https://example.com/tarheeb-trans/android",
+      "ios": "",
+      "web": "https://example.com/tarheeb-trans/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-06"
+  },
+  {
+    "id": "mihfaza-pay",
+    "name": "محفظتي",
+    "name_en": "Mahfazati",
+    "category": "payments",
+    "description": "محفظة إلكترونية لتحويل الأموال ودفع الفواتير وإدارة النفقات بسهولة وأمان.",
+    "description_en": "An e-wallet for money transfers, bill payments and expense management, safe and easy.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/mihfaza-pay",
+    "storeLinks": {
+      "android": "https://example.com/mihfaza-pay/android",
+      "ios": "https://example.com/mihfaza-pay/ios",
+      "web": "https://example.com/mihfaza-pay/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-07"
+  },
+  {
+    "id": "faslah-pay",
+    "name": "فصلة",
+    "name_en": "Fasla",
+    "category": "payments",
+    "description": "تقسيم الفواتير بين الأصدقاء وتذكيرات بالسداد ومتابعة الديون الصغيرة.",
+    "description_en": "Split bills with friends, get payment reminders and track small debts.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/faslah-pay",
+    "storeLinks": {
+      "android": "https://example.com/faslah-pay/android",
+      "ios": "https://example.com/faslah-pay/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-08"
+  },
+  {
+    "id": "saraf-pay",
+    "name": "صرّاف",
+    "name_en": "Sarraf",
+    "category": "payments",
+    "description": "متابعة أسعار الصرف والتحويل بين حسابك والمتاجر عبر بطاقة رقمية.",
+    "description_en": "Track exchange rates and move money between your account and shops with a digital card.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/saraf-pay",
+    "storeLinks": {
+      "android": "https://example.com/saraf-pay/android",
+      "ios": "",
+      "web": "https://example.com/saraf-pay/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-01"
+  },
+  {
+    "id": "souqoli-shop",
+    "name": "سوقي",
+    "name_en": "Souqli",
+    "category": "shopping",
+    "description": "متجر إلكتروني يجمّع البائعين المحليين مع شحن آمن ودفع عند الاستلام.",
+    "description_en": "An online marketplace gathering local vendors with safe shipping and cash on delivery.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/souqoli-shop",
+    "storeLinks": {
+      "android": "https://example.com/souqoli-shop/android",
+      "ios": "https://example.com/souqoli-shop/ios",
+      "web": "https://example.com/souqoli-shop/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-02"
+  },
+  {
+    "id": "mutajari-shop",
+    "name": "متجري",
+    "name_en": "Matjari",
+    "category": "shopping",
+    "description": "أنشئ متجرك الإلكتروني خلال دقائق وادفع منتجاتك للعميل مباشرة.",
+    "description_en": "Launch your online store in minutes and sell your products to customers directly.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/mutajari-shop",
+    "storeLinks": {
+      "android": "https://example.com/mutajari-shop/android",
+      "ios": "",
+      "web": "https://example.com/mutajari-shop/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-03"
+  },
+  {
+    "id": "harij-shop",
+    "name": "هريج",
+    "name_en": "Harij",
+    "category": "shopping",
+    "description": "سوق للسلع المستعملة بين الأحياء مع نظام مراجعات للبائعين والمشترين.",
+    "description_en": "A neighbourhood marketplace for used goods with a seller and buyer review system.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/harij-shop",
+    "storeLinks": {
+      "android": "https://example.com/harij-shop/android",
+      "ios": "https://example.com/harij-shop/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-04"
+  },
+  {
+    "id": "baytak-real",
+    "name": "بيتك",
+    "name_en": "Baytak",
+    "category": "realestate",
+    "description": "بحث عن شقق ومنازل للبيع والإيجار مع خرائط الأحياء وأسعار قابلة للمقارنة.",
+    "description_en": "Search apartments and homes for sale or rent with neighbourhood maps and comparable prices.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/baytak-real",
+    "storeLinks": {
+      "android": "https://example.com/baytak-real/android",
+      "ios": "https://example.com/baytak-real/ios",
+      "web": "https://example.com/baytak-real/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-05"
+  },
+  {
+    "id": "walid-real",
+    "name": "والد العقار",
+    "name_en": "Waleed Aqar",
+    "category": "realestate",
+    "description": "وسيط عقاري رقمي يدير إعلاناتك ويواصل المشترين والمؤجرين بسرعة.",
+    "description_en": "A digital real-estate broker managing your listings and connecting buyers and renters quickly.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/walid-real",
+    "storeLinks": {
+      "android": "https://example.com/walid-real/android",
+      "ios": "",
+      "web": "https://example.com/walid-real/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-06"
+  },
+  {
+    "id": "gimm-real",
+    "name": "قِيم",
+    "name_en": "Qimm",
+    "category": "realestate",
+    "description": "تقييم أسعار العقارات حسب المنطقة والمساحة مع سجل تعاملات محدث.",
+    "description_en": "Estimate property prices by area and size with an up-to-date transactions record.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/gimm-real",
+    "storeLinks": {
+      "android": "https://example.com/gimm-real/android",
+      "ios": "https://example.com/gimm-real/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-07"
+  },
+  {
+    "id": "darsona-edu",
+    "name": "درسنا",
+    "name_en": "Darsona",
+    "category": "education",
+    "description": "منصة فيديوهات تعليمية واختبارات تفاعلية لطلاب المرحلتين الإعدادية والثانوية.",
+    "description_en": "Educational videos and interactive quizzes for middle and high school students.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/darsona-edu",
+    "storeLinks": {
+      "android": "https://example.com/darsona-edu/android",
+      "ios": "https://example.com/darsona-edu/ios",
+      "web": "https://example.com/darsona-edu/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-08"
+  },
+  {
+    "id": "momakabe-edu",
+    "name": "امتحانك",
+    "name_en": "Imtihanak",
+    "category": "education",
+    "description": "نماذج امتحانات سنوات سابقة مع تصحيح فوري وتحليل لأداء الطالب.",
+    "description_en": "Past exam papers with instant marking and student performance analytics.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/momakabe-edu",
+    "storeLinks": {
+      "android": "https://example.com/momakabe-edu/android",
+      "ios": "https://example.com/momakabe-edu/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-01"
+  },
+  {
+    "id": "lugha-edu",
+    "name": "لغة",
+    "name_en": "Lugha",
+    "category": "education",
+    "description": "تعلّم اللغات عبر جلسات محادثة مدفوعة بمتحدثين ومدربين معتمدين.",
+    "description_en": "Learn languages through paid conversation sessions with vetted speakers and coaches.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/lugha-edu",
+    "storeLinks": {
+      "android": "https://example.com/lugha-edu/android",
+      "ios": "",
+      "web": "https://example.com/lugha-edu/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-02"
+  },
+  {
+    "id": "tebibi-health",
+    "name": "طبيبي",
+    "name_en": "Tabibi",
+    "category": "health",
+    "description": "حجز مواعيد الأطباء ومعرفة أوقات العيادات وتذكيرات بالأدوية.",
+    "description_en": "Book doctor appointments, check clinic hours and get medication reminders.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/tebibi-health",
+    "storeLinks": {
+      "android": "https://example.com/tebibi-health/android",
+      "ios": "https://example.com/tebibi-health/ios",
+      "web": "https://example.com/tebibi-health/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-03"
+  },
+  {
+    "id": "shelahiyhti-health",
+    "name": "صيدليتي",
+    "name_en": "Saydalati",
+    "category": "health",
+    "description": "معرفة توفر الأدوية في صيدليات منطقتك وطلبها للتوصيل المنزلي.",
+    "description_en": "Check medicine availability in nearby pharmacies and order home delivery.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/shelahiyhti-health",
+    "storeLinks": {
+      "android": "https://example.com/shelahiyhti-health/android",
+      "ios": "https://example.com/shelahiyhti-health/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-04"
+  },
+  {
+    "id": "siteheb-health",
+    "name": "شمعة",
+    "name_en": "Sham'a",
+    "category": "health",
+    "description": "توعية صحية وقياس مؤشرات بسيطة وتسجيل يومي لنمط النشاط والنوم.",
+    "description_en": "Health awareness, simple vitals tracking and daily logging of activity and sleep.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/siteheb-health",
+    "storeLinks": {
+      "android": "https://example.com/siteheb-health/android",
+      "ios": "",
+      "web": "https://example.com/siteheb-health/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-05"
+  },
+  {
+    "id": "shighl-jobs",
+    "name": "شُغُل",
+    "name_en": "Shoghol",
+    "category": "jobs",
+    "description": "بحث عن وظائف محلية وأجنبية مع تحميل السيرة الذاتية ومطابقة التخصصات.",
+    "description_en": "Search local and international jobs, upload your CV and match by specialisation.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/shighl-jobs",
+    "storeLinks": {
+      "android": "https://example.com/shighl-jobs/android",
+      "ios": "https://example.com/shighl-jobs/ios",
+      "web": "https://example.com/shighl-jobs/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-06"
+  },
+  {
+    "id": "hirfi-jobs",
+    "name": "حِرَفي",
+    "name_en": "Hirfi",
+    "category": "jobs",
+    "description": "نافذة للحرفيين: كهربائي، سباك، نجار — مع تقييمات من الجيران.",
+    "description_en": "A window for tradespeople — electricians, plumbers, carpenters — rated by neighbours.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/hirfi-jobs",
+    "storeLinks": {
+      "android": "https://example.com/hirfi-jobs/android",
+      "ios": "https://example.com/hirfi-jobs/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-07"
+  },
+  {
+    "id": "muhimat-jobs",
+    "name": "مهمتي",
+    "name_en": "Muhimmati",
+    "category": "jobs",
+    "description": "مهام قصيرة بسعر ثابت: تدريس خاص، تدقيق، ترجمة، وتنسيق ملفات.",
+    "description_en": "Short fixed-price tasks: private tutoring, proofreading, translation and file organising.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/muhimat-jobs",
+    "storeLinks": {
+      "android": "https://example.com/muhimat-jobs/android",
+      "ios": "",
+      "web": "https://example.com/muhimat-jobs/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-08"
+  },
+  {
+    "id": "taqso-weather",
+    "name": "طقس سوريا",
+    "name_en": "Syria Weather",
+    "category": "other",
+    "description": "تحديثات جوية لكل المحافظات مع تنبيهات مطر وضباب وملصقات موسمية.",
+    "description_en": "Weather updates for all governorates with rain, fog alerts and seasonal outlooks.",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "officialLink": "https://example.com/taqso-weather",
+    "storeLinks": {
+      "android": "https://example.com/taqso-weather/android",
+      "ios": "https://example.com/taqso-weather/ios",
+      "web": "https://example.com/taqso-weather/web"
+    },
+    "verified": true,
+    "lastUpdate": "2026-01"
+  },
+  {
+    "id": "hadaya-other",
+    "name": "هدايا",
+    "name_en": "Hadaya",
+    "category": "other",
+    "description": "بطاقات إهداء رقمية وطلب باقات هدايا محلية بمناسبات الأعياد.",
+    "description_en": "Digital gift cards and local gift bundle ordering for holidays and occasions.",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "officialLink": "https://example.com/hadaya-other",
+    "storeLinks": {
+      "android": "https://example.com/hadaya-other/android",
+      "ios": "https://example.com/hadaya-other/ios",
+      "web": ""
+    },
+    "verified": false,
+    "lastUpdate": "2026-02"
+  },
+  {
+    "id": "tarjom-other",
+    "name": "ترجم",
+    "name_en": "Tarjom",
+    "category": "other",
+    "description": "ترجمة فورية للنصوص بين العربية واللغات الأجنبية في المحادثات اليومية.",
+    "description_en": "Instant text translation between Arabic and foreign languages for daily conversations.",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "officialLink": "https://example.com/tarjom-other",
+    "storeLinks": {
+      "android": "https://example.com/tarjom-other/android",
+      "ios": "",
+      "web": "https://example.com/tarjom-other/web"
+    },
+    "verified": false,
+    "lastUpdate": "2026-03"
+  }
+];
+

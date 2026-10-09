@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyrHub — غير متصل</title>
+<meta name="theme-color" content="#1B2A4A">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/png" href="SyrHub-Icon.png?v=2">
+<style>
+  :root{
+    --bg:#FBF9F4;
+    --surface:#ffffff;
+    --text:#22262B;
+    --text-soft:#5b6470;
+    --border:#e7e3d8;
+    --primary:#2E9C97;
+    --navy:#1B2A4A;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0a101d;
+      --surface:#111a2c;
+      --text:#F3F5F9;
+      --text-soft:#a9b4c6;
+      --border:#22304a;
+      --primary:#3cb5af;
+      --navy:#1B2A4A;
+    }
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', Tahoma, 'Helvetica Neue', Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .offline-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:40px 32px;
+    max-width:380px;
+    width:90%;
+    text-align:center;
+    box-shadow:0 14px 40px rgba(27,42,74,0.12);
+  }
+  .offline-icon{
+    width:72px; height:72px;
+    margin:0 auto 18px;
+    border-radius:18px;
+    overflow:hidden;
+    background:#e4f4f3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .offline-icon img{ width:72px; height:72px; display:block; }
+  .offline-card h1{ margin:0 0 8px; font-size:1.25rem; }
+  .offline-card h1 small{ display:block; color:var(--text-soft); font-weight:600; font-size:0.8rem; margin-top:4px; }
+  .offline-card p{ color:var(--text-soft); font-size:0.92rem; line-height:1.7; margin:0 0 22px; }
+  .retry-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    background:var(--primary);
+    color:#ffffff;
+    border:none;
+    border-radius:999px;
+    padding:12px 26px;
+    font-size:0.95rem;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    width:100%;
+  }
+  .retry-btn:hover{ filter:brightness(1.05); }
+</style>
+</head>
+<body>
+  <div class="offline-card" role="alert">
+    <div class="offline-icon" aria-hidden="true">
+      <img src="SyrHub-Icon.png?v=2" alt="">
+    </div>
+    <h1>SyrHub</h1>
+    <p>يبدو أنك غير متصل بالإنترنت حالياً.<br>تطبيقاتك المفضّلة متاحة بمجرد عودة الاتصال.</p>
+    <button class="retry-btn" id="retryBtn" type="button">إعادة المحاولة</button>
+  </div>
+  <script>
+    (function(){
+      var b = document.getElementById('retryBtn');
+      if(b){
+        b.addEventListener('click', function(){
+          try{ window.location.reload(); }catch(e){}
+        });
+      }
+      var l = (typeof localStorage !== 'undefined') ? localStorage.getItem('syh-lang') : null;
+      if(l === 'en'){
+        var r = document.documentElement;
+        r.setAttribute('lang', 'en');
+        r.setAttribute('dir', 'ltr');
+        document.title = 'SyrHub — Offline';
+        var p = document.querySelector('p');
+        if(p){
+          p.innerHTML = 'You seem to be offline right now.<br>Your favorite apps will be here as soon as you reconnect.';
+        }
+        if(b){ b.textContent = 'Try again'; }
+      }
+    })();
+  </script>
+</body>
+</html>

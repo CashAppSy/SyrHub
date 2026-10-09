@@ -1,0 +1,3908 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyrHub — دليل التطبيقات السورية</title>
+<meta name="description" content="دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.">
+<meta name="theme-color" content="#1B2A4A">
+<meta name="color-scheme" content="light dark">
+
+<link rel="icon" type="image/png" href="SyrHub-Icon.png?v=2">
+<link rel="apple-touch-icon" href="SyrHub-Icon.png?v=2">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SyrHub">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SyrHub">
+<meta property="og:title" content="SyrHub — دليل التطبيقات السورية">
+<meta property="og:description" content="دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.">
+<meta property="og:image" content="https://ali-mhd-ibrahim.github.io/SyrHub/SyrHub-Icon.png?v=2">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:locale" content="ar_SY">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ali-mhd-ibrahim.github.io/SyrHub/SyrHub-Icon.png?v=2">
+<meta name="twitter:title" content="SyrHub — دليل التطبيقات السورية">
+<meta name="twitter:description" content="دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.">
+
+<script type="application/ld+json" id="seoJsonLd"></script>
+
+<!-- Google Analytics -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JZ7NFMPZPY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JZ7NFMPZPY');
+</script>
+<!-- End Google Analytics -->
+
+<script>
+  (function(){
+    var r = document.documentElement;
+    var t = localStorage.getItem('syh-theme');
+    if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+    r.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+    var l = localStorage.getItem('syh-lang') || 'ar';
+    l = l === 'en' ? 'en' : 'ar';
+    r.setAttribute('lang', l);
+    r.setAttribute('dir', l === 'en' ? 'ltr' : 'rtl');
+    var tc = document.querySelector('meta[name="theme-color"]');
+    if(tc){ tc.setAttribute('content', r.getAttribute('data-theme') === 'dark' ? '#0a101d' : '#1B2A4A'); }
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  :root{
+    --bg:#FBF9F4;
+    --surface:#ffffff;
+    --surface-2:#ffffff;
+    --surface-3:#FBF9F4;
+    --text:#22262B;
+    --text-soft:#5b6470;
+    --text-faint:#9aa2ac;
+    --border:#e7e3d8;
+    --primary:#2E9C97;
+    --primary-soft:#e4f4f3;
+    --navy:#1B2A4A;
+    --navy-2:#12203a;
+    --gold:#C9A24B;
+    --btn-primary-color:#1B2A4A;
+    --btn-primary-text:#ffffff;
+    --hero-text:#FBF9F4;
+    --hero-text-soft:#d8ddea;
+    --on-primary:#ffffff;
+    --radius:14px;
+    --shadow:0 8px 24px rgba(27,42,74,0.08);
+    --shadow-lg:0 14px 40px rgba(27,42,74,0.14);
+    --topbar-bg:rgba(251,249,244,0.82);
+    --topbar-blur:12px;
+    --star-opacity:0.10;
+  }
+
+  [data-theme="dark"]{
+    --bg:#0a101d;
+    --surface:#141c30;
+    --surface-2:#1a2440;
+    --surface-3:#0e1626;
+    --text:#e9edf6;
+    --text-soft:#9fb0c9;
+    --text-faint:#6d7c95;
+    --border:#26344f;
+    --primary:#3ec0b8;
+    --primary-soft:rgba(62,192,184,0.16);
+    --navy:#0a101d;
+    --navy-2:#0e1833;
+    --gold:#d6ab4e;
+    --btn-primary-color:#2E9C97;
+    --btn-primary-text:#ffffff;
+    --hero-text:#f4f7fd;
+    --hero-text-soft:#c7d3e6;
+    --on-primary:#ffffff;
+    --shadow:0 8px 24px rgba(0,0,0,0.35);
+    --shadow-lg:0 14px 40px rgba(0,0,0,0.5);
+    --topbar-bg:rgba(10,16,29,0.82);
+    --star-opacity:0.14;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top:84px; }
+  body{
+    margin:0;
+    font-family:'Inter','Tajawal',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    transition: background-color .25s ease, color .25s ease;
+  }
+
+  a{ color:inherit; }
+  ::selection{ background:var(--primary); color:#fff; }
+
+  button, a, [role="button"], .recent-card{ touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
+  button, a{ -webkit-touch-callout:none; }
+
+  *::-webkit-scrollbar{ width:10px; height:10px; }
+  *::-webkit-scrollbar-thumb{ background:var(--border); border-radius:999px; }
+  *::-webkit-scrollbar-track{ background:transparent; }
+
+  .sr-only{
+    position:absolute; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  button{ font-family:inherit; }
+
+  /* -------- الشريط العلوي -------- */
+  .topbar{
+    position:fixed; inset:0 0 auto 0;
+    z-index:60;
+    background:var(--topbar-bg);
+    -webkit-backdrop-filter:blur(var(--topbar-blur));
+    backdrop-filter:blur(var(--topbar-blur));
+    border-bottom:1px solid var(--border);
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  .nav-inner{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 20px;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    font-weight:800;
+    color:var(--text);
+    flex-shrink:0;
+  }
+  .brand img{ width:30px; height:30px; display:block; border-radius:8px; }
+  .brand-name{ font-size:1.05rem; letter-spacing:0.2px; }
+  .nav-links{
+    display:flex;
+    gap:4px;
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--text-soft);
+    font-weight:500;
+    font-size:0.9rem;
+    padding:8px 12px;
+    border-radius:9px;
+    transition: color .15s ease, background-color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--primary); background:var(--primary-soft); }
+  .nav-actions{ display:flex; gap:8px; flex-shrink:0; }
+  /* ------ شارات النسخ (APK / PWA) — بجانب بعضهما داخل تذييل الصفحة ------ */
+  .app-badges{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:stretch;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .app-badges[hidden]{ display:none !important; }
+  .app-badge{
+    flex:1 1 0;
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:10px 14px;
+    box-shadow:var(--shadow);
+    color:var(--text);
+    text-decoration:none;
+    cursor:pointer;
+    font:inherit;
+    text-align:start;
+    animation:fadeUp .4s ease both;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .app-badge[hidden]{ display:none !important; }
+  .app-badge:hover{ transform:translateY(-2px); border-color:var(--primary); box-shadow:var(--shadow-lg); }
+  .app-badge:active{ transform:scale(0.97); }
+  .app-badge:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .app-badge .ab-ico{
+    width:36px; height:36px; flex-shrink:0;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.15rem;
+    background:var(--primary-soft);
+  }
+  .app-badge.pwa-badge .ab-ico{ background:#1B2A4A; }
+  .app-badge .ab-text{ display:flex; flex-direction:column; line-height:1.3; min-width:0; }
+  .app-badge .ab-title{ font-size:.84rem; font-weight:800; }
+  .app-badge .ab-sub{ font-size:.7rem; color:var(--text-soft); }
+  .install-steps{ margin:14px 0 18px; padding-inline-start:22px; display:flex; flex-direction:column; gap:10px; }
+  .install-steps li{ font-size:0.9rem; color:var(--text); line-height:1.5; }
+  @media (max-width:420px){
+    .app-badge{ padding:9px 10px; gap:8px; }
+    .app-badge .ab-ico{ width:30px; height:30px; font-size:1rem; }
+    .app-badge .ab-title{ font-size:.74rem; }
+    .app-badge .ab-sub{ font-size:.6rem; }
+  }
+  .icon-btn{
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text);
+    border-radius:999px;
+    height:38px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.82rem;
+    font-weight:700;
+    transition: transform .15s ease, border-color .15s ease, background-color .2s ease;
+  }
+  .icon-btn:hover{ border-color:var(--primary); transform:translateY(-1px); }
+  .icon-btn:active{ transform:scale(0.95); }
+  .icon-btn:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  #langToggle{ padding:0 14px; gap:6px; min-width:52px; }
+  #themeToggle{ width:38px; padding:0; font-size:0.95rem; }
+  .icon-sun{ display:none; }
+  [data-theme="dark"] .icon-sun{ display:inline; }
+  [data-theme="dark"] .icon-moon{ display:none; }
+
+  @media (max-width:720px){
+    .nav-links{ display:none; }
+    .search-row{ flex-wrap:wrap; }
+    .sort-box{ width:100%; }
+    .sort-box select{ flex:1; }
+  }
+
+  /* -------- الزخرفة -------- */
+  .star-pattern{
+    position:absolute;
+    inset:0;
+    opacity:var(--star-opacity);
+    background-image:
+      linear-gradient(45deg, var(--gold) 25%, transparent 25.5%, transparent 75%, var(--gold) 75.5%),
+      linear-gradient(135deg, var(--gold) 25%, transparent 25.5%, transparent 75%, var(--gold) 75.5%);
+    background-size:46px 46px;
+    background-position:0 0, 23px 23px;
+    pointer-events:none;
+  }
+
+  .divider-star{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:8px 0 28px;
+    color:var(--gold);
+  }
+  .divider-star::before, .divider-star::after{
+    content:"";
+    height:1px;
+    width:64px;
+    background:linear-gradient(90deg, transparent, var(--border));
+  }
+  .divider-star::after{ background:linear-gradient(90deg, var(--border), transparent); }
+
+  /* -------- الترويسة -------- */
+  header.hero{
+    position:relative;
+    background:
+      radial-gradient(900px 420px at 18% -12%, color-mix(in srgb, var(--primary) 28%, var(--navy-2)), transparent 60%),
+      radial-gradient(700px 380px at 85% -10%, color-mix(in srgb, var(--gold) 18%, var(--navy-2)), transparent 55%),
+      radial-gradient(1200px 500px at 20% -10%, var(--navy-2), var(--navy));
+    color:var(--hero-text);
+    padding:140px 24px 92px;
+    overflow:hidden;
+    text-align:center;
+  }
+  header.hero.in-anim{ opacity:0; transform:translateY(16px); animation:fadeUp .7s ease forwards; }
+
+  header.hero .hero-kicker{
+    position:relative;
+    z-index:1;
+    display:inline-block;
+    font-size:0.8rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin-bottom:12px;
+  }
+  header.hero h1{
+    font-family:'Aref Ruqaa', serif;
+    font-weight:700;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    margin:0 0 14px;
+    position:relative;
+    z-index:1;
+  }
+  html[lang="en"] header.hero h1,
+  html[lang="en"] .suggest-card h2{
+    font-family:'Playfair Display', serif;
+    letter-spacing:-0.5px;
+  }
+  header.hero p.subtitle{
+    position:relative;
+    z-index:1;
+    max-width:660px;
+    margin:0 auto;
+    color:var(--hero-text-soft);
+    font-size:1.05rem;
+  }
+  header.hero .badge{
+    position:relative;
+    z-index:1;
+    display:inline-block;
+    margin-top:22px;
+    padding:6px 16px;
+    border:1px solid rgba(201,162,75,0.5);
+    border-radius:999px;
+    font-size:0.85rem;
+    color:var(--gold);
+    letter-spacing:0.3px;
+  }
+
+  /* -------- شريط البحث/الفلترة العائم -------- */
+  .controls-wrap{
+    max-width:1080px;
+    margin:-48px auto 0;
+    padding:0 20px;
+    position:relative;
+    z-index:2;
+  }
+  .controls{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:18px 20px;
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  .search-row{
+    display:flex;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .search-row input{
+    flex:1;
+    min-width:0;
+    padding:12px 16px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    font-family:inherit;
+    font-size:1rem;
+    background:var(--bg);
+    color:var(--text);
+    transition: border-color .15s ease, background-color .2s ease;
+  }
+  .search-row input:focus{
+    outline:2px solid var(--primary);
+    outline-offset:1px;
+  }
+  .sort-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+  .sort-box select{
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text);
+    font-family:inherit;
+    font-size:0.95rem;
+    cursor:pointer;
+  }
+  .sort-box select:focus{ outline:2px solid var(--primary); outline-offset:1px; }
+  .sort-label{
+    color:var(--text-soft);
+    font-size:0.88rem;
+    white-space:nowrap;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text-soft);
+    padding:7px 14px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:500;
+    transition: all .15s ease;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .chip:hover{ border-color:var(--primary); color:var(--text); }
+  .chip:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .chip.active{
+    background:var(--primary);
+    border-color:var(--primary);
+    color:var(--on-primary);
+  }
+  .chip:active{ transform:scale(0.96); }
+
+  /* -------- فلاتر المنصات -------- */
+  .filters-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    align-items:center;
+    margin-bottom:14px;
+  }
+  .filter-group{ display:flex; align-items:center; gap:8px; }
+  .filter-label{ color:var(--text-soft); font-size:0.85rem; white-space:nowrap; }
+  .filter-options{ display:flex; gap:6px; flex-wrap:wrap; }
+  .mini-chip{
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text-soft);
+    padding:5px 13px;
+    border-radius:999px;
+    font-size:0.8rem;
+    font-weight:600;
+    transition: all .15s ease;
+  }
+  .mini-chip:hover{ border-color:var(--primary); color:var(--text); }
+  .mini-chip.active{ background:var(--primary); border-color:var(--primary); color:var(--on-primary); }
+  .mini-chip:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .mini-chip:active{ transform:scale(0.96); }
+  .mini-check{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-size:0.87rem;
+    font-weight:500;
+    color:var(--text);
+    cursor:pointer;
+    user-select:none;
+  }
+  .mini-check input{ width:16px; height:16px; accent-color:var(--primary); cursor:pointer; }
+
+  /* -------- الإحصائيات -------- */
+  .stats-strip{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:12px;
+    margin-bottom:30px;
+  }
+  .stat{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px 14px;
+    text-align:center;
+    transition: background-color .25s ease, transform .15s ease, border-color .25s ease;
+  }
+  .stat:hover{ transform:translateY(-2px); box-shadow:var(--shadow); }
+  .stat-num{
+    display:block;
+    font-size:1.8rem;
+    font-weight:800;
+    color:var(--primary);
+    line-height:1.2;
+  }
+  .stat-label{
+    display:block;
+    margin-top:4px;
+    font-size:0.85rem;
+    color:var(--text-soft);
+  }
+
+  .result-count{
+    color:var(--text-soft);
+    font-size:0.9rem;
+    margin-bottom:16px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+    gap:18px;
+  }
+
+  /* -------- بطاقة التطبيق -------- */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    opacity:0;
+    transform:translateY(10px);
+    animation:fadeUp .45s ease forwards;
+    content-visibility:auto;
+    contain-intrinsic-size:auto 250px;
+    transition: transform .15s ease, box-shadow .15s ease, background-color .25s ease, border-color .25s ease;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg); border-color:rgba(46,156,151,0.45); }
+  .card-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .card-icon{
+    font-size:1.6rem;
+    background:var(--primary-soft);
+    width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:12px;
+    flex-shrink:0;
+    overflow:hidden;
+    transition: background-color .25s ease;
+  }
+  .app-icon{
+    width:44px; height:44px;
+    border-radius:12px;
+    object-fit:cover;
+    display:block;
+    background:var(--primary-soft);
+  }
+  .card h3{
+    margin:0;
+    font-size:1.12rem;
+    font-weight:800;
+    line-height:1.3;
+  }
+  .cat-tag{
+    display:inline-block;
+    font-size:0.75rem;
+    color:var(--primary);
+    background:var(--primary-soft);
+    padding:3px 10px;
+    border-radius:999px;
+    font-weight:700;
+    width:fit-content;
+  }
+  .card p.desc{
+    margin:0;
+    color:var(--text-soft);
+    font-size:0.92rem;
+    flex-grow:1;
+  }
+  .platforms{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    font-size:0.78rem;
+    color:var(--text-soft);
+  }
+  .platforms span{
+    border:1px solid transparent;
+    background:var(--surface-3);
+    padding:3px 9px;
+    border-radius:7px;
+    font-weight:600;
+  }
+  .card-actions{
+    display:flex;
+    gap:8px;
+    margin-top:8px;
+    flex-wrap:wrap;
+  }
+  .card-actions .btn{ flex:1 1 120px; justify-content:center; }
+  .btn{
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.85rem;
+    padding:9px 14px;
+    border-radius:9px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition: opacity .15s ease, transform .15s ease, border-color .15s ease;
+  }
+  .btn:hover{ opacity:0.88; transform:translateY(-1px); }
+  .btn:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .btn-primary{
+    background:var(--btn-primary-color);
+    color:var(--btn-primary-text);
+    transition: background-color .25s ease, opacity .15s ease, transform .15s ease;
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--text);
+    border:1px solid var(--border);
+  }
+  .verified-tag{
+    font-size:0.72rem;
+    color:var(--gold);
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+
+  /* -------- التقييم والآراء -------- */
+  .rating-row{ display:flex; align-items:center; gap:7px; }
+  .stars{ color:var(--gold); letter-spacing:1px; font-size:0.95rem; }
+  .stars.stars-muted{ color:var(--text-faint); }
+  .rating-num{ font-weight:800; font-size:0.88rem; }
+  .rating-count{ color:var(--text-soft); font-size:0.78rem; }
+  .toggle-reviews-btn{
+    background:transparent;
+    border:none;
+    color:var(--primary);
+    font-weight:700;
+    font-size:0.82rem;
+    cursor:pointer;
+    padding:0;
+    text-align:start;
+  }
+  .toggle-reviews-btn:hover{ text-decoration:underline; }
+  .reviews-panel{
+    display:none;
+    margin-top:4px;
+    padding-top:10px;
+    border-top:1px dashed var(--border);
+    flex-direction:column;
+    gap:8px;
+  }
+  .reviews-panel.open{ display:flex; }
+  .review-item{
+    background:var(--surface-3);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:9px 11px;
+  }
+  .review-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:3px;
+    gap:8px;
+  }
+  .review-head .author{ font-weight:700; font-size:0.85rem; }
+  .review-item .stars{ font-size:0.78rem; }
+  .review-comment{
+    margin:0;
+    font-size:0.85rem;
+    color:var(--text-soft);
+  }
+  .review-date{
+    display:block;
+    margin-top:4px;
+    font-size:0.72rem;
+    color:var(--text-faint);
+  }
+  .no-reviews{
+    color:var(--text-soft);
+    font-size:0.85rem;
+    font-style:italic;
+    margin:0;
+  }
+  .card-extra{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:2px;
+    border-top:1px dashed var(--border);
+    padding-top:12px;
+  }
+  .card .fav-btn,
+  .card .cmp-btn{ flex:1 1 120px; justify-content:center; }
+  .fav-btn{
+    cursor:pointer;
+    background:var(--surface-2);
+    color:var(--text-soft);
+    border:1px solid var(--border);
+    border-radius:9px;
+    font-size:0.8rem;
+    font-weight:700;
+    font-family:inherit;
+    padding:7px 12px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+  }
+  .fav-btn:hover{ border-color:var(--gold); color:var(--gold); }
+  .fav-btn.active{
+    border-color:var(--gold);
+    color:var(--gold);
+    background:color-mix(in srgb, var(--gold) 14%, transparent);
+  }
+  .fav-btn:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .cmp-btn{
+    cursor:pointer;
+    background:var(--surface-2);
+    color:var(--text-soft);
+    border:1px solid var(--border);
+    border-radius:9px;
+    font-size:0.8rem;
+    font-weight:700;
+    font-family:inherit;
+    padding:7px 12px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+  }
+  .cmp-btn:hover{ border-color:var(--primary); color:var(--primary); }
+  .cmp-btn.active{
+    border-color:var(--primary);
+    color:var(--primary);
+    background:var(--primary-soft);
+  }
+  .cmp-btn:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  mark{
+    background:color-mix(in srgb, var(--gold) 38%, transparent);
+    color:var(--text);
+    border-radius:3px;
+    padding:0 2px;
+  }
+
+  /* -------- شريط المقارنة السفلي -------- */
+  .cmp-bar{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:14px;
+    z-index:78;
+    width:min(940px, calc(100vw - 24px));
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:var(--shadow-lg);
+    padding:10px 14px;
+    transition: background-color .25s ease, border-color .25s ease, transform .3s ease, opacity .3s ease;
+  }
+  .cmp-bar[hidden]{ display:none; }
+  .cmp-title{
+    font-weight:800;
+    font-size:0.9rem;
+    white-space:nowrap;
+  }
+  .cmp-chips{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    flex:1;
+    min-width:0;
+  }
+  .cmp-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--primary-soft);
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:5px 8px 5px 12px;
+    font-size:0.8rem;
+    font-weight:700;
+    max-width:100%;
+  }
+  .cmp-chip .cc-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .cmp-chip .cc-x{
+    border:none;
+    background:none;
+    color:var(--text-soft);
+    cursor:pointer;
+    font-size:0.95rem;
+    line-height:1;
+    padding:0 2px;
+  }
+  .cmp-chip .cc-x:hover{ color:var(--primary); }
+  .cmp-actions{ display:flex; gap:8px; }
+  .btn-sm{ font-size:0.78rem; padding:7px 12px; }
+  .cmp-msg{
+    flex-basis:100%;
+    color:var(--primary);
+    font-size:0.8rem;
+    font-weight:700;
+    text-align:center;
+  }
+  @media (max-width:820px){
+    .cmp-bar{ bottom:78px; }
+  }
+
+  /* -------- جدول المقارنة -------- */
+  .compare-panel{ max-width:900px; }
+  .cmp-table-wrap{ overflow-x:auto; }
+  .cmp-table{ width:100%; border-collapse:collapse; font-size:0.86rem; }
+  .cmp-table th, .cmp-table td{
+    border:1px solid var(--border);
+    padding:10px 12px;
+    vertical-align:top;
+    text-align:start;
+  }
+  .cmp-table thead th{ background:var(--primary-soft); text-align:center; }
+  .cmp-table th.cmp-rowhead{ background:var(--surface-2); font-weight:800; white-space:nowrap; width:110px; }
+  .cmp-table tbody td{ color:var(--text-soft); line-height:1.6; }
+  .cmp-table .cmp-icon{ font-size:1.6rem; }
+  .cmp-table .cmp-appname{ font-weight:800; color:var(--text); font-size:0.95rem; }
+  .cmp-table .cmp-actions-cell{ display:flex; flex-direction:column; gap:8px; align-items:stretch; }
+  .cmp-table .cmp-actions-cell a{ text-align:center; }
+
+  .card.flash{
+    outline:3px solid var(--gold);
+    outline-offset:-3px;
+    box-shadow:var(--shadow-lg);
+  }
+
+  /* -------- قسم شوهد مؤخراً -------- */
+  .recent-section{
+    max-width:1080px;
+    margin:8px auto 0;
+    padding:0 20px;
+  }
+  .recent-card{
+    scroll-snap-align:start;
+    flex:0 0 190px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    cursor:pointer;
+    font-family:inherit;
+    text-align:start;
+    color:var(--text);
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .recent-card:hover{ transform:translateY(-2px); border-color:var(--primary); }
+  .recent-card:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .recent-card .rc-name{ font-weight:800; font-size:0.95rem; line-height:1.3; }
+  .recent-card .rc-cat{ font-size:0.76rem; color:var(--text-soft); }
+  .recent-card .rc-rating{ font-size:0.78rem; color:var(--gold); font-weight:700; }
+
+  .card-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .btn-review{
+    color:var(--primary);
+    font-weight:700;
+    font-size:0.82rem;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .btn-review:hover{ text-decoration:underline; }
+
+  /* -------- نافذة المساهمة -------- */
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    background:rgba(8,14,26,0.6);
+    -webkit-backdrop-filter:blur(4px);
+    backdrop-filter:blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:opacity .2s ease, visibility .2s;
+  }
+  .modal-overlay.open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
+  .modal{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    width:100%;
+    max-width:520px;
+    padding:28px 24px 24px;
+    position:relative;
+    transform:translateY(14px) scale(0.98);
+    transition:transform .25s ease;
+    transition: background-color .25s ease, transform .25s ease, border-color .25s ease;
+  }
+  .modal-overlay.open .modal{ transform:none; }
+  .modal-close{
+    position:absolute;
+    inset-inline-end:14px;
+    top:14px;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text-soft);
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .modal-close:hover{ border-color:var(--primary); color:var(--primary); }
+  .modal h2{
+    margin:0 0 6px;
+    font-size:1.3rem;
+    font-weight:800;
+  }
+  html[lang="en"] .modal h2{ font-family:'Playfair Display', serif; }
+  .modal-sub{
+    margin:0 0 18px;
+    color:var(--text-soft);
+    font-size:0.92rem;
+  }
+  .modal-options{ display:flex; flex-direction:column; gap:10px; }
+  .modal-option{
+    display:flex;
+    align-items:flex-start;
+    gap:13px;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    text-decoration:none;
+    color:var(--text);
+    background:var(--surface-2);
+    transition:border-color .15s ease, transform .15s ease, background-color .2s ease;
+  }
+  .modal-option:hover{ border-color:var(--primary); transform:translateY(-1px); }
+  .modal-option:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .modal-option .mo-icon{ font-size:1.35rem; line-height:1.4; }
+  .modal-option .mo-title{
+    display:block;
+    font-weight:700;
+    font-size:0.95rem;
+  }
+  .modal-option .mo-desc{
+    display:block;
+    font-size:0.82rem;
+    color:var(--text-soft);
+    margin-top:2px;
+  }
+
+  .empty-state{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--text-soft);
+  }
+  .empty-state .glyph{ font-size:2.2rem; margin-bottom:10px; }
+  .empty-state p{ margin:4px 0 0; }
+
+  /* -------- قسم العروض والكوبونات -------- */
+  .promos-section{
+    max-width:1080px;
+    margin:32px auto 0;
+    padding:0 20px;
+  }
+  .promos-heading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .promos-heading h2{
+    font-size:1.15rem;
+    margin:0;
+    font-weight:800;
+  }
+  .promos-heading .flame{ font-size:1.2rem; }
+  .promos-scroller{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    padding-bottom:8px;
+    scroll-snap-type:x proximity;
+  }
+  .promo-card{
+    scroll-snap-align:start;
+    flex:0 0 300px;
+    background:linear-gradient(160deg, var(--surface), var(--primary-soft));
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:18px;
+    position:relative;
+    overflow:hidden;
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  .promo-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:radial-gradient(circle, var(--gold) 1px, transparent 1.4px);
+    background-size:16px 16px;
+    opacity:0.08;
+    pointer-events:none;
+  }
+  .promo-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+    position:relative; z-index:1;
+  }
+  .promo-app{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-weight:800;
+    font-size:0.86rem;
+    color:var(--text);
+    background:var(--surface);
+    border:1px solid var(--border);
+    padding:4px 12px;
+    border-radius:999px;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .promo-app-ico{ font-size:.95rem; line-height:1; flex-shrink:0; }
+  .promo-app-img{ width:16px; height:16px; border-radius:50%; object-fit:cover; display:block; flex-shrink:0; }
+  .promo-badge{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--navy);
+    font-weight:800;
+    font-size:0.78rem;
+    padding:4px 12px;
+    border-radius:999px;
+    flex-shrink:0;
+    position:relative; z-index:1;
+  }
+  .promo-card h3{
+    margin:0 0 6px;
+    font-size:1.02rem;
+    position:relative; z-index:1;
+  }
+  .promo-card p.promo-desc{
+    margin:0 0 12px;
+    font-size:0.86rem;
+    color:var(--text-soft);
+    position:relative; z-index:1;
+  }
+  .promo-code-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:12px;
+    position:relative; z-index:1;
+  }
+  .promo-code{
+    flex:1;
+    border:1.5px dashed var(--gold);
+    background:var(--surface);
+    border-radius:8px;
+    padding:8px 12px;
+    font-weight:800;
+    letter-spacing:1px;
+    font-size:0.92rem;
+    text-align:center;
+    color:var(--text);
+    cursor:pointer;
+    user-select:all;
+    transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
+  }
+  .promo-code:hover{ background:var(--primary-soft); border-color:var(--gold); }
+  .promo-code:active{ transform:scale(0.98); }
+  .promo-code:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  .copy-btn{
+    border:none;
+    background:var(--btn-primary-color);
+    color:var(--btn-primary-text);
+    border-radius:8px;
+    padding:8px 12px;
+    font-size:0.8rem;
+    font-weight:700;
+    cursor:pointer;
+    flex-shrink:0;
+    transition: background-color .2s ease, opacity .15s ease;
+  }
+  .copy-btn:hover{ opacity:0.85; }
+  .copy-btn.copied{ background:var(--primary); }
+  .promo-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:relative; z-index:1;
+    font-size:0.78rem;
+    color:var(--text-soft);
+    gap:8px;
+  }
+  .promo-footer a{
+    color:var(--primary);
+    font-weight:700;
+    text-decoration:none;
+  }
+
+  /* -------- قسم الاقتراح -------- */
+  .suggest-section{
+    max-width:1080px;
+    margin:60px auto 0;
+    padding:0 20px;
+  }
+  .suggest-card{
+    position:relative;
+    overflow:hidden;
+    background:var(--navy);
+    color:var(--hero-text);
+    border-radius:var(--radius);
+    padding:44px 30px;
+    text-align:center;
+    background-image:
+      radial-gradient(700px 320px at 80% 0%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 55%);
+  }
+  .suggest-card h2{
+    font-family:'Aref Ruqaa', serif;
+    font-size:1.8rem;
+    margin:0 0 10px;
+    position:relative; z-index:1;
+  }
+  .suggest-card p{
+    color:var(--hero-text-soft);
+    max-width:540px;
+    margin:0 auto 22px;
+    position:relative; z-index:1;
+  }
+  .suggest-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+    position:relative; z-index:1;
+  }
+  .btn-gold{
+    background:var(--gold);
+    color:var(--navy);
+  }
+  .btn-outline-light{
+    background:transparent;
+    border:1px solid rgba(251,249,244,0.4);
+    color:var(--hero-text);
+  }
+
+  footer{
+    text-align:center;
+    color:var(--text-soft);
+    font-size:0.85rem;
+    padding:50px 20px 60px;
+  }
+  footer p{ margin:6px 0; }
+  footer a{ color:var(--primary); font-weight:700; text-decoration:none; }
+  .footer-brand{
+    font-weight:800;
+    color:var(--text);
+    margin-bottom:10px;
+    font-size:1rem;
+  }
+  .footer-credit{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:10px;
+    padding-top:12px;
+    border-top:1px solid var(--border);
+    color:var(--text-soft);
+    font-size:0.85rem;
+    font-weight:500;
+  }
+  .notify-toast{
+    position:fixed;
+    inset-inline-start:22px;
+    bottom:78px;
+    z-index:90;
+    max-width:340px;
+    max-width:min(340px, 86vw);
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-inline-start:4px solid var(--primary);
+    border-radius:12px;
+    padding:12px 16px;
+    box-shadow:var(--shadow-lg);
+    cursor:pointer;
+    animation:toastIn .25s ease both;
+  }
+  .notify-toast strong{ font-size:.9rem; color:var(--text); font-weight:800; }
+  .notify-toast span{ font-size:.8rem; color:var(--text-soft); }
+  @keyframes toastIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+
+  /* -------- زر العودة للأعلى -------- */
+  .back-to-top{
+    position:fixed;
+    inset-inline-end:22px;
+    bottom:22px;
+    z-index:50;
+    width:44px; height:44px;
+    border-radius:50%;
+    border:none;
+    background:var(--primary);
+    color:var(--on-primary);
+    font-size:1.1rem;
+    cursor:pointer;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transform:translateY(8px);
+    transition:opacity .25s ease, transform .25s ease, visibility .25s;
+    box-shadow:var(--shadow-lg);
+  }
+  .back-to-top.visible{ opacity:1; visibility:visible; pointer-events:auto; transform:none; }
+  .back-to-top:hover{ transform:translateY(-2px); }
+
+  /* -------- نافذة تفاصيل التطبيق -------- */
+  body.no-scroll{ overflow:hidden; }
+  .detail-overlay{
+    position:fixed;
+    inset:0;
+    z-index:95;
+    background:rgba(8,14,26,0.65);
+    -webkit-backdrop-filter:blur(5px);
+    backdrop-filter:blur(5px);
+    padding:24px 16px;
+    overflow-y:auto;
+    display:none;
+  }
+  .detail-overlay:not([hidden]){ display:flex; align-items:flex-start; justify-content:center; }
+  .detail-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    width:100%;
+    max-width:680px;
+    padding:22px;
+    margin:auto 0;
+    animation:fadeUp .3s ease;
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  .detail-toolbar{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .detail-toolbar .btn{ padding:8px 14px; font-size:0.85rem; }
+  .detail-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+  }
+  .detail-icon{
+    flex:0 0 58px;
+    width:58px; height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.8rem;
+    background:var(--primary-soft);
+    border-radius:16px;
+    border:1px solid var(--border);
+    overflow:hidden;
+  }
+  .detail-icon img{
+    width:58px; height:58px;
+    border-radius:16px;
+    object-fit:cover;
+    display:block;
+    background:var(--primary-soft);
+  }
+  .detail-head h2{
+    margin:0 0 4px;
+    font-size:1.35rem;
+    font-weight:800;
+    line-height:1.2;
+  }
+  html[lang="en"] .detail-head h2{ font-family:'Playfair Display', serif; }
+  .detail-meta{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+  }
+  .detail-meta .stars{ color:var(--gold); letter-spacing:2px; font-size:0.9rem; }
+  .detail-rating-num{ font-weight:800; }
+  .detail-meta .rating-count{ color:var(--text-soft); font-size:0.85rem; }
+  .detail-desc{
+    margin:0 0 14px;
+    color:var(--text-soft);
+    font-size:0.95rem;
+    line-height:1.7;
+  }
+  .detail-update{
+    margin:0 0 8px;
+    color:var(--text-soft);
+    font-size:0.83rem;
+  }
+  .detail-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:14px 0 10px;
+  }
+  .detail-stores{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .btn-store{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text);
+    border-radius:10px;
+    padding:9px 14px;
+    font-size:0.85rem;
+    font-weight:700;
+    text-decoration:none;
+    transition:border-color .15s ease, color .15s ease, background-color .2s ease;
+  }
+  .btn-store:hover{ border-color:var(--primary); color:var(--primary); }
+  .detail-section{
+    margin-top:18px;
+    border-top:1px solid var(--border);
+    padding-top:14px;
+  }
+  .detail-section h3{
+    margin:0 0 10px;
+    font-size:1rem;
+    font-weight:800;
+  }
+  .detail-section .promos-scroller{ flex-direction:column; }
+  .detail-section .promo-card{ flex:0 0 auto; width:100%; }
+  .rec-scroller{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    padding-bottom:8px;
+    scroll-snap-type:x proximity;
+    scroll-padding-inline-start:2px;
+  }
+  .detail-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px solid var(--border);
+  }
+  .detail-panel .review-item{ margin-top:10px; }
+  @media (max-width:520px){
+    .detail-toolbar{ flex-direction:column; }
+    .detail-toolbar .btn{ width:100%; text-align:center; }
+  }
+
+  /* -------- شريط التنقل السفلي للموبايل -------- */
+  .bottom-nav{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    z-index:80;
+    display:none;
+    align-items:stretch;
+    background:var(--surface);
+    border-top:1px solid var(--border);
+    box-shadow:0 -6px 20px rgba(27,42,74,0.08);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    transition: background-color .25s ease, border-color .25s ease;
+  }
+  .bn-item{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+    padding:10px 4px 12px;
+    border:none;
+    background:none;
+    color:var(--text-soft);
+    font-size:0.68rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:color .15s ease;
+    min-width:0;
+  }
+  .bn-item:hover, .bn-item:active{ color:var(--primary); }
+  .bn-item:focus-visible{ outline:2px solid var(--primary); outline-offset:-2px; border-radius:10px; }
+  .bn-ico{ font-size:1.15rem; line-height:1; }
+  .bn-label{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+  .sheet-overlay{ align-items:flex-end; }
+  .sheet-overlay .sheet{
+    max-width:640px;
+    width:100%;
+    border-radius:20px 20px 0 0;
+    margin-bottom:0;
+    transform:translateY(100%);
+    transition:transform .3s ease, background-color .25s ease, border-color .25s ease;
+  }
+  .sheet-overlay.open .sheet{ transform:none; }
+  .sheet-close{
+    position:absolute;
+    inset-inline-end:14px;
+    top:12px;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--surface-2);
+    color:var(--text-soft);
+    font-size:1.05rem;
+    line-height:1;
+    cursor:pointer;
+  }
+  .sheet-close:hover{ border-color:var(--primary); color:var(--primary); }
+  .sheet-options{ display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+  .sheet-opt{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface-2);
+    color:var(--text);
+    font-size:0.95rem;
+    font-weight:700;
+    text-align:start;
+    cursor:pointer;
+    transition:border-color .15s ease, background-color .2s ease, transform .15s ease;
+  }
+  .sheet-opt:hover{ border-color:var(--primary); transform:translateY(-1px); }
+  a.sheet-opt{ text-decoration:none; font-family:inherit; }
+  .sheet-opt:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+  .sheet-opt .so-ico{ font-size:1.15rem; }
+  .sheet-note{
+    margin:12px 0 2px;
+    color:var(--text-soft);
+    font-size:0.85rem;
+    line-height:1.7;
+  }
+  @media (max-width:820px){
+    .bottom-nav{ display:flex; }
+    body{ padding-bottom:70px; }
+    .back-to-top{ bottom:76px; }
+    .detail-panel{ margin-bottom:78px; }
+    .modal{ margin-bottom:78px; }
+  }
+
+  .apps-section{
+    max-width:1080px;
+    margin:0 auto;
+    padding:34px 20px 20px;
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *, *::before, *::after{ animation:none !important; transition:none !important; }
+    .card{ opacity:1; transform:none; }
+    header.hero.in-anim{ opacity:1; transform:none; animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="الشريط العلوي">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="SyrHub">
+      <img src="SyrHub-Icon.png?v=2" alt="" width="30" height="30">
+      <span class="brand-name">SyrHub</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#apps" data-i18n="navApps">التطبيقات</a></li>
+      <li><a href="#promosSection" data-i18n="navOffers">العروض</a></li>
+      <li><a href="#contribute" data-i18n="navContribute">ساهم</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button id="langToggle" class="icon-btn" type="button" data-action="lang">EN</button>
+      <button id="themeToggle" class="icon-btn" type="button" data-action="theme">
+        <span class="icon-sun" aria-hidden="true">☀️</span>
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero in-anim" id="top">
+  <div class="star-pattern" aria-hidden="true"></div>
+  <p class="hero-kicker" data-i18n="tagline">الدليل السوري الموحّد للتطبيقات المحلية</p>
+  <h1 data-i18n="heroH1">SyrHub — دليل التطبيقات السورية</h1>
+  <p class="subtitle" data-i18n="heroSubtitle">قائمة موحّدة وموثّقة لأبرز التطبيقات المحلية في سوريا — روابط رسمية فقط، بدون ملفات تثبيت غير موثوقة.</p>
+  <span class="badge" data-i18n="heroBadge">مشروع مفتوح المصدر · مساهمة مجتمعية</span>
+</header>
+
+<div class="controls-wrap">
+  <div class="controls">
+    <div class="search-row">
+      <label for="search" class="sr-only" data-i18n="searchLabel">ابحث عن تطبيق</label>
+      <input type="text" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="ابحث باسم التطبيق أو وصفه...">
+      <div class="sort-box">
+        <span class="sort-label" data-i18n="sortLabel">ترتيب:</span>
+        <select id="sortSel" aria-label="sort">
+          <option value="rating"></option>
+          <option value="name"></option>
+        </select>
+      </div>
+    </div>
+    <div class="filters-row" id="filtersRow">
+      <div class="filter-group">
+        <span class="filter-label" data-i18n="platformFilterLabel">المنصة:</span>
+        <div class="filter-options" id="platformFilter" role="group" data-i18n-aria="platformFilterAria">
+          <button type="button" class="mini-chip active" data-platform="all" data-i18n="all">الكل</button>
+          <button type="button" class="mini-chip" data-platform="android"></button>
+          <button type="button" class="mini-chip" data-platform="ios"></button>
+          <button type="button" class="mini-chip" data-platform="web"></button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label class="mini-check">
+          <input type="checkbox" id="verifiedOnly">
+          <span data-i18n="verifiedOnly">موثّق فقط</span>
+        </label>
+      </div>
+    </div>
+    <div class="chips" id="chips" role="group" data-i18n-aria="filterLabel"></div>
+  </div>
+</div>
+
+<section class="promos-section" id="promosSection" style="display:none;">
+  <div class="promos-heading">
+    <span class="flame" aria-hidden="true">🔥</span>
+    <h2 data-i18n="promoHeading">عروض وكوبونات حالية</h2>
+  </div>
+  <div class="promos-scroller" id="promosScroller"></div>
+</section>
+
+<section class="promos-section" id="recentSection" style="display:none;">
+  <div class="promos-heading">
+    <span aria-hidden="true">🕘</span>
+    <h2 data-i18n="recentHeading">شاهدت مؤخرًا</h2>
+  </div>
+  <div class="promos-scroller" id="recentScroller"></div>
+</section>
+
+<section id="apps" class="apps-section">
+  <div class="stats-strip" role="list" aria-label="statistics">
+    <div class="stat" role="listitem">
+      <span class="stat-num" id="statApps">0</span>
+      <span class="stat-label" data-i18n="statApps">تطبيق</span>
+    </div>
+    <div class="stat" role="listitem">
+      <span class="stat-num" id="statCats">0</span>
+      <span class="stat-label" data-i18n="statCats">فئة</span>
+    </div>
+    <div class="stat" role="listitem">
+      <span class="stat-num" id="statVerified">0</span>
+      <span class="stat-label" data-i18n="statVerified">موثّق</span>
+    </div>
+    <div class="stat" role="listitem">
+      <span class="stat-num" id="statOffers">0</span>
+      <span class="stat-label" data-i18n="statOffers">عرض نشط</span>
+    </div>
+  </div>
+
+  <p class="result-count" id="resultCount" aria-live="polite"></p>
+  <div class="grid" id="grid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="glyph" aria-hidden="true">🔍</div>
+    <p class="empty-title" data-i18n="emptyTitle">لا توجد نتائج مطابقة</p>
+    <p data-i18n="emptyText">جرّب كلمة بحث أخرى أو فئة مختلفة.</p>
+  </div>
+</section>
+
+<section class="suggest-section" id="contribute">
+  <div class="suggest-card">
+    <div class="star-pattern" aria-hidden="true"></div>
+    <h2 data-i18n="suggestH2">هل تعرف تطبيقًا سوريًا غير مُدرَج؟</h2>
+    <p data-i18n="suggestText">اقترحه عبر النموذج التالي وسنقوم بمراجعته وإضافته بعد التحقق من الرابط الرسمي.</p>
+    <div class="suggest-actions">
+      <button id="contributeOpen" class="btn btn-gold" type="button" data-i18n="contributeBtn">شارك معنا</button>
+      <a class="btn btn-outline-light" href="https://github.com/Ali-Mhd-Ibrahim/SyrHub" target="_blank" rel="noopener" data-i18n="githubBtn">💻 ساهم عبر GitHub</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider-star" aria-hidden="true">۞</div>
+
+<footer>
+  <div class="app-badges" id="appBadges" hidden>
+    <a class="app-badge apk-badge" id="badgeApk" href="#" target="_blank" rel="noopener" hidden>
+      <span class="ab-ico" aria-hidden="true">🤖</span>
+      <span class="ab-text">
+        <span class="ab-title" id="badgeApkTitle" data-i18n="apkBadgeTitle">تطبيق أندرويد</span>
+        <span class="ab-sub" data-i18n="apkBadgeSub">نسخة APK — اضغط للتحميل</span>
+      </span>
+    </a>
+    <button class="app-badge pwa-badge" id="badgePwa" type="button" hidden>
+      <span class="ab-ico" aria-hidden="true">🍎</span>
+      <span class="ab-text">
+        <span class="ab-title" data-i18n="pwaBadgeTitle">نسخة PWA</span>
+        <span class="ab-sub" id="badgePwaSub" data-i18n="pwaBadgeSub">يُثبَّت على الآيفون</span>
+      </span>
+    </button>
+  </div>
+  <p class="footer-brand">SyrHub</p>
+  <p data-i18n="footerNote">مشروع مجتمعي مستقل وغير رسمي · جميع الروابط تؤدي إلى المصادر الرسمية لكل تطبيق</p>
+  <p><a href="https://github.com/Ali-Mhd-Ibrahim/SyrHub" target="_blank" rel="noopener" data-i18n="footerSource">شاهد المصدر على GitHub</a></p>
+  <p id="footerRights"></p>
+  <p class="footer-credit">👨‍💻 <span data-i18n="footerDeveloper">تم التطوير من قبل المهندس علي إبراهيم</span></p>
+</footer>
+
+<button class="back-to-top" id="backToTop" type="button">↑</button>
+
+<nav class="bottom-nav" id="bottomNav" aria-label="bottom navigation">
+  <button type="button" class="bn-item" data-nav="home">
+    <span class="bn-ico" aria-hidden="true">🏠</span>
+    <span class="bn-label" data-i18n="navHome">الرئيسية</span>
+  </button>
+  <button type="button" class="bn-item" data-nav="search">
+    <span class="bn-ico" aria-hidden="true">🔍</span>
+    <span class="bn-label" data-i18n="navSearch">بحث</span>
+  </button>
+  <button type="button" class="bn-item" data-nav="offers">
+    <span class="bn-ico" aria-hidden="true">🔥</span>
+    <span class="bn-label" data-i18n="navOffers">العروض</span>
+  </button>
+  <button type="button" class="bn-item" data-nav="compare">
+    <span class="bn-ico" aria-hidden="true">⇄</span>
+    <span class="bn-label" data-i18n="navCompare">مقارنة</span>
+  </button>
+  <button type="button" class="bn-item" data-nav="more">
+    <span class="bn-ico" aria-hidden="true">⋯</span>
+    <span class="bn-label" data-i18n="navMore">المزيد</span>
+  </button>
+</nav>
+
+<div class="modal-overlay sheet-overlay" id="moreSheet">
+  <div class="modal sheet" role="dialog" aria-modal="true" aria-label="more">
+    <button class="sheet-close" id="sheetClose" type="button" data-i18n-aria="sheetCloseAria">×</button>
+    <h2 data-i18n="moreSheetTitle">المزيد</h2>
+    <div class="sheet-options">
+      <button class="sheet-opt" type="button" data-sheet="favorites"><span class="so-ico" aria-hidden="true">★</span><span data-i18n="moreFavorites">المفضلة</span></button>
+      <button class="sheet-opt" type="button" id="sheetTheme"><span class="so-ico" aria-hidden="true">🌙</span><span id="sheetThemeLabel" data-i18n="moreTheme">الوضع الليلي</span></button>
+      <button class="sheet-opt" type="button" id="sheetLang"><span class="so-ico" aria-hidden="true">🌐</span><span data-i18n="moreLanguage">English</span></button>
+      <button class="sheet-opt" type="button" id="sheetContribute"><span class="so-ico" aria-hidden="true">💬</span><span data-i18n="moreContribute">ساهم معنا</span></button>
+      <button class="sheet-opt" type="button" id="sheetClearRecent"><span class="so-ico" aria-hidden="true">🧹</span><span data-i18n="moreClearRecent">مسح سجل التصفح</span></button>
+      <button class="sheet-opt" type="button" id="sheetNotify"><span class="so-ico" aria-hidden="true">🔔</span><span id="sheetNotifyLabel">تفعيل الإشعارات</span></button>
+      <button class="sheet-opt" type="button" id="sheetNotifyCopy" style="display:none"><span class="so-ico" aria-hidden="true">📋</span><span data-i18n="notifyTokenBtn">نسخ رمز الجهاز (للاختبار)</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay sheet-overlay" id="compareSheet">
+  <div class="modal sheet" role="dialog" aria-modal="true" aria-label="compare">
+    <button class="sheet-close" id="compareSheetClose" type="button" data-i18n-aria="sheetCloseAria">×</button>
+    <h2 data-i18n="compareSheetTitle">المقارنة</h2>
+    <div class="cmp-chips" id="compareSheetList" style="margin-top:6px"></div>
+    <p class="sheet-note" id="compareSheetEmpty" data-i18n="compareEmpty">لم تختر أي تطبيق بعد — اضغط ⇄ على بطاقة أي تطبيق لإضافته إلى المقارنة.</p>
+    <div class="sheet-actions" style="display:flex; gap:8px; margin-top:14px; flex-wrap:wrap">
+      <button class="btn btn-primary" id="compareSheetGo" type="button" data-i18n="compareNow">قارن الآن</button>
+      <button class="btn btn-ghost" id="compareSheetClear" type="button" data-i18n="compareClear">مسح</button>
+    </div>
+  </div>
+</div>
+
+<div class="cmp-bar" id="cmpBar" role="region" aria-label="compare bar" hidden>
+  <span class="cmp-title" id="cmpTitle" data-i18n="compareBarTitle">مقارنة</span>
+  <div class="cmp-chips" id="cmpChips"></div>
+  <div class="cmp-actions">
+    <button class="btn btn-primary btn-sm" id="cmpGo" type="button" data-i18n="compareNow">قارن الآن</button>
+    <button class="btn btn-ghost btn-sm" id="cmpClear" type="button" data-i18n="compareClear">مسح</button>
+  </div>
+  <span class="cmp-msg" id="cmpMsg" role="status"></span>
+</div>
+
+<div class="detail-overlay" id="compareView" hidden>
+  <div class="detail-panel compare-panel" role="dialog" aria-modal="true" aria-label="compare table">
+    <div class="detail-toolbar">
+      <button class="icon-btn" id="compareBack" type="button" data-i18n-aria="compareBack">→</button>
+      <h2 class="detail-title" data-i18n="compareSheetTitle">المقارنة</h2>
+      <span style="flex:1"></span>
+    </div>
+    <div class="cmp-table-wrap" id="compareViewBody"></div>
+  </div>
+</div>
+
+<div class="detail-overlay" id="detailView" hidden>
+  <div class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detailName">
+    <div class="detail-toolbar">
+      <button class="btn btn-ghost" id="detailBack" type="button" data-i18n="detailBack">عودة</button>
+      <button class="btn btn-ghost" id="detailShare" type="button" data-i18n="detailShare">مشاركة</button>
+    </div>
+    <div class="detail-head">
+      <span class="detail-icon" id="detailIcon" aria-hidden="true"></span>
+      <div>
+        <h2 id="detailName"></h2>
+        <span class="cat-tag" id="detailCat"></span>
+      </div>
+    </div>
+    <div class="detail-meta">
+      <span id="detailRating"></span>
+      <span class="verified-tag" id="detailVerified" hidden></span>
+    </div>
+    <p class="detail-desc" id="detailDesc"></p>
+    <div class="platforms" id="detailPlatforms"></div>
+    <div class="detail-update" id="detailUpdate" hidden></div>
+    <div class="detail-actions" id="detailActions"></div>
+    <div class="detail-stores" id="detailStores"></div>
+    <div class="detail-section" id="detailOffers">
+      <h3 id="detailOffersHeading" data-i18n="relatedOffers">عروض مرتبطة</h3>
+      <div id="detailOffersList"></div>
+    </div>
+    <div class="detail-section" id="detailReviews">
+      <h3 id="detailReviewsHeading"></h3>
+      <div id="detailReviewsList"></div>
+    </div>
+    <div class="detail-section" id="detailRelated">
+      <h3 id="detailRelatedHeading" data-i18n="recHeading">تطبيقات مشابهة</h3>
+      <div class="rec-scroller" id="detailRelatedList"></div>
+    </div>
+    <div class="detail-footer">
+      <button class="fav-btn" id="detailFav" type="button"></button>
+      <button class="cmp-btn" id="detailCompare" type="button"></button>
+      <button class="btn btn-ghost" id="detailReport" type="button" data-i18n="reportLinkBtn">الإبلاغ عن رابط معطّل</button>
+      <a class="btn-review" id="detailReviewCta" href="#" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="contributeModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" type="button" data-i18n-aria="modalCloseAria">×</button>
+    <h2 id="modalTitle" data-i18n="modalTitle">كيف تريد أن تساهم؟</h2>
+    <p class="modal-sub" data-i18n="modalSub">اختر نوع طلبك وسيتم تحويلك إلى نموذج مختصر.</p>
+    <div class="modal-options">
+      <a class="modal-option" href="#" target="_blank" rel="noopener" data-type="app">
+        <span class="mo-icon" aria-hidden="true">📋</span>
+        <span class="mo-body">
+          <span class="mo-title" data-i18n="optAppTitle">أقترح تطبيقًا جديدًا</span>
+          <span class="mo-desc" data-i18n="optAppDesc">تطبيق سوري موثّق يستحق الإضافة إلى الدليل</span>
+        </span>
+      </a>
+      <a class="modal-option" href="#" target="_blank" rel="noopener" data-type="promo">
+        <span class="mo-icon" aria-hidden="true">🔥</span>
+        <span class="mo-body">
+          <span class="mo-title" data-i18n="optPromoTitle">أقترح عرضًا أو كوبونًا</span>
+          <span class="mo-desc" data-i18n="optPromoDesc">عرض حالي أو خصم يفيد زوّار الدليل</span>
+        </span>
+      </a>
+      <a class="modal-option" href="#" target="_blank" rel="noopener" data-type="review">
+        <span class="mo-icon" aria-hidden="true">⭐</span>
+        <span class="mo-body">
+          <span class="mo-title" data-i18n="optReviewTitle">أكتب تقييمًا أو رأيًا</span>
+          <span class="mo-desc" data-i18n="optReviewDesc">شارك تجربتك مع تطبيق استخدمته</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="storage.js"></script>
+<script src="apps-data.js"></script>
+<script src="promotions-data.js"></script>
+<script src="reviews-data.js"></script>
+
+<!-- نافذة تعليمات تثبيت PWA -->
+<div class="modal-overlay" id="installModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="installModalTitle">
+    <button class="modal-close" id="installModalClose" type="button" data-i18n-aria="modalCloseAria">×</button>
+    <h2 id="installModalTitle" data-i18n="installModalTitle">تثبيت الموقع كتطبيق</h2>
+    <p class="modal-sub" data-i18n="installModalSub">يمكنك الاحتفاظ بالموقع على شاشتك الرئيسية كتطبيق مستقل.</p>
+    <ol class="install-steps" id="installSteps">
+      <li data-i18n="installStepShare">اضغط زر المشاركة في المتصفح</li>
+      <li data-i18n="installStepHome">اختر "إضافة إلى الشاشة الرئيسية"</li>
+      <li data-i18n="installStepConfirm">اضغط "إضافة" للتأكيد</li>
+    </ol>
+    <button class="btn btn-primary" id="installGotIt" type="button" data-i18n="installGotIt">فهمت</button>
+  </div>
+</div>
+
+<script>
+  (function(){
+    'use strict';
+
+    /* ============ التتبع التحليلي ============ */
+    function trackAnalytics(eventName, params){
+      try{
+        if(typeof gtag === 'function'){ gtag('event', eventName, params || {}); }
+      }catch(err){ /* تجاهل */ }
+    }
+    function trackViaDelegate(target, selector, eventName, getParams){
+      if(!target) return;
+      target.addEventListener('click', function(e){
+        var el = e.target.closest(selector);
+        if(!el) return;
+        trackAnalytics(eventName, getParams ? getParams(el) : {});
+      });
+    }
+
+    /* ============ الترجمة ============ */
+    var I18N = {
+      ar: {
+        dir:'rtl',
+        metaTitle:"SyrHub — دليل التطبيقات السورية",
+        metaDesc:"دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.",
+        tagline:"الدليل السوري الموحّد للتطبيقات المحلية",
+        heroH1:"SyrHub — دليل التطبيقات السورية",
+        heroSubtitle:"قائمة موحّدة وموثّقة لأبرز التطبيقات المحلية في سوريا — روابط رسمية فقط، بدون ملفات تثبيت غير موثوقة.",
+        heroBadge:"مشروع مفتوح المصدر · مساهمة مجتمعية",
+        navApps:"التطبيقات",
+        navOffers:"العروض",
+        navContribute:"ساهم",
+        statApps:"تطبيق",
+        statCats:"فئة",
+        statVerified:"موثّق",
+        statOffers:"عرض نشط",
+        searchPlaceholder:"ابحث باسم التطبيق أو وصفه...",
+        searchLabel:"ابحث عن تطبيق",
+        filterLabel:"تصفية حسب الفئة",
+        platformFilterLabel:"المنصة:",
+        platformFilterAria:"تصفية حسب المنصة",
+        verifiedOnly:"موثّق فقط",
+        lastUpdate:function(d){ return 'آخر تحديث: ' + d; },
+        reportLinkBtn:"الإبلاغ عن رابط معطّل",
+        all:"الكل",
+        promoHeading:"عروض وكوبونات حالية",
+        copy:"نسخ",
+        copied:"تم النسخ ✓",
+        openOffer:"فتح العرض ←",
+        specialOffer:"عرض خاص",
+        resultCount:function(n){ return 'عدد التطبيقات: ' + n; },
+        ratingCountNone:"لا توجد تقييمات بعد",
+        reviewCount:function(n){ return n === 1 ? 'رأي' : 'آراء'; },
+        showReviews:function(n){ return 'عرض الآراء (' + n + ')'; },
+        hideReviews:function(n){ return 'إخفاء الآراء (' + n + ')'; },
+        noReviews:"لا توجد آراء بعد — كن أول من يشارك رأيه عبر نموذج الاقتراحات.",
+        install:"تثبيت / فتح",
+        officialSite:"الموقع الرسمي",
+        verified:"✓ موثّق",
+        emptyTitle:"لا توجد نتائج مطابقة",
+        emptyText:"جرّب كلمة بحث أخرى أو فئة مختلفة.",
+        sortLabel:"ترتيب:",
+        sortRating:"الأعلى تقييماً",
+        sortName:"الاسم (أ–ي)",
+        suggestH2:"شاركنا اقتراحك أو تقييمك",
+        suggestText:"سواء أردت إضافة تطبيق أو عرض أو تقييم، سنراجع مساهمتك ونضيفها بعد التحقق من صحتها.",
+        contributeBtn:"شارك معنا",
+        modalTitle:"كيف تريد أن تساهم؟",
+        modalSub:"اختر نوع طلبك وسيتم تحويلك إلى نموذج مختصر.",
+        modalCloseAria:"إغلاق النافذة",
+        optAppTitle:"أقترح تطبيقًا جديدًا",
+        optAppDesc:"تطبيق سوري موثّق يستحق الإضافة إلى الدليل",
+        optPromoTitle:"أقترح عرضًا أو كوبونًا",
+        optPromoDesc:"عرض حالي أو خصم يفيد زوّار الدليل",
+        optReviewTitle:"أكتب تقييمًا أو رأيًا",
+        optReviewDesc:"شارك تجربتك مع تطبيق استخدمته",
+        reviewCta:"⭐ أكتب رأيًا",
+        navHome:"الرئيسية",
+        navSearch:"بحث",
+        navCompare:"مقارنة",
+        navMore:"المزيد",
+        moreSheetTitle:"المزيد",
+        sheetCloseAria:"إغلاق",
+        moreFavorites:"المفضلة",
+        moreTheme:"الوضع الليلي",
+        moreThemeLight:"الوضع النهاري",
+        moreLanguage:"English",
+        moreContribute:"ساهم معنا",
+        moreClearRecent:"مسح سجل التصفح",
+        moreNotify:"تفعيل الإشعارات",
+        moreNotifyOn:"إيقاف الإشعارات",
+        notifyTokenBtn:"نسخ رمز الجهاز (للاختبار)",
+        notifySetupNeeded:"ضبط الإشعارات (يُنشئ Firebase)",
+        notifyUnsupported:"إشعارات غير مدعومة في هذا المتصفح",
+        notifyDenied:"الإشعارات محظورة — فعّلها من إعدادات المتصفح",
+        apkBadgeTitle:"تطبيق أندرويد",
+        apkBadgeSub:"نسخة APK — اضغط للتحميل",
+        pwaBadgeTitle:"نسخة PWA",
+        pwaBadgeSub:"يُثبَّت على الآيفون",
+        pwaBadgeSubAndroid:"نسخة ويب قابلة للتثبيت",
+        installModalTitle:"تثبيت الموقع كتطبيق",
+        installModalSub:"يمكنك الاحتفاظ بالموقع على شاشتك الرئيسية كتطبيق مستقل.",
+        installStepShare:"اضغط زر المشاركة في المتصفح",
+        installStepHome:"اختر \"إضافة إلى الشاشة الرئيسية\"",
+        installStepConfirm:"اضغط \"إضافة\" للتأكيد",
+        installGotIt:"فهمت",
+        compareSheetTitle:"المقارنة",
+        compareEmpty:"لم تختر أي تطبيق بعد — اضغط ⇄ على بطاقة أي تطبيق لإضافته إلى المقارنة.",
+        compareAdd:"⇄ قارن",
+        compareAdded:"⇄ في المقارنة",
+        compareBarTitle:"مقارنة",
+        compareNow:"قارن الآن",
+        compareClear:"مسح",
+        compareLimit:"الحد الأقصى 4 تطبيقات",
+        compareMin:"أضف تطبيقين على الأقل للمقارنة",
+        compareRemoved:"أُزيل من المقارنة",
+        compareRowCat:"الفئة",
+        compareRowRating:"التقييم",
+        compareRowPlatforms:"المنصات",
+        compareRowVerified:"التوثيق",
+        compareRowDesc:"الوصف",
+        compareRowLinks:"الروابط",
+        compareBack:"عودة للدليل",
+        compareNotVerified:"غير موثّق",
+        recHeading:"تطبيقات مشابهة",
+        githubBtn:"💻 ساهم عبر GitHub",
+        footerNote:"مشروع مجتمعي مستقل وغير رسمي · جميع الروابط تؤدي إلى المصادر الرسمية لكل تطبيق",
+        footerSource:"شاهد المصدر على GitHub",
+        footerRights:function(y){ return '© ' + y + ' SyrHub — صُنع بفخر للمجتمع السوري'; },
+        footerDeveloper:"تم التطوير من قبل المهندس علي إبراهيم",
+        langLabel:"English",
+        langAria:"التبديل إلى الإنجليزية",
+        themeAriaLight:"تفعيل الوضع الليلي",
+        themeAriaDark:"تفعيل الوضع النهاري",
+        backToTop:"العودة إلى الأعلى",
+        favLabel:"المفضلة",
+        favAdd:"♡ أضف للمفضلة",
+        favAdded:"★ أزل من المفضلة",
+        favEmpty:"لا توجد تطبيقات في المفضلة بعد — اضغط ♡ على أي تطبيق لحفظه.",
+        recentHeading:"شاهدت مؤخرًا",
+        detailBack:"عودة",
+        detailShare:"مشاركة",
+        detailShareSuccess:"تم النسخ ✓",
+        detailNotFoundTitle:"التطبيق غير موجود",
+        detailNotFoundText:"ربما حُذف هذا التطبيق أو تغيّر رابطه — عد إلى الدليل وتصفّح تطبيقات أخرى.",
+        relatedOffers:"عروض مرتبطة",
+        reviewsHeading:"آراء المستخدمين",
+        platform:{ android:"أندرويد", ios:"آيفون", web:"ويب" },
+        daysLeft:function(n, date){
+          if(n <= 0) return '';
+          if(n === 1) return 'ينتهي غدًا';
+          if(n <= 7) return 'يتبقى ' + n + ' أيام';
+          return 'حتى ' + date;
+        }
+      },
+      en: {
+        dir:'ltr',
+        metaTitle:"SyrHub — Syrian Apps Directory",
+        metaDesc:"A curated directory of leading local Syrian apps, categorized with official links only.",
+        tagline:"The unified Syrian hub for local apps",
+        heroH1:"SyrHub — Syrian Apps Directory",
+        heroSubtitle:"A unified, verified list of the best local apps in Syria — official links only, no untrusted install files.",
+        heroBadge:"Open Source · Community Driven",
+        navApps:"Apps",
+        navOffers:"Offers",
+        navContribute:"Contribute",
+        statApps:"Apps",
+        statCats:"Categories",
+        statVerified:"Verified",
+        statOffers:"Active Offers",
+        searchPlaceholder:"Search by app name or description...",
+        searchLabel:"Search apps",
+        filterLabel:"Filter by category",
+        platformFilterLabel:"Platform:",
+        platformFilterAria:"Filter by platform",
+        verifiedOnly:"Verified only",
+        lastUpdate:function(d){ return 'Last updated: ' + d; },
+        reportLinkBtn:"Report a broken link",
+        all:"All",
+        promoHeading:"Current Deals & Coupons",
+        copy:"Copy",
+        copied:"Copied ✓",
+        openOffer:"Open offer →",
+        specialOffer:"Special Offer",
+        resultCount:function(n){ return n + ' apps'; },
+        ratingCountNone:"No ratings yet",
+        reviewCount:function(n){ return n === 1 ? 'review' : 'reviews'; },
+        showReviews:function(n){ return 'Show reviews (' + n + ')'; },
+        hideReviews:function(n){ return 'Hide reviews (' + n + ')'; },
+        noReviews:"No reviews yet — be the first to share your feedback via the suggestion form.",
+        install:"Install / Open",
+        officialSite:"Official site",
+        verified:"✓ Verified",
+        emptyTitle:"No matching results",
+        emptyText:"Try a different search term or category.",
+        sortLabel:"Sort:",
+        sortRating:"Top rated",
+        sortName:"Name (A–Z)",
+        suggestH2:"Let us in on your idea or feedback",
+        suggestText:"Whether it's a new app, a deal, or a review — we'll review your contribution and publish it after verification.",
+        contributeBtn:"Contribute",
+        modalTitle:"How would you like to contribute?",
+        modalSub:"Pick your request type and we'll take you to a short form.",
+        modalCloseAria:"Close dialog",
+        optAppTitle:"Suggest a new app",
+        optAppDesc:"A verified Syrian app worth adding to the directory",
+        optPromoTitle:"Suggest a deal or coupon",
+        optPromoDesc:"A live deal or discount helpful to visitors",
+        optReviewTitle:"Write a review or rating",
+        optReviewDesc:"Share your experience with an app you've used",
+        reviewCta:"⭐ Write a review",
+        navHome:"Home",
+        navSearch:"Search",
+        navCompare:"Compare",
+        navMore:"More",
+        moreSheetTitle:"More",
+        sheetCloseAria:"Close",
+        moreFavorites:"Favorites",
+        moreTheme:"Dark mode",
+        moreThemeLight:"Light mode",
+        moreLanguage:"العربية",
+        moreContribute:"Contribute",
+        moreClearRecent:"Clear history",
+        moreNotify:"Enable notifications",
+        moreNotifyOn:"Turn off notifications",
+        notifyTokenBtn:"Copy device token (test)",
+        notifySetupNeeded:"Set up notifications (Firebase)",
+        notifyUnsupported:"Notifications unsupported in this browser",
+        notifyDenied:"Blocked — enable notifications in browser settings",
+        apkDownload:"Download app",
+        apkBadgeTitle:"Android app",
+        apkBadgeSub:"APK build — tap to download",
+        pwaBadgeTitle:"PWA build",
+        pwaBadgeSub:"Installable on iPhone",
+        pwaBadgeSubAndroid:"Installable web build",
+        installModalTitle:"Install the site as an app",
+        installModalSub:"Keep the site on your home screen as a standalone app.",
+        installStepShare:"Tap the browser share button",
+        installStepHome:"Choose \"Add to Home Screen\"",
+        installStepConfirm:"Tap \"Add\" to confirm",
+        installGotIt:"Got it",
+        compareSheetTitle:"Compare",
+        compareEmpty:"No apps selected yet — tap ⇄ on any app card to add it to your comparison.",
+        compareAdd:"⇄ Compare",
+        compareAdded:"⇄ In comparison",
+        compareBarTitle:"Compare",
+        compareNow:"Compare now",
+        compareClear:"Clear",
+        compareLimit:"Maximum 4 apps",
+        compareMin:"Add at least two apps to compare",
+        compareRemoved:"Removed from comparison",
+        compareRowCat:"Category",
+        compareRowRating:"Rating",
+        compareRowPlatforms:"Platforms",
+        compareRowVerified:"Verification",
+        compareRowDesc:"Description",
+        compareRowLinks:"Links",
+        compareBack:"Back to directory",
+        compareNotVerified:"Unverified",
+        recHeading:"Similar apps",
+        githubBtn:"💻 Contribute on GitHub",
+        footerNote:"An independent, community-driven project · all links lead to each app's official source",
+        footerSource:"View the source on GitHub",
+        footerRights:function(y){ return '© ' + y + ' SyrHub — proudly made for the Syrian community'; },
+        footerDeveloper:"Developed by Engineer Ali Ibrahim",
+        langLabel:"العربية",
+        langAria:"Switch to Arabic",
+        themeAriaLight:"Enable dark mode",
+        themeAriaDark:"Enable light mode",
+        backToTop:"Back to top",
+        favLabel:"Favorites",
+        favAdd:"♡ Add to favorites",
+        favAdded:"★ Remove from favorites",
+        favEmpty:"No favorites yet — tap ♡ on any app to save it.",
+        recentHeading:"Recently viewed",
+        detailBack:"Back",
+        detailShare:"Share",
+        detailShareSuccess:"Link copied ✓",
+        detailNotFoundTitle:"App not found",
+        detailNotFoundText:"This app may have been removed or its link changed — go back and browse other apps.",
+        relatedOffers:"Related offers",
+        reviewsHeading:"User reviews",
+        platform:{ android:"Android", ios:"iOS", web:"Web" },
+        daysLeft:function(n, date){
+          if(n <= 0) return '';
+          if(n === 1) return 'Ends tomorrow';
+          if(n <= 7) return n + ' days left';
+          return 'until ' + date;
+        }
+      }
+    };
+
+    var root = document.documentElement;
+    var lang = root.getAttribute('lang') === 'en' ? 'en' : 'ar';
+    var theme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    var activeCategory = 'all';
+    var sortBy = 'rating';
+    var activePlatform = 'all';
+    var verifiedOnly = false;
+    var SITE_URL = 'https://ali-mhd-ibrahim.github.io/SyrHub/';
+    var currentDetail = null;
+    var prevHash = '';
+    var navStack = [];
+    var scrollLockPos = 0;
+    var compareOpen = false;
+    var T;
+    /* ════════════ 🔔 إشعارات Firebase (FCM) ════════════
+       لتفعيلها: 1) أنشئ مشروعاً في console.firebase.google.com
+       2) أضف تطبيقاً من نوع Web ثم انسخ قيم firebaseConfig هنا
+       3) من Project settings → Cloud Messaging انسخ VAPID key في vapidKey
+       ملاحظة: املأ القيم نفسها أيضاً في sw.js (FIREBASE_CONFIG).
+       إذا بقيت أي قيمة فارغة تبقى الميزة معطّلة تلقائياً. */
+    var FIREBASE = {
+      apiKey: 'AIzaSyDeQqbytuAjm7qQpHwSfeXIUmYuXobeQgg',
+      projectId: 'test-d371d',
+      messagingSenderId: '549208423494',
+      appId: '1:549208423494:web:3f6c9314da24e9c1ef1e47',
+      vapidKey: 'BGmy8E8ZQstBL0BYE5XL3C79DZQ396CLdbPyCWBCpgj_Qr0x42KfxV_6SDZA2x51HtoefhBZfsgXDUuARwhChMI'
+    };
+    var FCM_ENABLED = !!(FIREBASE.apiKey && FIREBASE.projectId && FIREBASE.messagingSenderId && FIREBASE.appId && FIREBASE.vapidKey);
+    var __fcmMessaging = null;
+    var fcmToken = '';
+
+    function fcmInit(){
+      refreshNotifyUI();
+      if(!FCM_ENABLED || typeof firebase === 'undefined' || __fcmMessaging){ return; }
+      try{
+        firebase.initializeApp({
+          apiKey: FIREBASE.apiKey,
+          projectId: FIREBASE.projectId,
+          messagingSenderId: FIREBASE.messagingSenderId,
+          appId: FIREBASE.appId
+        });
+        __fcmMessaging = firebase.messaging();
+        __fcmMessaging.onMessage(function(payload){
+          var n = payload.notification || {};
+          try{ showNotifyToast(n.title || 'SyrHub', n.body || ''); }catch(e){}
+        });
+        try{ fcmToken = localStorage.getItem('syh-fcm-token') || ''; }catch(e){}
+        refreshNotifyUI();
+      }catch(e){}
+    }
+    function getFCMToken(cb){
+      if(!__fcmMessaging){ cb(''); return; }
+      try{
+        navigator.serviceWorker.register('sw.js').then(function(reg){
+          __fcmMessaging.getToken({ vapidKey: FIREBASE.vapidKey, serviceWorkerRegistration: reg })
+            .then(function(t){ cb(t || ''); })
+            .catch(function(){ cb(''); });
+        }).catch(function(){ cb(''); });
+      }catch(e){ cb(''); }
+    }
+    function toggleNotifications(){
+      var label = document.getElementById('sheetNotifyLabel');
+      if(!FCM_ENABLED){
+        if(label){ label.textContent = T.notifySetupNeeded; }
+        return;
+      }
+      if(!('Notification' in window) || !('serviceWorker' in navigator)){
+        if(label){ label.textContent = T.notifyUnsupported; }
+        return;
+      }
+      if(fcmToken){
+        try{
+          __fcmMessaging.deleteToken().then(function(){
+            fcmToken = '';
+            try{ localStorage.removeItem('syh-fcm-token'); }catch(e){}
+            refreshNotifyUI();
+          }).catch(function(){ refreshNotifyUI(); });
+        }catch(e){ refreshNotifyUI(); }
+        return;
+      }
+      Notification.requestPermission().then(function(p){
+        if(p === 'granted'){
+          getFCMToken(function(t){
+            if(t){ fcmToken = t; try{ localStorage.setItem('syh-fcm-token', t); }catch(e){} }
+            trackAnalytics('push_enabled', { granted: p === 'granted', has_token: !!t });
+            refreshNotifyUI();
+          });
+        } else {
+          trackAnalytics('push_denied', { granted: false });
+          if(label){ label.textContent = T.notifyDenied; }
+        }
+      }).catch(function(){
+        trackAnalytics('push_denied', { granted: false });
+      });
+    }
+    function refreshNotifyUI(){
+      var label = document.getElementById('sheetNotifyLabel');
+      var cpy = document.getElementById('sheetNotifyCopy');
+      if(!label){ return; }
+      if(!FCM_ENABLED){ label.textContent = T.notifySetupNeeded; return; }
+      label.textContent = fcmToken ? T.moreNotifyOn : T.moreNotify;
+      if(cpy){ cpy.style.display = fcmToken ? 'block' : 'none'; }
+    }
+    function copyFcmToken(){
+      if(!fcmToken){ return; }
+      writeClipboard(fcmToken, function(){});
+      var cpy = document.getElementById('sheetNotifyCopy');
+      if(cpy){
+        var original = cpy.textContent;
+        cpy.textContent = T.copied;
+        setTimeout(function(){ cpy.textContent = original; }, 1600);
+      }
+    }
+    function showNotifyToast(title, body){
+      var t = document.createElement('div');
+      t.className = 'notify-toast';
+      t.setAttribute('role', 'status');
+      t.innerHTML = '<strong></strong><span></span>';
+      t.querySelector('strong').textContent = title;
+      t.querySelector('span').textContent = body || '';
+      t.addEventListener('click', function(){ try{ t.parentNode.removeChild(t); }catch(e){} });
+      document.body.appendChild(t);
+      setTimeout(function(){ try{ if(t.parentNode){ t.parentNode.removeChild(t); } }catch(e){} }, 6000);
+    }
+    /* ⚡ رابط تحميل تطبيق الأندرويد (APK) — ضع رابط التحميل هنا.
+       عند ترك القيمة فارغة يختفي زر التحميل تلقائيًا حتى تضعه. */
+    var APK_LINK = 'https://raw.githubusercontent.com/Ali-Mhd-Ibrahim/SyrHub/refs/heads/main/SyrHub-v1.07.apk';
+    var FORMS = {
+      app:    'https://docs.google.com/forms/d/e/1FAIpQLSc2EqvL7lU0jqXP4K1MkWH5dw3OwEW_VAHkV-25sS4ZKEZ8Hg/viewform?usp=dialog',
+      promo:  'https://docs.google.com/forms/d/e/1FAIpQLSfbhwr2pEJ6MoOIhSiiGndtRHQQTIWFPkCQMgwhk1M-xnfEPA/viewform?usp=dialog',
+      review: 'https://docs.google.com/forms/d/e/1FAIpQLSdan0WxJf-kAHXRJi40AIbyJ8llfWHACyreEKJU_nlGi09i1A/viewform?usp=dialog'
+    };
+    var CONTRIBUTE_FORM = FORMS.app;
+
+    /* ============ شارات النسخ (APK / PWA) ============ */
+    var DEVICE_IS_ANDROID = /Android/i.test((typeof navigator !== 'undefined') ? (navigator.userAgent || '') : '');
+    var DEVICE_IS_IOS = /iP(hone|od|ad)/i.test((typeof navigator !== 'undefined') ? (navigator.userAgent || '') : '');
+    function isAppInstalled(){
+      try{
+        /* مثبّتة فعلياً الآن: نافذة مستقلة (PWA) بكل أنماطها — لا حاجة لشارات التثبيت */
+        if(window.matchMedia){
+          var standalone = window.matchMedia('(display-mode: standalone)').matches ||
+            window.matchMedia('(display-mode: minimal-ui)').matches ||
+            window.matchMedia('(display-mode: fullscreen)').matches ||
+            window.matchMedia('(display-mode: window-controls-overlay)').matches;
+          if(standalone){ return true; }
+        }
+        if(window.navigator && window.navigator.standalone === true){ return true; }
+        /* داخل النسخة المثبّتة (APK): يُفتح الموقع في WebView أو ملف محلي */
+        var winLoc = (typeof window !== 'undefined' && window.location) ? window.location : null;
+        var proto = winLoc ? (winLoc.protocol || '') : '';
+        if(proto === 'file:' || proto === 'app:' || proto === 'android-app:'){ return true; }
+        var ua = (typeof navigator !== 'undefined') ? (navigator.userAgent || '') : '';
+        if(/Android/i.test(ua) && /WebView|wv|Version\/4\.0/i.test(ua)){ return true; }
+      }catch(e){}
+      return false;
+    }
+    function showBadge(el, visible){
+      if(!el){ return; }
+      el.hidden = !visible;
+      el.style.display = visible ? '' : 'none';
+    }
+    function syncAppBadges(){
+      try{
+        var badges = document.getElementById('appBadges');
+        var badgeApk = document.getElementById('badgeApk');
+        var badgePwa = document.getElementById('badgePwa');
+        if(!badges){ return; }
+        var any = false;
+        if(badgeApk){
+          var showApk = !!APK_LINK && DEVICE_IS_ANDROID && !isAppInstalled();
+          if(showApk){
+            badgeApk.href = APK_LINK;
+            showBadge(badgeApk, true);
+            any = true;
+          } else { showBadge(badgeApk, false); }
+        }
+        if(badgePwa){
+          var showPwa = !isAppInstalled();
+          if(showPwa){
+            var sub = document.getElementById('badgePwaSub');
+            var curT = (typeof I18N !== 'undefined' && I18N[lang]) ? I18N[lang] : T;
+            if(sub){ sub.textContent = DEVICE_IS_IOS ? curT.pwaBadgeSub : curT.pwaBadgeSubAndroid; }
+            showBadge(badgePwa, true);
+            any = true;
+          } else { showBadge(badgePwa, false); }
+        }
+        showBadge(badges, any);
+      }catch(e){ /* لا تُوقف الشارات الصفحة عند أي خطأ */ }
+    }
+
+    /* ============ الحالة والواجهة ============ */
+    function applyTheme(next){
+      theme = next === 'dark' ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      try{ localStorage.setItem('syh-theme', theme); }catch(e){}
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if(meta){ meta.setAttribute('content', theme === 'dark' ? '#0a101d' : '#1B2A4A'); }
+      var btn = document.getElementById('themeToggle');
+      if(btn){
+        btn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+        btn.setAttribute('aria-label', theme === 'dark' ? T.themeAriaDark : T.themeAriaLight);
+      }
+      var sheetThemeLabel = document.getElementById('sheetThemeLabel');
+      if(sheetThemeLabel){ sheetThemeLabel.textContent = theme === 'dark' ? T.moreThemeLight : T.moreTheme; }
+    }
+
+    function applyLang(next){
+      lang = next === 'en' ? 'en' : 'ar';
+      T = I18N[lang];
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', T.dir);
+      try{ localStorage.setItem('syh-lang', lang); }catch(e){}
+
+      document.title = T.metaTitle;
+      updateMeta('description', T.metaDesc);
+      updateMeta('og:title', T.metaTitle);
+      updateMeta('og:description', T.metaDesc);
+      if(currentDetail){
+        updateSeo(findByAppId(currentDetail));
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var key = el.getAttribute('data-i18n');
+        if(T[key] !== undefined){ el.textContent = T[key]; }
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+        el.setAttribute('placeholder', T[el.getAttribute('data-i18n-placeholder')]);
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+        el.setAttribute('aria-label', T[el.getAttribute('data-i18n-aria')]);
+      });
+      document.querySelectorAll('[data-action="lang"]').forEach(function(el){
+        el.textContent = T.langLabel;
+        el.setAttribute('aria-label', T.langAria);
+      });
+      syncAppBadges();
+      document.getElementById('footerRights').textContent = T.footerRights(new Date().getFullYear());
+
+      var sortSel = document.getElementById('sortSel');
+      sortSel.options[0].textContent = T.sortRating;
+      sortSel.options[1].textContent = T.sortName;
+
+      applyTheme(theme);
+      renderPlatformFilter();
+      renderChips();
+      render();
+      renderStats();
+      renderPromotions();
+      renderRecent();
+      renderCompareBar();
+      if(currentDetail){ renderDetails(currentDetail); }
+      if(typeof refreshNotifyUI === 'function'){ refreshNotifyUI(); }
+    }
+
+    function updateMeta(prop, content){
+      var el = document.querySelector('meta[property="' + prop + '"]')
+            || document.querySelector('meta[name="' + prop + '"]');
+      if(el){ el.setAttribute('content', content); }
+    }
+    /* ============ SEO ديناميكي لكل تطبيق ============ */
+    function seoParts(app){
+      if(!app){
+        return { title: T.detailNotFoundTitle, desc: T.detailNotFoundText };
+      }
+      return { title: appName(app) + ' — ' + T.metaTitle, desc: appDesc(app) };
+    }
+    function updateSeo(app){
+      var p = seoParts(app);
+      document.title = p.title;
+      updateMeta('description', p.desc);
+      updateMeta('og:title', p.title);
+      updateMeta('og:description', p.desc);
+      updateMeta('twitter:title', p.title);
+      updateMeta('twitter:description', p.desc);
+      updateJsonLd(app);
+    }
+    function resetSeo(){
+      document.title = T.metaTitle;
+      updateMeta('description', T.metaDesc);
+      updateMeta('og:title', T.metaTitle);
+      updateMeta('og:description', T.metaDesc);
+      updateMeta('twitter:title', T.metaTitle);
+      updateMeta('twitter:description', T.metaDesc);
+      updateJsonLd(null);
+    }
+    /* ============ بيانات منظمة (JSON-LD) للفهرسة ============ */
+    function jsonLdFor(app){
+      var full = { '@context': 'https://schema.org' };
+      if(app){
+        var r = computeRating(app.id);
+        full['@type'] = 'SoftwareApplication';
+        full.name = appName(app);
+        full.description = appDesc(app);
+        full.applicationCategory = (catInfo(app.category).label_en || catInfo(app.category).label);
+        full.operatingSystem = (app.platforms || []).join(', ');
+        full.url = app.officialLink || '';
+        if(app.lastUpdate){ full.dateModified = app.lastUpdate; }
+        if(app.icon){ full.image = app.icon; }
+        if(r.count > 0){
+          full.aggregateRating = {
+            '@type': 'AggregateRating',
+            ratingValue: r.avg.toFixed(1),
+            ratingCount: r.count
+          };
+        }
+      } else {
+        full['@type'] = 'WebSite';
+        full.name = 'SyrHub';
+        full.alternateName = 'SyrHub — دليل التطبيقات السورية';
+        full.url = SITE_URL;
+        full.description = T.metaDesc;
+      }
+      return JSON.stringify(full);
+    }
+    function updateJsonLd(app){
+      var el = document.getElementById('seoJsonLd');
+      if(el){ el.textContent = jsonLdFor(app); }
+    }
+
+    /* ============ بيانات موضعية (ثنائية اللغة) ============ */
+    function appName(app){ return lang === 'en' ? (app.name_en || app.name) : app.name; }
+    function appDesc(app){ return lang === 'en' ? (app.description_en || app.description) : app.description; }
+    function catLabel(cat){ return lang === 'en' ? (cat.label_en || cat.label) : cat.label; }
+    function platformLabel(p){
+      return T.platform[p] || p;
+    }
+    function isPromoActive(promo){
+      if(!promo.expiryDate) return true;
+      var today = new Date();
+      today.setHours(0,0,0,0);
+      var expiry = new Date(promo.expiryDate + 'T00:00:00');
+      return expiry >= today;
+    }
+    function daysLeftLabel(promo){
+      if(!promo.expiryDate) return '';
+      var today = new Date(); today.setHours(0,0,0,0);
+      var expiry = new Date(promo.expiryDate + 'T00:00:00');
+      var diff = Math.ceil((expiry - today) / (1000*60*60*24));
+      return T.daysLeft(diff, promo.expiryDate);
+    }
+    function promoTitle(promo){
+      return lang === 'en' ? (promo.title_en || promo.title) : promo.title;
+    }
+    function promoDesc(promo){
+      return lang === 'en' ? (promo.description_en || promo.description) : promo.description;
+    }
+    function reviewComment(rev){
+      return lang === 'en' ? (rev.comment_en || rev.comment) : rev.comment;
+    }
+    function promoAppName(appId){
+      var app = (typeof APPS !== 'undefined') ? APPS.filter(function(a){ return a.id === appId; })[0] : null;
+      return app ? appName(app) : '';
+    }
+    function computeRating(appId){
+      var revs = (typeof REVIEWS !== 'undefined') ? REVIEWS.filter(function(r){ return r.appId === appId; }) : [];
+      if(revs.length === 0) return { avg: 0, count: 0 };
+      var sum = revs.reduce(function(s, r){ return s + r.rating; }, 0);
+      return { avg: sum / revs.length, count: revs.length };
+    }
+    function starsHTML(avg){
+      var rounded = Math.round(avg);
+      return '★'.repeat(rounded) + '☆'.repeat(5 - rounded);
+    }
+    function catInfo(key){
+      return (typeof CATEGORIES !== 'undefined') ? (CATEGORIES.filter(function(c){ return c.key === key; })[0] || { label: key, icon: '✨' }) : { label: key, icon: '✨' };
+    }
+    function activePromos(){
+      return (typeof PROMOTIONS !== 'undefined') ? PROMOTIONS.filter(isPromoActive) : [];
+    }
+
+    /* ============ المفضلة وشوهد مؤخراً ============ */
+    function isFavoriteById(id){
+      try{ return SyhStorage.isFavorite(id); }catch(e){ return false; }
+    }
+
+    function favoriteBtnHTML(app){
+      var fav = isFavoriteById(app.id);
+      return '<button type="button" class="fav-btn' + (fav ? ' active' : '') + '" data-app="' + app.id + '" aria-pressed="' + (fav ? 'true' : 'false') + '">' +
+        (fav ? T.favAdded : T.favAdd) +
+      '</button>';
+    }
+
+    function toggleFavorite(appId, btn){
+      var wasFav = isFavoriteById(appId);
+      try{
+        if(wasFav){ SyhStorage.removeFavorite(appId); }
+        else{ SyhStorage.addFavorite(appId); }
+      }catch(e){}
+      var isFav = !wasFav;
+      if(btn){
+        btn.classList.toggle('active', isFav);
+        btn.setAttribute('aria-pressed', isFav ? 'true' : 'false');
+        btn.textContent = isFav ? T.favAdded : T.favAdd;
+      }
+      var card = btn ? btn.closest('.card') : null;
+      var appNameText = card ? card.querySelector('h3').textContent.trim() : '';
+      var appCatText = card ? card.querySelector('.cat-tag').textContent.trim() : '';
+      trackAnalytics(wasFav ? 'favorite_remove' : 'favorite_add', {
+        app_id: appId,
+        app_name: appNameText,
+        app_category: appCatText
+      });
+      if(activeCategory === 'favorites'){ render(); }
+    }
+
+    /* ============ المقارنة ============ */
+    function isComparedById(id){
+      try{ return SyhStorage.getCompareList().indexOf(id) !== -1; }catch(e){ return false; }
+    }
+    function compareBtnHTML(app){
+      var on = isComparedById(app.id);
+      return '<button type="button" class="cmp-btn' + (on ? ' active' : '') + '" data-app="' + app.id + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
+        (on ? T.compareAdded : T.compareAdd) +
+      '</button>';
+    }
+    function compareAppById(id){
+      return findByAppId(id);
+    }
+    function compareListApps(){
+      try{
+        var ids = SyhStorage.getCompareList();
+        var apps = [];
+        (ids || []).forEach(function(id){
+          var a = compareAppById(id);
+          if(a){ apps.push(a); }
+        });
+        return apps;
+      }catch(e){ return []; }
+    }
+    function compareParams(appId){
+      var app = compareAppById(appId);
+      return {
+        app_id: appId,
+        app_name: app ? appName(app) : '',
+        app_category: app ? catLabel(catInfo(app.category)) : ''
+      };
+    }
+    function compareFlash(msg){
+      var el = document.getElementById('cmpMsg');
+      if(!el){ return; }
+      el.textContent = msg || '';
+      clearTimeout(el._t);
+      el._t = setTimeout(function(){ el.textContent = ''; }, 2400);
+    }
+    function updateCompareButtons(){
+      document.querySelectorAll('.cmp-btn[data-app]').forEach(function(btn){
+        var on = isComparedById(btn.getAttribute('data-app'));
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.textContent = on ? T.compareAdded : T.compareAdd;
+      });
+    }
+    function renderCompareSheet(){
+      var listEl = document.getElementById('compareSheetList');
+      if(!listEl){ return; }
+      var apps = compareListApps();
+      listEl.innerHTML = apps.map(function(app){
+        return '<span class="cmp-chip">' +
+          '<span class="cc-name">' + appName(app) + '</span>' +
+          '<button type="button" class="cc-x" data-x="' + app.id + '" aria-label="' + T.compareRemoved + '">×</button>' +
+        '</span>';
+      }).join('');
+      var empty = document.getElementById('compareSheetEmpty');
+      if(empty){ empty.style.display = apps.length ? 'none' : 'block'; }
+      var go = document.getElementById('compareSheetGo');
+      if(go){ go.disabled = apps.length < 2; }
+      var clr = document.getElementById('compareSheetClear');
+      if(clr){ clr.style.display = apps.length ? 'inline-flex' : 'none'; }
+    }
+    function renderCompareBar(){
+      var bar = document.getElementById('cmpBar');
+      if(!bar){ return; }
+      var apps = compareListApps();
+      bar.hidden = apps.length === 0;
+      document.getElementById('cmpChips').innerHTML = apps.map(function(app){
+        return '<span class="cmp-chip">' +
+          '<span class="cc-name">' + appName(app) + '</span>' +
+          '<button type="button" class="cc-x" data-x="' + app.id + '" aria-label="' + T.compareRemoved + '">×</button>' +
+        '</span>';
+      }).join('');
+      document.getElementById('cmpTitle').textContent = T.compareBarTitle + (apps.length ? ' (' + apps.length + ')' : '');
+      var go = document.getElementById('cmpGo');
+      if(go){ go.disabled = apps.length < 2; }
+      renderCompareSheet();
+    }
+    function addToCompare(appId){
+      var list = [];
+      try{ list = SyhStorage.getCompareList(); }catch(e){}
+      if(list.indexOf(appId) !== -1){ return; }
+      if(list.length >= 4){
+        compareFlash(T.compareLimit);
+        renderCompareBar();
+        return;
+      }
+      try{ SyhStorage.addCompareItem(appId); }catch(e){}
+      trackAnalytics('compare_add', compareParams(appId));
+      renderCompareBar();
+      updateCompareButtons();
+    }
+    function removeFromCompare(appId){
+      try{ SyhStorage.removeCompareItem(appId); }catch(e){}
+      trackAnalytics('compare_remove', compareParams(appId));
+      renderCompareBar();
+      updateCompareButtons();
+    }
+    function toggleCompare(appId){
+      if(isComparedById(appId)){ removeFromCompare(appId); }
+      else{ addToCompare(appId); }
+    }
+    function clearCompare(){
+      try{ SyhStorage.clearCompareList(); }catch(e){}
+      trackAnalytics('compare_clear', {});
+      renderCompareBar();
+      updateCompareButtons();
+    }
+    function buildCompareTable(){
+      var wrap = document.getElementById('compareViewBody');
+      if(!wrap){ return; }
+      var apps = compareListApps();
+      if(apps.length < 2){
+        wrap.innerHTML = '<p class="sheet-note">' + T.compareMin + '</p>';
+        return;
+      }
+      var cells = function(fn){
+        return apps.map(function(a){ return '<td>' + (fn ? fn(a) : '&mdash;') + '</td>'; }).join('');
+      };
+      var row = function(label, cellHTML){
+        return '<tr><th class="cmp-rowhead" scope="row">' + label + '</th>' + cellHTML + '</tr>';
+      };
+      var icons = apps.map(function(a){ return catInfo(a.category).icon; });
+      var thead = '<thead><tr><th></th>' + apps.map(function(a){
+        return '<th><span class="cmp-icon" aria-hidden="true">' + catInfo(a.category).icon + '</span>' +
+          '<div class="cmp-appname">' + appName(a) + '</div></th>';
+      }).join('') + '</tr></thead>';
+      var tbody =
+        '<tbody>' +
+          row(T.compareRowCat, cells(function(a){
+            return catInfo(a.category).icon + ' ' + catLabel(catInfo(a.category));
+          })) +
+          row(T.compareRowRating, cells(function(a){
+            var r = computeRating(a.id);
+            return r.count > 0
+              ? '<span class="stars">' + starsHTML(r.avg) + '</span> ' + r.avg.toFixed(1) + ' (' + r.count + ')'
+              : T.ratingCountNone;
+          })) +
+          row(T.compareRowPlatforms, cells(function(a){
+            return (a.platforms || []).map(function(p){ return platformLabel(p); }).join(' · ');
+          })) +
+          row(T.compareRowVerified, cells(function(a){
+            return a.verified ? '✅ ' + T.verified : T.compareNotVerified;
+          })) +
+          row(T.compareRowDesc, cells(function(a){ return appDesc(a); })) +
+          row(T.compareRowLinks, cells(function(a){
+            var links = a.storeLinks || {};
+            var primary = links.android || links.ios || links.web || a.officialLink;
+            var stores = detailStoreButtons(a);
+            return '<div class="cmp-actions-cell">' +
+              '<a class="btn btn-primary btn-sm" href="' + primary + '" target="_blank" rel="noopener">' + T.install + '</a>' +
+              '<a class="btn btn-ghost btn-sm" href="' + a.officialLink + '" target="_blank" rel="noopener">' + T.officialSite + '</a>' +
+              (stores ? '<div class="platforms">' + stores + '</div>' : '') +
+            '</div>';
+          })) +
+        '</tbody>';
+      wrap.innerHTML = '<table class="cmp-table" aria-label="' + T.compareSheetTitle + '">' + thead + tbody + '</table>';
+    }
+    function showCompareView(){
+      buildCompareTable();
+      var v = document.getElementById('compareView');
+      if(v){ v.hidden = false; }
+      try{ document.body.classList.add('no-scroll'); }catch(e){}
+      compareOpen = true;
+      try{ history.replaceState(null, '', '#compare'); }catch(e){}
+      trackAnalytics('compare_open', { count: compareListApps().length, language: lang });
+      var first = document.getElementById('compareBack');
+      if(first && first.focus){ first.focus(); }
+    }
+    function closeCompareView(){
+      compareOpen = false;
+      var v = document.getElementById('compareView');
+      if(v){ v.hidden = true; }
+      try{ document.body.classList.remove('no-scroll'); }catch(e){}
+      try{
+        if(window.location.hash === '#compare'){
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      }catch(e){}
+      trackAnalytics('compare_close', {});
+    }
+
+    function recentMiniHTML(app){
+      var cat = catInfo(app.category);
+      var rating = computeRating(app.id);
+      return '<button type="button" class="recent-card" data-app="' + app.id + '">' +
+        '<span class="rc-name">' + appName(app) + '</span>' +
+        '<span class="rc-cat">' + catLabel(cat) + '</span>' +
+        (rating.count > 0
+          ? '<span class="rc-rating">' + starsHTML(rating.avg) + ' ' + rating.avg.toFixed(1) + '</span>'
+          : '') +
+      '</button>';
+    }
+
+    function renderRecent(){
+      try{
+        var section = document.getElementById('recentSection');
+        var scroller = document.getElementById('recentScroller');
+        if(!section || !scroller){ return; }
+        if(typeof SyhStorage === 'undefined'){ section.style.display = 'none'; return; }
+        var ids = SyhStorage.getRecentlyViewed();
+        var apps = [];
+        ids.forEach(function(id){
+          var matched = (typeof APPS !== 'undefined') ? APPS.filter(function(a){ return a.id === id; })[0] : null;
+          if(matched){ apps.push(matched); }
+        });
+        if(apps.length === 0){ section.style.display = 'none'; scroller.innerHTML = ''; return; }
+        section.style.display = 'block';
+        scroller.innerHTML = apps.map(function(app){ return recentMiniHTML(app); }).join('');
+      }catch(e){ /* تجاهل — لا يقف حجم قائمة مؤخراً شوهد على الموقع */ }
+    }
+
+    /* ============ تفاصيل التطبيق + المشاركة ============ */
+    function findByAppId(id){
+      return (typeof APPS !== 'undefined') ? APPS.filter(function(a){ return a.id === id; })[0] : null;
+    }
+    function hashAppId(){
+      var h = (typeof window !== 'undefined' && window.location) ? window.location.hash : '';
+      var m = (h || '').match(/^#app\/(.+)$/);
+      if(!m){ return ''; }
+      try{ return decodeURIComponent(m[1]); }catch(e){ return m[1]; }
+    }
+    function setAppHash(id){
+      try{
+        var h = '#app/' + encodeURIComponent(id);
+        if(history.pushState){ history.pushState(null, '', h); }
+        else{ window.location.hash = h; }
+      }catch(e){
+        try{ window.location.hash = '#app/' + encodeURIComponent(id); }catch(e2){}
+      }
+    }
+    function detailStoreButtons(app){
+      var links = app.storeLinks || {};
+      var out = '';
+      ['android','ios','web'].forEach(function(p){
+        if(!links[p]){ return; }
+        out += '<a class="btn-store" href="' + links[p] + '" target="_blank" rel="noopener" data-platform="' + p + '">' + platformLabel(p) + '</a>';
+      });
+      return out;
+    }
+    function relatedApps(appId){
+      var apps = (typeof APPS !== 'undefined' ? APPS : []);
+      var current = null;
+      apps.forEach(function(a){ if(a.id === appId){ current = a; } });
+      if(!current){ return []; }
+      var curPlat = current.platforms || [];
+      var scored = [];
+      apps.forEach(function(a){
+        if(a.id === appId){ return; }
+        var score = 0;
+        if(a.category === current.category){ score += 2; }
+        var share = (a.platforms || []).filter(function(p){ return curPlat.indexOf(p) !== -1; }).length;
+        if(share > 0){ score += 1; }
+        if(score > 0){ scored.push({ _app: a, _s: score, _r: computeRating(a.id).avg }); }
+      });
+      scored.sort(function(x, y){
+        if(y._s !== x._s){ return y._s - x._s; }
+        return y._r - x._r;
+      });
+      return scored.slice(0, 4).map(function(x){ return x._app; });
+    }
+    function renderRelated(currentId){
+      var section = document.getElementById('detailRelated');
+      var list = document.getElementById('detailRelatedList');
+      if(!section || !list){ return; }
+      var rel = relatedApps(currentId);
+      if(rel.length === 0){
+        section.style.display = 'none';
+        list.innerHTML = '';
+        return;
+      }
+      section.style.display = 'block';
+      list.innerHTML = rel.map(function(app){ return recentMiniHTML(app); }).join('');
+    }
+    function renderDetails(appId){
+      try{
+        var panel = document.getElementById('detailView');
+        if(!panel){ return; }
+        var app = findByAppId(appId);
+        if(!app){
+          document.getElementById('detailName').textContent = T.detailNotFoundTitle;
+          document.getElementById('detailCat').textContent = '';
+          document.getElementById('detailDesc').textContent = T.detailNotFoundText;
+          document.getElementById('detailIcon').textContent = '❓';
+          document.getElementById('detailVerified').hidden = true;
+          document.getElementById('detailPlatforms').innerHTML = '';
+          document.getElementById('detailUpdate').hidden = true;
+          document.getElementById('detailActions').innerHTML = '';
+          document.getElementById('detailStores').style.display = 'none';
+          document.getElementById('detailOffers').style.display = 'none';
+          document.getElementById('detailReviews').style.display = 'none';
+          var relHide = document.getElementById('detailRelated');
+          if(relHide){ relHide.style.display = 'none'; }
+          document.getElementById('detailFav').style.display = 'none';
+          var reportHide = document.getElementById('detailReport');
+          if(reportHide){ reportHide.style.display = 'none'; }
+          var cmpHide = document.getElementById('detailCompare');
+          if(cmpHide){ cmpHide.style.display = 'none'; }
+          currentDetail = appId;
+          updateSeo(null);
+          return;
+        }
+        var cat = catInfo(app.category);
+        var rating = computeRating(app.id);
+        var links = app.storeLinks || {};
+        var primaryLink = links.android || links.ios || links.web || app.officialLink;
+        document.getElementById('detailIcon').innerHTML = app.icon ? '<img src="' + app.icon + '" alt="" loading="lazy" decoding="async">' : cat.icon;
+        document.getElementById('detailName').textContent = appName(app);
+        document.getElementById('detailCat').textContent = catLabel(cat);
+        document.getElementById('detailVerified').textContent = T.verified;
+        document.getElementById('detailVerified').hidden = !app.verified;
+        document.getElementById('detailRating').innerHTML = rating.count > 0
+          ? '<span class="stars" aria-label="' + rating.avg.toFixed(1) + '/5">' + starsHTML(rating.avg) + '</span>' +
+            '<span class="detail-rating-num">' + rating.avg.toFixed(1) + '</span>' +
+            '<span class="rating-count">(' + rating.count + ' ' + T.reviewCount(rating.count) + ')</span>'
+          : '<span class="rating-count">' + T.ratingCountNone + '</span>';
+        document.getElementById('detailDesc').textContent = appDesc(app);
+        document.getElementById('detailPlatforms').innerHTML = (app.platforms || []).map(function(p){ return '<span>' + platformLabel(p) + '</span>'; }).join('');
+        var updEl = document.getElementById('detailUpdate');
+        if(updEl){
+          updEl.hidden = !app.lastUpdate;
+          if(app.lastUpdate){ updEl.textContent = T.lastUpdate(app.lastUpdate); }
+        }
+        var reportBtn = document.getElementById('detailReport');
+        if(reportBtn){ reportBtn.style.display = ''; }
+        document.getElementById('detailActions').innerHTML =
+          '<a class="btn btn-ghost" href="' + app.officialLink + '" target="_blank" rel="noopener">' + T.officialSite + '</a>' +
+          '<a class="btn btn-primary" href="' + primaryLink + '" target="_blank" rel="noopener">' + T.install + '</a>';
+        var storesEl = document.getElementById('detailStores');
+        var stores = detailStoreButtons(app);
+        storesEl.style.display = stores ? 'flex' : 'none';
+        storesEl.innerHTML = stores;
+        var promos = activePromos().filter(function(p){ return p.appId === app.id; });
+        var offersEl = document.getElementById('detailOffers');
+        if(promos.length > 0){
+          offersEl.style.display = 'block';
+          document.getElementById('detailOffersList').innerHTML = promos.map(promoCardHTML).join('');
+        } else {
+          offersEl.style.display = 'none';
+          document.getElementById('detailOffersList').innerHTML = '';
+        }
+        var revs = (typeof REVIEWS !== 'undefined') ? REVIEWS.filter(function(r){ return r.appId === app.id; }) : [];
+        document.getElementById('detailReviewsList').innerHTML = reviewsListHTML(app.id);
+        document.getElementById('detailReviewsHeading').textContent = T.reviewsHeading + ' (' + revs.length + ')';
+        document.getElementById('detailReviews').style.display = 'block';
+        renderRelated(app.id);
+        var favBtn = document.getElementById('detailFav');
+        var fav = isFavoriteById(app.id);
+        favBtn.style.display = 'inline-block';
+        favBtn.setAttribute('data-app', app.id);
+        favBtn.classList.toggle('active', fav);
+        favBtn.setAttribute('aria-pressed', fav ? 'true' : 'false');
+        favBtn.textContent = fav ? T.favAdded : T.favAdd;
+        var cmpBtn = document.getElementById('detailCompare');
+        var cmp = isComparedById(app.id);
+        cmpBtn.style.display = 'inline-block';
+        cmpBtn.setAttribute('data-app', app.id);
+        cmpBtn.classList.toggle('active', cmp);
+        cmpBtn.setAttribute('aria-pressed', cmp ? 'true' : 'false');
+        cmpBtn.textContent = cmp ? T.compareAdded : T.compareAdd;
+        var revCta = document.getElementById('detailReviewCta');
+        revCta.href = FORMS.review;
+        revCta.textContent = T.reviewCta;
+        updateSeo(app);
+        currentDetail = app.id;
+      }catch(e){ /* لا تكسر التصفح عند أي خطأ في التفاصيل */ }
+    }
+    function showDetails(appId){
+      try{ scrollLockPos = (window.pageYOffset || document.documentElement.scrollTop || 0); }catch(e){}
+      renderDetails(appId);
+      var panel = document.getElementById('detailView');
+      if(panel){ panel.hidden = false; }
+      try{ document.body.classList.add('no-scroll'); }catch(e){}
+      var firstBtn = panel ? panel.querySelector('.detail-toolbar .btn') : null;
+      if(firstBtn && firstBtn.focus){ firstBtn.focus(); }
+    }
+    function closeDetails(){
+      try{ document.body.classList.remove('no-scroll'); }catch(e){}
+      try{ window.scrollTo(0, scrollLockPos); }catch(e){}
+      var panel = document.getElementById('detailView');
+      if(panel){ panel.hidden = true; }
+      currentDetail = null;
+      resetSeo();
+    }
+    function reportBrokenLink(){
+      var app = findByAppId(currentDetail);
+      if(!app){ return; }
+      var title = '[Broken link] ' + appName(app);
+      var body = 'App: ' + appName(app) + ' (' + app.id + ')\n';
+      body += 'Official link: ' + (app.officialLink || '') + '\n';
+      var urls = app.storeLinks || {};
+      var keys = ['android', 'ios', 'web'];
+      for(var i = 0; i < keys.length; i++){
+        if(urls[keys[i]]){ body += keys[i] + ': ' + urls[keys[i]] + '\n'; }
+      }
+      var url = 'https://github.com/Ali-Mhd-Ibrahim/SyrHub/issues/new?title=' +
+        encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+      try{ window.open(url, '_blank', 'noopener'); }catch(e2){ window.location.href = url; }
+      trackAnalytics('report_broken_link', { app_id: app.id, app_name: appName(app) });
+    }
+    function hashIsCompare(){
+      return (typeof window !== 'undefined' && window.location && window.location.hash) === '#compare';
+    }
+    function handleRoute(){
+      var id = hashAppId();
+      if(id){
+        if(compareOpen){ closeCompareView(); }
+        openApp(id);
+        return;
+      }
+      if(hashIsCompare()){
+        showCompareView();
+        return;
+      }
+      if(compareOpen){
+        closeCompareView();
+        return;
+      }
+      if(currentDetail){
+        var closedId = currentDetail;
+        closeDetails();
+        trackAnalytics('app_back', { app_id: closedId });
+      }
+    }
+    function fallbackCopy(text, done){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try{ document.execCommand('copy'); done('copy'); }catch(e){ done('legacy'); }
+        document.body.removeChild(ta);
+      }catch(e){
+        done('legacy');
+      }
+    }
+    function isMobileShare(){
+      if(typeof navigator === 'undefined' || !navigator.share){ return false; }
+      if(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '')){ return true; }
+      try{
+        if(window.matchMedia && window.matchMedia('(pointer: coarse)').matches && 'ontouchstart' in window){ return true; }
+      }catch(e){}
+      return false;
+    }
+    function copyOrFallback(url, done){
+      writeClipboard(url, done);
+    }
+    function writeClipboard(text, done){
+      if(typeof navigator !== 'undefined' && navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text)
+          .then(function(){ done('copy'); })
+          .catch(function(){ fallbackCopy(text, done); });
+        return;
+      }
+      fallbackCopy(text, done);
+    }
+    /* ============ نسخ كوبون العرض ============ */
+    function announceCopy(){
+      var el = document.getElementById('copyStatus');
+      if(el){ el.textContent = T.copied; }
+    }
+    function copyPromoCode(code, btn, source){
+      var finish = function(method){
+        trackAnalytics('promo_code_copy', {
+          promo_code: code,
+          value: code,
+          interaction: source || 'button',
+          method: method
+        });
+        if(btn){
+          var original = btn.textContent;
+          btn.textContent = T.copied;
+          btn.classList.add('copied');
+          announceCopy();
+          setTimeout(function(){
+            btn.textContent = original;
+            btn.classList.remove('copied');
+          }, 1600);
+        }
+      };
+      writeClipboard(code, finish);
+    }
+    function shareApp(appId){
+      var app = findByAppId(appId);
+      if(!app){ return; }
+      var url = location.origin + location.pathname + '#app/' + encodeURIComponent(appId);
+      var finish = function(method){
+        trackAnalytics('share_app', { app_id: appId, method: method, page: '#app/' + appId });
+        var btn = document.getElementById('detailShare');
+        if(btn){
+          var original = btn.textContent;
+          btn.textContent = T.detailShareSuccess;
+          setTimeout(function(){ btn.textContent = original; }, 2000);
+        }
+      };
+      if(isMobileShare()){
+        try{
+          navigator.share({ title: appName(app), text: appDesc(app), url: url })
+            .then(function(){ finish('native'); })
+            .catch(function(){});
+        }catch(e){
+          copyOrFallback(url, finish);
+        }
+        return;
+      }
+      copyOrFallback(url, finish);
+    }
+
+    function openApp(appId){
+      try{ SyhStorage.addRecentlyViewed(appId); }
+      catch(e){}
+      renderRecent();
+      var app = findByAppId(appId);
+      if(hashAppId() !== appId){
+        var current = (typeof window !== 'undefined' && window.location) ? window.location.hash : '';
+        prevHash = current;
+        if(current !== '' && navStack[navStack.length - 1] !== current){
+          navStack.push(current);
+        }
+        setAppHash(appId);
+      }
+      if(app){
+        trackAnalytics('app_view', { app_id: appId, page: '#app/' + appId });
+      }
+      showDetails(appId);
+    }
+
+    /* ============ بطاقة العرض ============ */
+    function promoCardHTML(promo){
+      var appN = promoAppName(promo.appId);
+      var promoAppObj = (typeof APPS !== 'undefined') ? APPS.filter(function(a){ return a.id === promo.appId; })[0] : null;
+      var appIconHTML = '';
+      if(promoAppObj){
+        var promoCatIcon = catInfo(promoAppObj.category).icon || '✨';
+        appIconHTML = '<span class="promo-app-ico" aria-hidden="true">' +
+          (promoAppObj.icon
+            ? '<img class="promo-app-img" src="' + promoAppObj.icon + '" alt="" loading="lazy" decoding="async" width="16" height="16">'
+            : promoCatIcon) +
+          '</span>';
+      }
+      var codeRow = (promo.type === 'coupon' && promo.code)
+        ? '<div class="promo-code-row">' +
+            '<span class="promo-code" id="code-' + promo.id + '">' + promo.code + '</span>' +
+            '<button class="copy-btn" data-code="' + promo.code + '" data-target="code-' + promo.id + '" data-key="copy">' + T.copy + '</button>' +
+          '</div>'
+        : '';
+      return '' +
+        '<article class="promo-card">' +
+          '<div class="promo-head">' +
+            (appN ? '<span class="promo-app">' + appIconHTML + appN + '</span>' : '') +
+            '<span class="promo-badge">' + (promo.discountLabel || T.specialOffer) + '</span>' +
+          '</div>' +
+          '<h3>' + promoTitle(promo) + '</h3>' +
+          '<p class="promo-desc">' + promoDesc(promo) + '</p>' +
+          codeRow +
+          '<div class="promo-footer">' +
+            '<span>' + daysLeftLabel(promo) + '</span>' +
+            '<a href="' + promo.link + '" target="_blank" rel="noopener">' + T.openOffer + '</a>' +
+          '</div>' +
+        '</article>';
+    }
+
+    function renderPromotions(){
+      try{
+        var section = document.getElementById('promosSection');
+        var scroller = document.getElementById('promosScroller');
+        if(!section || !scroller){ return; }
+        if(typeof PROMOTIONS === 'undefined'){ return; }
+        var active = activePromos();
+        if(active.length === 0){
+          section.style.display = 'none';
+          return;
+        }
+        section.style.display = 'block';
+        scroller.innerHTML = active.map(promoCardHTML).join('');
+
+        trackViaDelegate(scroller, '.promo-footer a', 'promo_open', function(el){
+          var card = el.closest('.promo-card');
+          var coupon = card.querySelector('.promo-code');
+          return {
+            promo_title: card.querySelector('h3').textContent.trim(),
+            promo_badge: card.querySelector('.promo-badge').textContent.trim(),
+            coupon_code: coupon ? coupon.textContent.trim() : ''
+          };
+        });
+      }catch(err){ /* لا يسمح لخطأ العروض بمنع شبكة التطبيقات */ }
+    }
+
+    /* ============ الفلاتر ============ */
+    function renderPlatformFilter(){
+      var plc = document.getElementById('platformFilter');
+      if(plc){
+        plc.querySelectorAll('.mini-chip').forEach(function(b){
+          var p = b.getAttribute('data-platform');
+          b.classList.toggle('active', p === activePlatform);
+          if(p !== 'all'){ b.textContent = platformLabel(p); }
+        });
+      }
+      var vo = document.getElementById('verifiedOnly');
+      if(vo){ vo.checked = verifiedOnly; }
+    }
+    function renderChips(){
+      var wrap = document.getElementById('chips');
+      wrap.innerHTML = '';
+      var all = document.createElement('button');
+      all.type = 'button';
+      all.className = 'chip' + (activeCategory === 'all' ? ' active' : '');
+      all.dataset.key = 'all';
+      all.textContent = T.all;
+      wrap.appendChild(all);
+
+      (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []).forEach(function(cat){
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip' + (activeCategory === cat.key ? ' active' : '');
+        chip.dataset.key = cat.key;
+        chip.innerHTML = '<span>' + cat.icon + '</span><span>' + catLabel(cat) + '</span>';
+        wrap.appendChild(chip);
+      });
+
+      var favChip = document.createElement('button');
+      favChip.type = 'button';
+      favChip.className = 'chip' + (activeCategory === 'favorites' ? ' active' : '');
+      favChip.dataset.key = 'favorites';
+      favChip.innerHTML = '<span>★</span><span>' + T.favLabel + '</span>';
+      wrap.appendChild(favChip);
+    }
+
+    /* ============ بطاقات التطبيقات ============ */
+    function reviewsListHTML(appId){
+      var revs = (typeof REVIEWS !== 'undefined') ? REVIEWS.filter(function(r){ return r.appId === appId; }) : [];
+      if(revs.length === 0){
+        return '<p class="no-reviews">' + T.noReviews + '</p>';
+      }
+      return revs.map(function(r){
+        return '<div class="review-item">' +
+          '<div class="review-head">' +
+            '<span class="author">' + r.author + '</span>' +
+            '<span class="stars">' + starsHTML(r.rating) + '</span>' +
+          '</div>' +
+          '<p class="review-comment">' + reviewComment(r) + '</p>' +
+          '<span class="review-date">' + r.date + '</span>' +
+        '</div>';
+      }).join('');
+    }
+
+    function cardHTML(app, index){
+      var cat = catInfo(app.category);
+      var links = app.storeLinks || {};
+      var primaryLink = links.android || links.ios || links.web || app.officialLink;
+      var rating = computeRating(app.id);
+      var reviewsId = 'reviews-' + app.id;
+      var ratingHTML = rating.count > 0
+        ? '<span class="rating-num">' + rating.avg.toFixed(1) + '</span>' +
+          '<span class="rating-count">(' + rating.count + ' ' + T.reviewCount(rating.count) + ')</span>'
+        : '<span class="rating-count">' + T.ratingCountNone + '</span>';
+      var iconHTML = '<div class="card-icon" aria-hidden="true">' +
+        (app.icon
+          ? '<img class="app-icon" src="' + app.icon + '" alt="" loading="lazy" decoding="async" width="44" height="44">'
+          : cat.icon) +
+      '</div>';
+      return '' +
+        '<article class="card" data-app="' + app.id + '" style="animation-delay:' + Math.min(index * 35, 400) + 'ms">' +
+          '<div class="card-top">' +
+            iconHTML +
+            (app.verified ? '<span class="verified-tag">' + T.verified + '</span>' : '') +
+          '</div>' +
+          '<div>' +
+            '<h3>' + (function(){
+            var sq = (document.getElementById('search').value || '').trim();
+            return highlightName(app, sq);
+          })() + '</h3>' +
+            '<span class="cat-tag">' + catLabel(cat) + '</span>' +
+          '</div>' +
+          '<div class="rating-row">' +
+            '<span class="stars ' + (rating.count === 0 ? 'stars-muted' : '') + '" aria-label="' + (rating.avg.toFixed(1) || '0') + '/5">' + starsHTML(rating.avg) + '</span>' +
+            ratingHTML +
+          '</div>' +
+          '<p class="desc">' + appDesc(app) + '</p>' +
+          '<div class="platforms">' +
+            (app.platforms || []).map(function(p){ return '<span>' + platformLabel(p) + '</span>'; }).join('') +
+          '</div>' +
+          '<div class="card-actions">' +
+            '<a class="btn btn-primary" href="' + primaryLink + '" target="_blank" rel="noopener">' + T.install + '</a>' +
+            '<a class="btn btn-ghost" href="' + app.officialLink + '" target="_blank" rel="noopener">' + T.officialSite + '</a>' +
+          '</div>' +
+          '<div class="card-extra">' +
+            favoriteBtnHTML(app) +
+            compareBtnHTML(app) +
+          '</div>' +
+          '<div class="card-meta">' +
+            '<button class="toggle-reviews-btn" type="button" data-target="' + reviewsId + '">' + T.showReviews(rating.count) + '</button>' +
+            '<a class="btn-review" href="' + FORMS.review + '" target="_blank" rel="noopener" data-app="' + app.id + '">' + T.reviewCta + '</a>' +
+          '</div>' +
+          '<div class="reviews-panel" id="' + reviewsId + '">' +
+            reviewsListHTML(app.id) +
+          '</div>' +
+        '</article>';
+    }
+
+    var lastSearchCount = 0;
+
+    /* ============ ترتيب البحث (Search Ranking) ============ */
+    function escHtml(s){
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function hlWrap(text, ql){
+      var idx = text.toLowerCase().indexOf(ql);
+      if(idx === -1){ return escHtml(text); }
+      return escHtml(text.slice(0, idx)) +
+        '<mark>' + escHtml(text.slice(idx, idx + ql.length)) + '</mark>' +
+        escHtml(text.slice(idx + ql.length));
+    }
+    function highlightName(app, q){
+      var ql = q.toString().toLowerCase();
+      var disp = appName(app);
+      if(!ql){ return escHtml(disp); }
+      var cands = [disp, app.name || '', app.name_en || ''];
+      var best = null, bestIdx = -1, i;
+      for(i = 0; i < cands.length; i++){
+        if(!cands[i]){ continue; }
+        var ix = (cands[i] + '').toLowerCase().indexOf(ql);
+        if(ix !== -1 && (best === null || ix < bestIdx)){
+          best = cands[i];
+          bestIdx = ix;
+        }
+      }
+      if(best === null){ return escHtml(disp); }
+      var dIdx = (disp + '').toLowerCase().indexOf(ql);
+      return dIdx !== -1 ? hlWrap(disp, ql) : escHtml(disp);
+    }
+    function searchScore(app, q){
+      var ql = q.toLowerCase();
+      var m = function(v){ return (v || '').toLowerCase(); };
+      var names = [appName(app), app.name || '', app.name_en || ''];
+      var score = 0, i;
+      for(i = 0; i < names.length; i++){
+        if(!names[i]){ continue; }
+        var n = m(names[i]);
+        if(n === ql){ score = Math.max(score, 100); }
+        else if(n.indexOf(ql) === 0){ score = Math.max(score, 85); }
+        else if(n.indexOf(ql) !== -1){ score = Math.max(score, 65); }
+      }
+      var cat = catInfo(app.category);
+      if(m(cat.label).indexOf(ql) !== -1 || m(cat.label_en).indexOf(ql) !== -1){ score = Math.max(score, 45); }
+      if(m(appDesc(app)).indexOf(ql) !== -1 || m(app.description || '').indexOf(ql) !== -1){ score = Math.max(score, 30); }
+      if((app.platforms || []).indexOf(q) !== -1){ score = Math.max(score, 20); }
+      return score;
+    }
+    function searchCompare(a, b){
+      if(b._s !== a._s){ return b._s - a._s; }
+      if(sortBy === 'name'){
+        return appName(a._app).localeCompare(appName(b._app), lang === 'ar' ? 'ar' : 'en');
+      }
+      return computeRating(b._app.id).avg - computeRating(a._app.id).avg;
+    }
+
+    function sortApps(list){
+      var arr = list.slice();
+      if(sortBy === 'name'){
+        arr.sort(function(a, b){
+          return appName(a).localeCompare(appName(b), lang === 'ar' ? 'ar' : 'en');
+        });
+      } else {
+        arr.sort(function(a, b){
+          return computeRating(b.id).avg - computeRating(a.id).avg;
+        });
+      }
+      return arr;
+    }
+
+    function render(){
+      var grid = document.getElementById('grid');
+      var searchInput = document.getElementById('search');
+      var resultCount = document.getElementById('resultCount');
+      var emptyState = document.getElementById('emptyState');
+      var q = searchInput.value.trim().toLowerCase();
+
+      var filtered = (typeof APPS !== 'undefined' ? APPS : []).filter(function(app){
+        var matchesCategory = activeCategory === 'all' || activeCategory === 'favorites' || app.category === activeCategory;
+        var matchesPlatform = activePlatform === 'all' || (app.platforms || []).indexOf(activePlatform) !== -1;
+        var isVerified = !verifiedOnly || !!app.verified;
+        return matchesCategory && matchesPlatform && isVerified;
+      });
+
+      if(activeCategory === 'favorites'){
+        filtered = filtered.filter(function(app){
+          return isFavoriteById(app.id);
+        });
+      }
+
+      var sorted;
+      if(q){
+        var scored = [];
+        filtered.forEach(function(app){
+          var s = searchScore(app, q);
+          if(s > 0){ scored.push({ _app: app, _s: s }); }
+        });
+        lastSearchCount = scored.length;
+        scored.sort(searchCompare);
+        sorted = scored.map(function(x){ return x._app; });
+      } else {
+        lastSearchCount = filtered.length;
+        sorted = sortApps(filtered);
+      }
+      grid.innerHTML = sorted.map(function(app, i){ return cardHTML(app, i); }).join('');
+      resultCount.textContent = T.resultCount(sorted.length);
+      var emptyTitle = emptyState.querySelector('.empty-title');
+      var emptyText = emptyState.querySelectorAll('p')[1];
+      if(sorted.length === 0 && activeCategory === 'favorites'){
+        emptyTitle.textContent = T.favLabel;
+        emptyText.textContent = T.favEmpty;
+      } else {
+        emptyTitle.textContent = T.emptyTitle;
+        emptyText.textContent = T.emptyText;
+      }
+      emptyState.style.display = sorted.length === 0 ? 'block' : 'none';
+    }
+
+    function renderStats(){
+      var apps = (typeof APPS !== 'undefined' ? APPS : []);
+      var cats = (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []);
+      document.getElementById('statApps').textContent = apps.length;
+      document.getElementById('statCats').textContent = cats.length;
+      document.getElementById('statVerified').textContent = apps.filter(function(a){ return a.verified; }).length;
+      document.getElementById('statOffers').textContent = activePromos().length;
+    }
+
+    /* ============ ربط الأحداث ============ */
+    function init(){
+      T = I18N[lang];
+
+      /* فلاتر محفوظة (منصة + موثّق فقط) */
+      try{
+        var sp = localStorage.getItem('syh-platform');
+        if(sp === 'android' || sp === 'ios' || sp === 'web'){ activePlatform = sp; }
+        if(localStorage.getItem('syh-verified') === '1'){ verifiedOnly = true; }
+      }catch(err){}
+
+      /* شارات النسخ — APK (أندرويد) + PWA (الآيفون) أسفل يمين الموقع */
+      var badgeApk = document.getElementById('badgeApk');
+      var badgePwa = document.getElementById('badgePwa');
+      var badgesBox = document.getElementById('appBadges');
+      var deferredInstall = null;
+      window.addEventListener('beforeinstallprompt', function(e){
+        if(e && e.preventDefault){ e.preventDefault(); }
+        deferredInstall = e;
+        if(badgesBox){ badgesBox.classList.add('installable'); }
+      });
+      window.addEventListener('appinstalled', function(){
+        trackAnalytics('install_complete', { language: lang });
+        syncAppBadges();
+      });
+      var openInstallModal = function(){
+        try{
+          var m = document.getElementById('installModal');
+          if(m && !m.classList.contains('open')){
+            m.classList.add('open');
+            var got = document.getElementById('installGotIt');
+            if(got && got.focus){ got.focus(); }
+            trackAnalytics('install_guide_open', { language: lang });
+          }
+        }catch(e){}
+      };
+      var closeInstallModal = function(){
+        try{
+          var m = document.getElementById('installModal');
+          if(m){ m.classList.remove('open'); }
+        }catch(e){}
+      };
+      if(badgeApk){
+        badgeApk.addEventListener('click', function(){
+          trackAnalytics('apk_download', { method: 'badge', platform: 'android', language: lang });
+        });
+      }
+      if(badgePwa){
+        badgePwa.addEventListener('click', function(){
+          trackAnalytics('install_prompt', { action: 'click', source: 'badge', language: lang });
+          if(deferredInstall && deferredInstall.prompt){ deferredInstall.prompt(); }
+          else { openInstallModal(); }
+        });
+      }
+      var gotItBtn = document.getElementById('installGotIt');
+      if(gotItBtn){ gotItBtn.addEventListener('click', closeInstallModal); }
+      var installModalCloseBtn = document.getElementById('installModalClose');
+      if(installModalCloseBtn){ installModalCloseBtn.addEventListener('click', closeInstallModal); }
+      var installModalBox = document.getElementById('installModal');
+      if(installModalBox){
+        installModalBox.addEventListener('click', function(e){
+          if(e.target === installModalBox){ closeInstallModal(); }
+        });
+      }
+      syncAppBadges();
+
+      var themeBtn = document.getElementById('themeToggle');
+      themeBtn.addEventListener('click', function(){
+        applyTheme(theme === 'dark' ? 'light' : 'dark');
+        trackAnalytics('toggle_theme', { theme: theme });
+      });
+
+      var langBtn = document.getElementById('langToggle');
+      langBtn.addEventListener('click', function(){
+        applyLang(lang === 'en' ? 'ar' : 'en');
+        trackAnalytics('change_language', { language: lang });
+      });
+
+      var searchInput = document.getElementById('search');
+      searchInput.addEventListener('input', function(){
+        var inp = this;
+        if(inp._debounceTimer){ clearTimeout(inp._debounceTimer); }
+        inp._debounceTimer = setTimeout(function(){
+          render();
+          var v = inp.value.trim();
+          if(v !== inp._lastSearch){
+            inp._lastSearch = v;
+            if(v){
+              trackAnalytics('search', {
+                search_term: v,
+                result_count: lastSearchCount,
+                has_results: lastSearchCount > 0
+              });
+            }
+          }
+        }, 120);
+      });
+
+      var sortSel = document.getElementById('sortSel');
+      sortSel.addEventListener('change', function(){
+        sortBy = sortSel.value;
+        trackAnalytics('sort_apps', { sort_by: sortBy });
+        render();
+      });
+
+      var platformFilter = document.getElementById('platformFilter');
+      if(platformFilter){
+        platformFilter.addEventListener('click', function(e){
+          var b = e.target.closest('.mini-chip');
+          if(!b){ return; }
+          var p = b.getAttribute('data-platform');
+          if(p === activePlatform){ return; }
+          activePlatform = p;
+          try{ localStorage.setItem('syh-platform', p); }catch(err){}
+          renderPlatformFilter();
+          trackAnalytics('filter_platform', { platform: p, category: activeCategory });
+          render();
+        });
+      }
+      var verifiedOnlyCheck = document.getElementById('verifiedOnly');
+      if(verifiedOnlyCheck){
+        verifiedOnlyCheck.addEventListener('change', function(){
+          verifiedOnly = this.checked;
+          try{ localStorage.setItem('syh-verified', verifiedOnly ? '1' : '0'); }catch(err){}
+          trackAnalytics('filter_verified', { verified_only: verifiedOnly });
+          render();
+        });
+      }
+
+      document.getElementById('chips').addEventListener('click', function(e){
+        var btn = e.target.closest('.chip');
+        if(!btn) return;
+        activeCategory = btn.dataset.key;
+        document.querySelectorAll('#chips .chip').forEach(function(c){
+          c.classList.toggle('active', c === btn);
+        });
+        trackAnalytics('filter_category', {
+          category: btn.dataset.key,
+          category_label: btn.textContent.trim()
+        });
+        render();
+      });
+
+      var grid = document.getElementById('grid');
+      grid.addEventListener('click', function(e){
+        var card = e.target.closest('.card');
+        if(card){
+          var appNameText = card.querySelector('h3').textContent.trim();
+          var appCatText = card.querySelector('.cat-tag').textContent.trim();
+          if(e.target.closest('.btn-primary')){
+            trackAnalytics('select_content', {
+              content_type: 'install',
+              content_id: appNameText,
+              app_name: appNameText,
+              app_category: appCatText
+            });
+            return;
+          }
+          if(e.target.closest('.btn-ghost')){
+            trackAnalytics('select_content', {
+              content_type: 'official_site',
+              content_id: appNameText,
+              app_name: appNameText,
+              app_category: appCatText
+            });
+            return;
+          }
+          var reviewLink = e.target.closest('.btn-review');
+          if(reviewLink){
+            trackAnalytics('write_review', {
+              app_name: appNameText,
+              app_category: appCatText,
+              app_id: reviewLink.dataset.app || ''
+            });
+            return;
+          }
+          var favBtn = e.target.closest('.fav-btn');
+          if(favBtn){
+            toggleFavorite(favBtn.dataset.app, favBtn);
+            return;
+          }
+          var cmpBtn = e.target.closest('.cmp-btn');
+          if(cmpBtn){
+            toggleCompare(cmpBtn.getAttribute('data-app'));
+            return;
+          }
+          if(e.target.closest('.toggle-reviews-btn') || e.target.closest('.reviews-panel')){
+            /* لا يفتح التفاصيل — زر تبديل المراجعات يُترك لمعالجه أدناه */
+          } else {
+            openApp(card.dataset.app);
+            return;
+          }
+        }
+
+        var btn = e.target.closest('.toggle-reviews-btn');
+        if(!btn) return;
+        var panel = document.getElementById(btn.dataset.target);
+        var isOpen = panel.classList.toggle('open');
+        var count = panel.querySelectorAll('.review-item').length;
+        btn.textContent = isOpen ? T.hideReviews(count) : T.showReviews(count);
+        card = e.target.closest('.card');
+        trackAnalytics(isOpen ? 'reviews_open' : 'reviews_close', {
+          app_name: card ? card.querySelector('h3').textContent.trim() : '',
+          review_count: count
+        });
+      });
+
+      var recentScroller = document.getElementById('recentScroller');
+      recentScroller.addEventListener('click', function(e){
+        var rc = e.target.closest('.recent-card');
+        if(rc){
+          var id = rc.getAttribute('data-app') || '';
+          trackAnalytics('recently_viewed_click', { app_id: id });
+          openApp(id);
+        }
+      });
+      var detailRelatedList = document.getElementById('detailRelatedList');
+      detailRelatedList.addEventListener('click', function(e){
+        var rc = e.target.closest('.recent-card');
+        if(rc){
+          var id = rc.getAttribute('data-app') || '';
+          trackAnalytics('recommendation_click', {
+            app_id: id,
+            source_app_id: currentDetail || ''
+          });
+          openApp(id);
+        }
+      });
+
+      /* ============ تفاصيل التطبيق + المشاركة ============ */
+      var detailView = document.getElementById('detailView');
+      var detailFav = document.getElementById('detailFav');
+      var navToPrev = function(){
+        var target = navStack.length ? navStack.pop() : '';
+        try{ window.location.hash = target; }catch(e){ closeDetails(); }
+      };
+      document.getElementById('detailBack').addEventListener('click', navToPrev);
+      detailFav.addEventListener('click', function(){
+        toggleFavorite(detailFav.getAttribute('data-app'), detailFav);
+      });
+      var detailCompare = document.getElementById('detailCompare');
+      detailCompare.addEventListener('click', function(){
+        var id = detailCompare.getAttribute('data-app');
+        if(id){ toggleCompare(id); }
+      });
+      document.getElementById('detailShare').addEventListener('click', function(){
+        if(currentDetail){ shareApp(currentDetail); }
+      });
+      var detailReportBtn = document.getElementById('detailReport');
+      if(detailReportBtn){ detailReportBtn.addEventListener('click', reportBrokenLink); }
+      detailView.addEventListener('click', function(e){
+        if(e.target === detailView){ navToPrev(); }
+      });
+      trackViaDelegate(detailView, '.detail-actions .btn-primary', 'select_content', function(){
+        var app = findByAppId(currentDetail);
+        return { content_type: 'install', app_id: currentDetail || '', app_name: app ? appName(app) : '' };
+      });
+      trackViaDelegate(detailView, '.detail-actions .btn-ghost', 'select_content', function(){
+        var app = findByAppId(currentDetail);
+        return { content_type: 'official_site', app_id: currentDetail || '', app_name: app ? appName(app) : '' };
+      });
+      trackViaDelegate(detailView, '.btn-store', 'app_store_click', function(el){
+        var app = findByAppId(currentDetail);
+        return { app_id: currentDetail || '', platform: el.getAttribute('data-platform') || '', app_name: app ? appName(app) : '' };
+      });
+      trackViaDelegate(detailView, '.detail-footer .btn-review', 'write_review', function(){
+        return { app_id: currentDetail || '' };
+      });
+      trackViaDelegate(detailView, '#detailOffersList .promo-footer a', 'promo_open', function(el){
+        var card = el.closest('.promo-card');
+        var coupon = card ? card.querySelector('.promo-code') : null;
+        return {
+          promo_title: card ? card.querySelector('h3').textContent.trim() : '',
+          promo_badge: card ? card.querySelector('.promo-badge').textContent.trim() : '',
+          coupon_code: coupon ? coupon.textContent.trim() : ''
+        };
+      });
+      document.addEventListener('click', function(e){
+        var codeEl = e.target.closest('.promo-code');
+        if(codeEl){
+          var row = codeEl.closest('.promo-code-row');
+          var bt = row ? row.querySelector('.copy-btn') : null;
+          copyPromoCode(codeEl.textContent.trim(), bt, 'code');
+          return;
+        }
+        var btn = e.target.closest('.copy-btn');
+        if(btn){
+          copyPromoCode(btn.getAttribute('data-code') || btn.textContent.trim(), btn, 'button');
+        }
+      });
+
+      var lastSheetOpen = null;
+      function closeSheet(){
+        if(lastSheetOpen){ lastSheetOpen.classList.remove('open'); lastSheetOpen = null; }
+      }
+      function openSheet(id){
+        var s = document.getElementById(id);
+        if(s && !s.classList.contains('open')){ s.classList.add('open'); lastSheetOpen = s; }
+      }
+      function navHome(){
+        if(currentDetail){
+          var t = (prevHash && prevHash.indexOf('#app/') !== 0) ? prevHash : '';
+          try{ window.location.hash = t; }catch(e){ closeDetails(); }
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      function promoScroll(){
+        var section = document.getElementById('promosSection');
+        if(section && section.style.display !== 'none'){
+          try{ section.scrollIntoView({ behavior:'smooth', block:'start' }); }catch(e){ section.scrollIntoView(); }
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+      var bottomNav = document.getElementById('bottomNav');
+      bottomNav.addEventListener('click', function(e){
+        var it = e.target.closest('.bn-item');
+        if(!it) return;
+        var act = it.getAttribute('data-nav');
+        trackAnalytics('bottom_nav', { item: act, language: lang });
+        if(act === 'home'){ navHome(); }
+        else if(act === 'search'){ searchInput.focus(); try{ searchInput.scrollIntoView({ behavior:'smooth', block:'center' }); }catch(e){} }
+        else if(act === 'offers'){ promoScroll(); }
+        else if(act === 'compare'){ renderCompareSheet(); openSheet('compareSheet'); }
+        else if(act === 'more'){ openSheet('moreSheet'); }
+      });
+      var moreSheet = document.getElementById('moreSheet');
+      var compareSheet = document.getElementById('compareSheet');
+      [moreSheet, compareSheet].forEach(function(s){
+        s.addEventListener('click', function(e){
+          if(e.target === s){ closeSheet(); }
+        });
+      });
+      document.getElementById('sheetClose').addEventListener('click', closeSheet);
+      document.getElementById('compareSheetClose').addEventListener('click', closeSheet);
+      moreSheet.querySelectorAll('.sheet-opt[data-sheet]').forEach(function(opt){
+        opt.addEventListener('click', function(){
+          var kind = opt.getAttribute('data-sheet');
+          closeSheet();
+          if(kind === 'favorites'){
+            activeCategory = 'favorites';
+            document.querySelectorAll('#chips .chip').forEach(function(c){
+              c.classList.toggle('active', c.getAttribute('data-key') === 'favorites');
+            });
+            render();
+            trackAnalytics('filter_category', { category: 'favorites', category_label: T.favLabel });
+            try{ document.getElementById('apps').scrollIntoView({ behavior:'smooth', block:'start' }); }catch(e){}
+          }
+        });
+      });
+      document.getElementById('sheetTheme').addEventListener('click', function(){
+        closeSheet();
+        applyTheme(theme === 'dark' ? 'light' : 'dark');
+        trackAnalytics('toggle_theme', { theme: theme });
+      });
+      document.getElementById('sheetLang').addEventListener('click', function(){
+        closeSheet();
+        applyLang(lang === 'en' ? 'ar' : 'en');
+        trackAnalytics('change_language', { language: lang });
+      });
+      document.getElementById('sheetContribute').addEventListener('click', function(){
+        closeSheet();
+        openContributeModal();
+      });
+      var sheetClearRecent = document.getElementById('sheetClearRecent');
+      sheetClearRecent.addEventListener('click', function(){
+        closeSheet();
+        try{
+          if(typeof SyhStorage !== 'undefined' && SyhStorage.clearRecentlyViewed){ SyhStorage.clearRecentlyViewed(); }
+        }catch(err){}
+        renderRecent();
+        trackAnalytics('clear_recent', { language: lang });
+        try{ document.getElementById('apps').scrollIntoView({ behavior:'smooth', block:'start' }); }catch(e){}
+      });
+
+      /* ============ إشعارات Firebase ============ */
+      var sheetNotify = document.getElementById('sheetNotify');
+      if(sheetNotify){ sheetNotify.addEventListener('click', toggleNotifications); }
+      var sheetNotifyCopy = document.getElementById('sheetNotifyCopy');
+      if(sheetNotifyCopy && sheetNotifyCopy.addEventListener){ sheetNotifyCopy.addEventListener('click', copyFcmToken); }
+      refreshNotifyUI();
+      if(window.addEventListener){
+        window.addEventListener('load', function(){
+          setTimeout(fcmInit, 400);
+        });
+      } else {
+        setTimeout(fcmInit, 1200);
+      }
+
+      /* ============ نظام المقارنة ============ */
+      var cmpBar = document.getElementById('cmpBar');
+      cmpBar.addEventListener('click', function(e){
+        var x = e.target.closest('.cc-x');
+        if(x){ removeFromCompare(x.getAttribute('data-x')); return; }
+        if(e.target.closest('#cmpGo')){
+          if(compareListApps().length >= 2){ showCompareView(); }
+          else{ compareFlash(T.compareMin); }
+          return;
+        }
+        if(e.target.closest('#cmpClear')){ clearCompare(); return; }
+      });
+      document.getElementById('compareSheetGo').addEventListener('click', function(){
+        if(compareListApps().length >= 2){
+          closeSheet();
+          showCompareView();
+        } else {
+          compareFlash(T.compareMin);
+          renderCompareSheet();
+        }
+      });
+      document.getElementById('compareSheetClear').addEventListener('click', function(){
+        clearCompare();
+        closeSheet();
+      });
+      document.getElementById('compareSheetList').addEventListener('click', function(e){
+        var x = e.target.closest('.cc-x');
+        if(x){ removeFromCompare(x.getAttribute('data-x')); }
+      });
+      var compareView = document.getElementById('compareView');
+      document.getElementById('compareBack').addEventListener('click', closeCompareView);
+      compareView.addEventListener('click', function(e){
+        if(e.target === compareView){ closeCompareView(); }
+      });
+      var compareCellApp = function(el){
+        var td = el.closest('td');
+        var tr = td ? td.closest('tr') : null;
+        var cells = tr ? tr.cells : [];
+        var idx = td ? Array.prototype.indexOf.call(cells, td) - 1 : -1;
+        var apps = compareListApps();
+        var app = (idx >= 0 && apps[idx]) ? apps[idx] : null;
+        return app;
+      };
+      trackViaDelegate(compareView, '.cmp-table .btn-primary', 'select_content', function(el){
+        var app = compareCellApp(el);
+        return { content_type: 'install', app_id: app ? app.id : '', app_name: app ? appName(app) : '' };
+      });
+      trackViaDelegate(compareView, '.cmp-table .btn-ghost', 'select_content', function(el){
+        var app = compareCellApp(el);
+        return { content_type: 'official_site', app_id: app ? app.id : '', app_name: app ? appName(app) : '' };
+      });
+
+      renderCompareBar();
+
+      var backBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', function(){
+        backBtn.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+      backBtn.addEventListener('click', function(){
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      backBtn.setAttribute('aria-label', T.backToTop);
+
+      /* ============ نافذة المساهمة ============ */
+      var modal = document.getElementById('contributeModal');
+      var modalOpenBtn = document.getElementById('contributeOpen');
+      var modalCloseBtn = document.getElementById('modalClose');
+      var lastFocus = null;
+
+      modal.querySelectorAll('.modal-option').forEach(function(opt){
+        opt.href = FORMS[opt.dataset.type] || FORMS.app;
+        opt.addEventListener('click', function(){
+          trackAnalytics('contribute_pick', {
+            request_type: opt.dataset.type,
+            language: lang
+          });
+        });
+      });
+
+      function openContributeModal(){
+        if(!lastFocus) lastFocus = document.activeElement;
+        modal.classList.add('open');
+        var first = modal.querySelector('.modal-option');
+        if(first) first.focus();
+        trackAnalytics('contribute_open', { language: lang });
+      }
+      function closeContributeModal(){
+        modal.classList.remove('open');
+        if(lastFocus && lastFocus.focus){ lastFocus.focus(); }
+        lastFocus = null;
+      }
+
+      modalOpenBtn.addEventListener('click', function(){
+        openContributeModal();
+      });
+      modalCloseBtn.addEventListener('click', function(){
+        closeContributeModal();
+      });
+      modal.addEventListener('click', function(e){
+        if(e.target === modal){ closeContributeModal(); }
+      });
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          if(lastSheetOpen){ closeSheet(); return; }
+          if(modal.classList.contains('open')){ closeContributeModal(); return; }
+          var iw = document.getElementById('installModal');
+          if(iw && iw.classList.contains('open')){ closeInstallModal(); return; }
+          if(compareOpen){ closeCompareView(); return; }
+          if(detailView && !detailView.hidden){ navToPrev(); }
+        }
+      });
+
+      applyLang(lang);
+      window.addEventListener('hashchange', handleRoute);
+      handleRoute();
+    }
+
+    init();
+  })();
+</script>
+
+<script>
+  /* تسجيل Service Worker — للعمل دون اتصال وغياب مانع الإعلانات */
+  if('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('sw.js').catch(function(err){
+        /* تجاهل أخطاء التسجيل — لا يجب أن تعطل الموقع */
+      });
+    });
+    /* تحديث تلقائي: عندما يثبّت المتصفح نسخة جديدة من sw.js (بعد رفع CACHE_NAME)
+       يتم تحميل أحدث الصفحات والبيانات فوراً دون مسح يدوي لأي شيء. */
+    if(navigator.serviceWorker.controller){
+      navigator.serviceWorker.addEventListener('controllerchange', function(){
+        window.location.reload();
+      });
+    }
+  }
+</script>
+
+<span class="sr-only" id="copyStatus" aria-live="polite"></span>
+
+<!-- Firebase Cloud Messaging (إشعارات فورية) → يحمَّل بتأخير بعد الصفحة -->
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+</body>
+</html>
