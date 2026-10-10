@@ -22,7 +22,7 @@ export function validate(data) {
 }
 const base64url = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
 const encode = obj => base64url(new TextEncoder().encode(JSON.stringify(obj)));
-async function accessToken(env) {
+export async function accessToken(env) {
   const now=Math.floor(Date.now()/1000);
   const body=encode({alg:'RS256',typ:'JWT'})+'.'+encode({iss:env.FIREBASE_CLIENT_EMAIL,scope:'https://www.googleapis.com/auth/datastore',aud:'https://oauth2.googleapis.com/token',iat:now,exp:now+3600});
   const pem=env.FIREBASE_PRIVATE_KEY.replace(/\\n/g,'\n').replace(/-----[^-]+-----/g,'').replace(/\s/g,'');

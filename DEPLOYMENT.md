@@ -75,3 +75,17 @@ gradle --no-daemon assembleDebug -PsiteUrl=https://YOUR_DEPLOYED_DOMAIN/
 ```
 
 يتطلب SDK مثبتاً وقبول التراخيص. النسخة الناتجة Debug للاختبار. للنشر العام أضف توقيع Release بمفتاح محفوظ بأمان وابنِ إصداراً موقّعاً؛ لا ترفع ملفات keystore إلى Git. بعد نشر الإصدار اضبط `APK_LINK` في `index.html`. WebView لا يدعم Firebase browser push؛ iPhone يستخدم PWA.
+
+## لوحة الإدارة /admin/
+
+تتيح عرض الطلبات (50 في الصفحة مع تحميل المزيد)، والبحث والتصفية في الطلبات المحمّلة، والتعديل والموافقة والرفض. تسجل reviewedBy وreviewedAt وتمنع حفظ نسخة قديمة إذا تغير الطلب لدى مسؤول آخر. الموافقة تسجّل القرار فقط؛ نشر المحتوى في الدليل ما زال عبر ملفات البيانات.
+
+1. Firebase → Authentication → Get started → Sign-in method → فعّل Email/Password.
+2. Authentication → Users → Add user: أنشئ حسابك ببريد وكلمة مرور قوية. انسخ UID من صف المستخدم.
+3. Project settings → General → Your apps: سجّل تطبيق Web إن لم يوجد، ثم انسخ apiKey من firebaseConfig. هذا مفتاح عميل عام، وليس المفتاح الخاص لحساب الخدمة. إذا قيدته على مستوى API، يجب أن يسمح Identity Toolkit API وToken Service API.
+4. Cloudflare Pages → Variables and Secrets → أضف FIREBASE_WEB_API_KEY بقيمة apiKey وADMIN_UIDS بقيمة UID. يدعم عدة UIDs مفصولة بفاصلة. يمكن حفظهما كـSecrets في هذه الواجهة. لا تستخدم البريد بدلاً من UID.
+5. اترك أسرار حساب الخدمة الحالية. لا تحتاج تغيير قواعد Firestore للسماح بقراءة المتصفح؛ الإدارة تتم عبر الخادم.
+6. أعد نشر production ثم افتح https://YOUR_DOMAIN/admin/ وسجل الدخول بالحساب الذي أنشأته. لا يوجد زر تسجيل عام في اللوحة.
+7. اختبر تعديل مساهمة، والموافقة والرفض، ثم تحقق من التغييرات في Firestore. جرب حساب Firebase آخر غير موجود في ADMIN_UIDS: يجب رفضه. الاختبارات المحلية تحاكي المصادقة؛ الإعداد الحي في حسابك لم يتم تلقائياً.
+
+رموز تسجيل الدخول تبقى في ذاكرة التبويب ولا تحفظ في localStorage. الخروج أو إعادة تحميل الصفحة يطلب تسجيل الدخول مجدداً. الخادم يتحقق من رمز Firebase ومن قائمة UIDs لكل عملية؛ إخفاء رابط اللوحة ليس آلية الصلاحيات.

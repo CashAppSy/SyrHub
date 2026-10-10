@@ -55,7 +55,7 @@ self.addEventListener('activate', function(event){
 self.addEventListener('fetch', function(event){
   var request = event.request;
   if(request.method !== 'GET'){ return; }
-  if(new URL(request.url).pathname.indexOf('/api/') !== -1){ return; }
+  if(/^\/(api|admin)(\/|$)/.test(new URL(request.url).pathname)){ return; }
 
   var url = new URL(request.url);
 
