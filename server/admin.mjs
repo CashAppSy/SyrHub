@@ -1,4 +1,5 @@
 import {accessToken,validate} from './submissions.mjs';
+import {readCatalog,catalogWrite,commit,publishSubmission,changeCatalog} from './catalog.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const ready=env=>!!(env.FIREBASE_WEB_API_KEY && env.ADMIN_UIDS && env.FIREBASE_PROJECT_ID && env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY);
 export async function authorize(request,env){
@@ -43,14 +44,35 @@ export async function handleAdmin(request,env,id){
    if(typeof input.updateTime!=='string' || !/^\d{4}-\d{2}-\d{2}T[\d:.]+Z$/.test(input.updateTime))throw new Error('Version required');
    if(typeof input.moderationNote!=='string' || input.moderationNote.length>2000)throw new Error('Invalid moderation note');
   }catch(error){return json({error:error.message},400);}
-  const fields={},params=new URLSearchParams({'currentDocument.updateTime':input.updateTime});
-  const values={...edited,status:input.status,moderationNote:input.moderationNote.trim(),reviewedBy:uid};
-  for(const [key,value] of Object.entries(values)){fields[key]=typeof value==='number'?{integerValue:String(value)}:{stringValue:value};params.append('updateMask.fieldPaths',key);}
-  fields.reviewedAt={timestampValue:new Date().toISOString()};params.append('updateMask.fieldPaths','reviewedAt');
-  const response=await fetch(base+'/'+id+'?'+params,{method:'PATCH',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({fields})});
-  if(response.status===409 || response.status===412)return json({error:'This request changed. Refresh before saving.'},409);
-  if(response.status===404)return json({error:'Request not found'},404);
-  if(!response.ok)throw new Error();return json({item:decode(await response.json())});
+  const existingResponse=await fetch(base+'/'+id,{headers:{Authorization:'Bearer '+token}});
+  if(existingResponse.status===404)return json({error:'Request not found'},404);
+  if(!existingResponse.ok)throw new Error();
+  const existing=await existingResponse.json(),previous=decode(existing);
+  if(existing.updateTime!==input.updateTime)return json({error:'This request changed. Refresh before saving.'},409);
+  if(previous.type!==edited.type)return json({error:'Submission type cannot be changed'},400);
+  const fields={},values={...edited,status:input.status,moderationNote:input.moderationNote.trim(),reviewedBy:uid};
+  let catalogUpdate=null;
+  if(input.status==='approved' || previous.publishedId){
+    const current=await readCatalog(env,token);let next;
+    try{
+      if(input.status==='approved'){
+        const published=publishSubmission(current.catalog,input,edited,id);next=published.catalog;
+        values.publishedId=published.publishedId;values.publishedCollection=published.collection;
+      }else{
+        next=changeCatalog(current.catalog,{collection:previous.publishedCollection,action:'delete',id:previous.publishedId});
+        values.publishedId='';values.publishedCollection='';
+      }
+      catalogUpdate=catalogWrite(env,next,current.version,uid);
+    }catch(error){return json({error:error.message},400);}
+  }
+  for(const [key,value] of Object.entries(values))fields[key]=typeof value==='number'?{integerValue:String(value)}:{stringValue:value};
+  fields.reviewedAt={timestampValue:new Date().toISOString()};
+  const write={update:{name:existing.name,fields},updateMask:{fieldPaths:Object.keys(fields)},currentDocument:{updateTime:input.updateTime}};
+  try{
+    const result=await commit(env,token,catalogUpdate?[write,catalogUpdate]:[write]);
+    return json({item:decode({...existing,fields:{...existing.fields,...fields},updateTime:result.writeResults[0].updateTime})});
+  }catch(error){if(error.status===409)return json({error:error.message},409);throw error;}
+
  }catch{return json({error:'Admin service temporarily unavailable'},502);}
 }
 export function config(env){return json({configured:ready(env),apiKey:env.FIREBASE_WEB_API_KEY || ''});}

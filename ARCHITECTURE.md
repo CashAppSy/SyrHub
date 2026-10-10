@@ -1,3 +1,5 @@
+> المحتوى الحي الآن في Firestore cms/catalog؛ الموافقات تنشر مباشرة عبر commit ذري، وإدارة المحتوى في /admin/. API العام لا يعرض بيانات المساهمين الخاصة. التفاصيل الحالية في DEPLOYMENT.md.
+
 > تحديث: النماذج تستخدم Cloudflare Pages Functions وFirestore وTurnstile. مشروع Android في android/. الإعداد الحالي موضح في DEPLOYMENT.md؛ إشعارات Firebase القديمة معطلة.
 
 # ARCHITECTURE.md — شرح المشروع الكامل: SyrHub 🏛️

@@ -3078,7 +3078,7 @@
       var codeRow = (promo.type === 'coupon' && promo.code)
         ? '<div class="promo-code-row">' +
             '<span class="promo-code" id="code-' + promo.id + '">' + promo.code + '</span>' +
-            '<button class="copy-btn" data-code="' + promo.code + '" data-target="code-' + promo.id + '" data-key="copy">' + T.copy + '</button>' +
+            '<button class="copy-btn" data-code="' + escHtml(promo.code) + '" data-target="code-' + promo.id + '" data-key="copy">' + T.copy + '</button>' +
           '</div>'
         : '';
       return '' +
@@ -3871,6 +3871,33 @@
     }
 
     init();
+    var contentVersion = null;
+    var originalI18N={ar:Object.assign({},I18N.ar),en:Object.assign({},I18N.en)};
+    function applyCatalog(data){
+      if(!data || !data.catalog || data.version===contentVersion){ return; }
+      var catalog=data.catalog;
+      if(!Array.isArray(catalog.apps)||!Array.isArray(catalog.categories)||!Array.isArray(catalog.promotions)||!Array.isArray(catalog.reviews)){return;}
+      contentVersion=data.version;
+      APPS=catalog.apps; CATEGORIES=catalog.categories; PROMOTIONS=catalog.promotions; REVIEWS=catalog.reviews;
+      var site=catalog.site || {};
+      ['ar','en'].forEach(function(locale){ I18N[locale]=Object.assign({},originalI18N[locale],site[locale] || {}); });
+      APK_LINK=site.apkUrl || '';
+      root.classList.toggle('hide-promotions', site.showPromotions===false);
+      root.classList.toggle('hide-recent', site.showRecent===false);
+      root.classList.toggle('hide-contribute', site.showContribute===false);
+      if(activeCategory!=='all' && activeCategory!=='favorites' && !CATEGORIES.some(function(c){return c.key===activeCategory;})){activeCategory='all';}
+      if(currentDetail && !findByAppId(currentDetail)){closeDetails();}
+      applyLang(lang);
+    }
+    try { applyCatalog(JSON.parse(localStorage.getItem('syh-catalog') || 'null')); } catch(e) {}
+    function refreshCatalog(){
+      if(document.hidden){return;}
+      fetch('/api/catalog', {cache:'no-store'}).then(function(response){if(!response.ok){throw new Error();}return response.json();}).then(function(data){applyCatalog(data);try{localStorage.setItem('syh-catalog',JSON.stringify(data));}catch(e){}}).catch(function(){/* Keep last successful catalog when offline. */});
+    }
+    refreshCatalog();
+    setInterval(refreshCatalog,60000);
+    document.addEventListener('visibilitychange',refreshCatalog);
+    window.addEventListener('online',refreshCatalog);
   })();
 </script>
 
