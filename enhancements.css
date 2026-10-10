@@ -1,0 +1,27 @@
+html { scroll-padding-top:100px; }
+:focus-visible { outline:3px solid var(--primary); outline-offset:4px; }
+button,input,select,textarea { font:inherit; }
+.modal { max-height:calc(100dvh - 48px); overflow-y:auto; }
+.contribution-form { display:grid; gap:16px; margin-top:20px; text-align:start; }
+.contribution-form label { display:grid; gap:7px; font-weight:600; }
+.contribution-form input,.contribution-form select,.contribution-form textarea { width:100%; box-sizing:border-box; padding:12px; border:1px solid var(--border); border-radius:12px; color:var(--text); background:var(--surface); }
+.contribution-form textarea { min-height:120px; resize:vertical; }
+.contribution-form .form-actions { display:flex; flex-wrap:wrap; gap:12px; }
+.contribution-form .form-note { color:var(--text-soft); font-size:.9rem; font-weight:400; }
+.contribution-form .form-status { min-height:24px; }
+.contribution-form .form-status[data-error="true"] { color:#bc3737; }
+.contribution-form[hidden],.contribution-form [hidden],.modal-options[hidden] { display:none !important; }
+.contribution-form .honeypot { position:absolute; left:-10000px; }
+.contribution-form button:disabled { opacity:.6; cursor:wait; }
+@media(max-width:600px) {
+ .modal-overlay { padding:12px; }
+ .modal { width:100%; padding:22px 18px; max-height:calc(100dvh - 24px); border-radius:20px; }
+ input,select,textarea { font-size:16px; }
+ .contribution-form .form-actions>button { flex:1; min-height:48px; }
+ body { padding-bottom:calc(80px + env(safe-area-inset-bottom)); }
+ .bottom-nav { padding-bottom:env(safe-area-inset-bottom); }
+}
+@media(prefers-reduced-motion:reduce) {
+ html { scroll-behavior:auto !important; }
+ *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}

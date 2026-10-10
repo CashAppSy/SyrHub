@@ -47,10 +47,11 @@
 <script>
   (function(){
     var r = document.documentElement;
-    var t = localStorage.getItem('syh-theme');
+    var t, l;
+    try { t = localStorage.getItem('syh-theme'); l = localStorage.getItem('syh-lang'); } catch(e) {}
     if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
     r.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
-    var l = localStorage.getItem('syh-lang') || 'ar';
+    l = l || 'ar';
     l = l === 'en' ? 'en' : 'ar';
     r.setAttribute('lang', l);
     r.setAttribute('dir', l === 'en' ? 'ltr' : 'rtl');
@@ -1521,6 +1522,7 @@
     header.hero.in-anim{ opacity:1; transform:none; animation:none; }
   }
 </style>
+<link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
 
@@ -1785,7 +1787,7 @@
       <button class="fav-btn" id="detailFav" type="button"></button>
       <button class="cmp-btn" id="detailCompare" type="button"></button>
       <button class="btn btn-ghost" id="detailReport" type="button" data-i18n="reportLinkBtn">الإبلاغ عن رابط معطّل</button>
-      <a class="btn-review" id="detailReviewCta" href="#" target="_blank" rel="noopener"></a>
+      <a class="btn-review" id="detailReviewCta" href="#"></a>
     </div>
   </div>
 </div>
@@ -1794,23 +1796,23 @@
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-close" id="modalClose" type="button" data-i18n-aria="modalCloseAria">×</button>
     <h2 id="modalTitle" data-i18n="modalTitle">كيف تريد أن تساهم؟</h2>
-    <p class="modal-sub" data-i18n="modalSub">اختر نوع طلبك وسيتم تحويلك إلى نموذج مختصر.</p>
+    <p class="modal-sub" data-i18n="modalSub">اختر نوع المساهمة وأرسلها مباشرة من الموقع.</p>
     <div class="modal-options">
-      <a class="modal-option" href="#" target="_blank" rel="noopener" data-type="app">
+      <a class="modal-option" href="#" data-type="app">
         <span class="mo-icon" aria-hidden="true">📋</span>
         <span class="mo-body">
           <span class="mo-title" data-i18n="optAppTitle">أقترح تطبيقًا جديدًا</span>
           <span class="mo-desc" data-i18n="optAppDesc">تطبيق سوري موثّق يستحق الإضافة إلى الدليل</span>
         </span>
       </a>
-      <a class="modal-option" href="#" target="_blank" rel="noopener" data-type="promo">
+      <a class="modal-option" href="#" data-type="promo">
         <span class="mo-icon" aria-hidden="true">🔥</span>
         <span class="mo-body">
           <span class="mo-title" data-i18n="optPromoTitle">أقترح عرضًا أو كوبونًا</span>
           <span class="mo-desc" data-i18n="optPromoDesc">عرض حالي أو خصم يفيد زوّار الدليل</span>
         </span>
       </a>
-      <a class="modal-option" href="#" target="_blank" rel="noopener" data-type="review">
+      <a class="modal-option" href="#" data-type="review">
         <span class="mo-icon" aria-hidden="true">⭐</span>
         <span class="mo-body">
           <span class="mo-title" data-i18n="optReviewTitle">أكتب تقييمًا أو رأيًا</span>
@@ -1909,7 +1911,7 @@
         suggestText:"سواء أردت إضافة تطبيق أو عرض أو تقييم، سنراجع مساهمتك ونضيفها بعد التحقق من صحتها.",
         contributeBtn:"شارك معنا",
         modalTitle:"كيف تريد أن تساهم؟",
-        modalSub:"اختر نوع طلبك وسيتم تحويلك إلى نموذج مختصر.",
+        modalSub:"اختر نوع المساهمة وأرسلها مباشرة من الموقع.",
         modalCloseAria:"إغلاق النافذة",
         optAppTitle:"أقترح تطبيقًا جديدًا",
         optAppDesc:"تطبيق سوري موثّق يستحق الإضافة إلى الدليل",
@@ -2043,7 +2045,7 @@
         suggestText:"Whether it's a new app, a deal, or a review — we'll review your contribution and publish it after verification.",
         contributeBtn:"Contribute",
         modalTitle:"How would you like to contribute?",
-        modalSub:"Pick your request type and we'll take you to a short form.",
+        modalSub:"Choose a contribution type and submit directly on this site.",
         modalCloseAria:"Close dialog",
         optAppTitle:"Suggest a new app",
         optAppDesc:"A verified Syrian app worth adding to the directory",
@@ -2153,13 +2155,7 @@
        3) من Project settings → Cloud Messaging انسخ VAPID key في vapidKey
        ملاحظة: املأ القيم نفسها أيضاً في sw.js (FIREBASE_CONFIG).
        إذا بقيت أي قيمة فارغة تبقى الميزة معطّلة تلقائياً. */
-    var FIREBASE = {
-      apiKey: 'AIzaSyDeQqbytuAjm7qQpHwSfeXIUmYuXobeQgg',
-      projectId: 'test-d371d',
-      messagingSenderId: '549208423494',
-      appId: '1:549208423494:web:3f6c9314da24e9c1ef1e47',
-      vapidKey: 'BGmy8E8ZQstBL0BYE5XL3C79DZQ396CLdbPyCWBCpgj_Qr0x42KfxV_6SDZA2x51HtoefhBZfsgXDUuARwhChMI'
-    };
+    var FIREBASE = {}; // Configure new-project push separately; forms use the server.
     var FCM_ENABLED = !!(FIREBASE.apiKey && FIREBASE.projectId && FIREBASE.messagingSenderId && FIREBASE.appId && FIREBASE.vapidKey);
     var __fcmMessaging = null;
     var fcmToken = '';
@@ -2259,13 +2255,8 @@
     }
     /* ⚡ رابط تحميل تطبيق الأندرويد (APK) — ضع رابط التحميل هنا.
        عند ترك القيمة فارغة يختفي زر التحميل تلقائيًا حتى تضعه. */
-    var APK_LINK = 'https://raw.githubusercontent.com/Ali-Mhd-Ibrahim/SyrHub/refs/heads/main/SyrHub-v1.07.apk';
-    var FORMS = {
-      app:    'https://docs.google.com/forms/d/e/1FAIpQLSc2EqvL7lU0jqXP4K1MkWH5dw3OwEW_VAHkV-25sS4ZKEZ8Hg/viewform?usp=dialog',
-      promo:  'https://docs.google.com/forms/d/e/1FAIpQLSfbhwr2pEJ6MoOIhSiiGndtRHQQTIWFPkCQMgwhk1M-xnfEPA/viewform?usp=dialog',
-      review: 'https://docs.google.com/forms/d/e/1FAIpQLSdan0WxJf-kAHXRJi40AIbyJ8llfWHACyreEKJU_nlGi09i1A/viewform?usp=dialog'
-    };
-    var CONTRIBUTE_FORM = FORMS.app;
+    var APK_LINK = ''; // Set to the new signed APK release URL after building.
+    var FORMS = {app:'#contribute-app',promo:'#contribute-promo',review:'#contribute-review'};
 
     /* ============ شارات النسخ (APK / PWA) ============ */
     var DEVICE_IS_ANDROID = /Android/i.test((typeof navigator !== 'undefined') ? (navigator.userAgent || '') : '');
@@ -2903,6 +2894,7 @@
         cmpBtn.textContent = cmp ? T.compareAdded : T.compareAdd;
         var revCta = document.getElementById('detailReviewCta');
         revCta.href = FORMS.review;
+        revCta.setAttribute('data-app', app.id);
         revCta.textContent = T.reviewCta;
         updateSeo(app);
         currentDetail = app.id;
@@ -3235,7 +3227,7 @@
           '</div>' +
           '<div class="card-meta">' +
             '<button class="toggle-reviews-btn" type="button" data-target="' + reviewsId + '">' + T.showReviews(rating.count) + '</button>' +
-            '<a class="btn-review" href="' + FORMS.review + '" target="_blank" rel="noopener" data-app="' + app.id + '">' + T.reviewCta + '</a>' +
+            '<a class="btn-review" href="' + FORMS.review + '" data-app="' + app.id + '">' + T.reviewCta + '</a>' +
           '</div>' +
           '<div class="reviews-panel" id="' + reviewsId + '">' +
             reviewsListHTML(app.id) +
@@ -3831,6 +3823,7 @@
 
       modal.querySelectorAll('.modal-option').forEach(function(opt){
         opt.href = FORMS[opt.dataset.type] || FORMS.app;
+        opt.removeAttribute('target');
         opt.addEventListener('click', function(){
           trackAnalytics('contribute_pick', {
             request_type: opt.dataset.type,
@@ -3883,7 +3876,7 @@
 
 <script>
   /* تسجيل Service Worker — للعمل دون اتصال وغياب مانع الإعلانات */
-  if('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')){
+  if('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('sw.js').catch(function(err){
         /* تجاهل أخطاء التسجيل — لا يجب أن تعطل الموقع */
@@ -3901,8 +3894,6 @@
 
 <span class="sr-only" id="copyStatus" aria-live="polite"></span>
 
-<!-- Firebase Cloud Messaging (إشعارات فورية) → يحمَّل بتأخير بعد الصفحة -->
-  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<script src="contributions.js" defer></script>
 </body>
 </html>

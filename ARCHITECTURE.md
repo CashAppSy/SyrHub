@@ -1,3 +1,5 @@
+> تحديث: النماذج تستخدم Cloudflare Pages Functions وFirestore وTurnstile. مشروع Android في android/. الإعداد الحالي موضح في DEPLOYMENT.md؛ إشعارات Firebase القديمة معطلة.
+
 # ARCHITECTURE.md — شرح المشروع الكامل: SyrHub 🏛️
 
 > هذا الملف صُمم ليكون **المرجع الشامل** لفهم مشروع **SyrHub** — سواء كنت مطوراً تقنياً،

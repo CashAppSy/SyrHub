@@ -1,50 +1,10 @@
 /* SyrHub Service Worker — v1.16.0
    ⚠️ عند تغيير أي شيء في index.html/offline.html ارفع CACHE_NAME إلى vN+1 وفي sw.js نفسد القيم نفسها (FIREBASE_CONFIG). */
-var CACHE_NAME = 'syh-cache-v26';
+var CACHE_NAME = 'syh-cache-v27';
 
 /* ══════════════ 🔔 Firebase Cloud Messaging (إشعارات الخلفية) ══════════════
    املأ القيم نفسها الموضوعة في index.html (FIREBASE) — عند بقائها فارغة
    تبقى معالجة الإشعارات الخلفية معطّلة ولا يتغيّر سلوك الكاش إطلاقاً. */
-var FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyDeQqbytuAjm7qQpHwSfeXIUmYuXobeQgg',
-  projectId: 'test-d371d',
-  messagingSenderId: '549208423494',
-  appId: '1:549208423494:web:3f6c9314da24e9c1ef1e47'
-};
-if(FIREBASE_CONFIG.apiKey){
-  importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
-  importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
-  try{
-    firebase.initializeApp(FIREBASE_CONFIG);
-    var fbMessaging = firebase.messaging();
-    fbMessaging.onBackgroundMessage(function(payload){
-      var d = payload.data || {};
-      var n = payload.notification || {};
-      var title = n.title || 'SyrHub';
-      var body = n.body || (d.appName ? 'تحديث من ' + d.appName : 'لديك إشعار جديد من SyrHub');
-      var url = d.url || './';
-      self.registration.showNotification(title, {
-        body: body,
-        icon: './SyrHub-Icon.png',
-        badge: './SyrHub-Icon.png',
-        data: { url: url }
-      });
-    });
-    self.addEventListener('notificationclick', function(event){
-      var url = (event.notification.data && event.notification.data.url) ? event.notification.data.url : './';
-      event.notification.close();
-      event.waitUntil(
-        clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(list){
-          for(var i = 0; i < list.length; i++){
-            if('focus' in list[i]){ list[i].focus(); return undefined; }
-          }
-          if(clients.openWindow){ return clients.openWindow(url); }
-          return null;
-        })
-      );
-    });
-  }catch(e){}
-}
 var CORE_ASSETS = [
   './',
   './index.html',
@@ -55,7 +15,12 @@ var CORE_ASSETS = [
   './apps-data.js',
   './promotions-data.js',
   './reviews-data.js',
-  './storage.js'
+  './storage.js',
+  './enhancements.css',
+  './contributions.js',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './icons/icon-512-maskable.png'
 ];
 
 function offlineFallback(){
@@ -91,6 +56,7 @@ self.addEventListener('activate', function(event){
 self.addEventListener('fetch', function(event){
   var request = event.request;
   if(request.method !== 'GET'){ return; }
+  if(new URL(request.url).pathname.indexOf('/api/') !== -1){ return; }
 
   var url = new URL(request.url);
 
@@ -122,16 +88,14 @@ self.addEventListener('fetch', function(event){
   /* بقية الموارد: من الكاش أولاً ثم الشبكة، وتُخزَّن كل مورد جديد */
   event.respondWith(
     caches.match(request).then(function(cached){
-      var network = fetch(request).then(function(response){
+      if(cached){ return cached; }
+      return fetch(request).then(function(response){
         if(response && response.status === 200 && response.type === 'basic'){
           var copy = response.clone();
-          caches.open(CACHE_NAME).then(function(cache){
-            cache.put(request, copy);
-          });
+          caches.open(CACHE_NAME).then(function(cache){ cache.put(request, copy); });
         }
         return response;
       });
-      return cached || network;
     }).catch(function(){
       return offlineFallback();
     })

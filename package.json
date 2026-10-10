@@ -1,0 +1,12 @@
+{
+  "name": "syrhub", "version": "1.8.0", "private": true,
+  "scripts": {
+    "build": "node build/site.js",
+    "build:data": "node build/build.js",
+    "dev": "npm run build && wrangler pages dev dist",
+    "test": "node --test tests/*.test.mjs",
+    "check:functions": "wrangler pages functions build --outdir /tmp/syrhub-functions-build"
+  },
+  "devDependencies": {"wrangler": "4.45.0"},
+  "engines": {"node": ">=20"}
+}
