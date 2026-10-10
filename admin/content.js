@@ -11,16 +11,22 @@ var collectionNames={apps:'التطبيقات',categories:'الأقسام',promo
 function valueAt(record,path){return path.split('.').reduce(function(value,key){return value&&value[key];},record);}
 function setAt(record,path,value){var keys=path.split('.'),last=keys.pop(),node=record;keys.forEach(function(key){node[key]=node[key]||{};node=node[key];});node[last]=value;}
 window.createCMS=function(api,message,onCatalog){
- var catalog=null,version=null,collection='apps',selected=null,working=false,form=document.getElementById('contentForm'),list=document.getElementById('contentList'),panel=document.getElementById('contentEditor');
+ var catalog=null,version=null,collection='apps',selected=null,working=false,dirty=false,form=document.getElementById('contentForm'),list=document.getElementById('contentList'),panel=document.getElementById('contentEditor');
+ function canLeave(){if(!dirty)return true;if(!confirm('لديك تعديلات غير محفوظة. هل تريد تجاهلها؟'))return false;markDirty(false);return true;}
+ function markDirty(value){dirty=value;var node=document.getElementById('contentDirty');node.textContent=value?'تعديلات غير محفوظة':'كل التعديلات محفوظة';node.dataset.dirty=String(value);}
+ form.addEventListener('input',function(){markDirty(true);});form.addEventListener('change',function(){markDirty(true);});
+ window.addEventListener('beforeunload',function(event){if(dirty){event.preventDefault();event.returnValue='';}});
+ document.getElementById('contentClose').onclick=function(){if(!working&&canLeave()){markDirty(false);selected=null;panel.hidden=true;render();}};
  function lock(value){working=value;['contentCollection','contentAdd','contentRefresh'].forEach(function(id){document.getElementById(id).disabled=value;});}
  function fields(){if(collection!=='site')return schemas[collection];var result=[];['ar','en'].forEach(function(lang){siteFields.forEach(function(field){result.push([lang+'.'+field[0],field[1]+' ('+(lang==='ar'?'العربية':'English')+')',field[0].includes('Desc')||field[0].includes('Text')||field[0]==='heroSubtitle'?'text':'']);});});return result.concat([['showPromotions','إظهار العروض','checkbox'],['showRecent','إظهار شاهدت مؤخراً','checkbox'],['showContribute','إظهار قسم المساهمة','checkbox'],['apkUrl','رابط تحميل APK','url']]);}
  function render(){
   list.replaceChildren();if(!catalog)return;
-  document.getElementById('contentAdd').hidden=collection==='site';
+  document.getElementById('contentAdd').hidden=collection==='site';document.getElementById('contentClose').hidden=collection==='site';
   document.getElementById('catalogSummary').textContent=catalog.apps.length+' تطبيق · '+catalog.categories.length+' قسم · '+catalog.promotions.length+' عرض · '+catalog.reviews.length+' مراجعة';
-  if(collection==='site'){document.getElementById('contentCount').textContent='إعدادات الصفحة الرئيسية';edit(catalog.site||{});return;}
+  if(collection==='site'){document.getElementById('contentCount').textContent='إعدادات الصفحة الرئيسية';if(!selected)edit(catalog.site||{});return;}
   var query=document.getElementById('contentSearch').value.trim().toLowerCase();
   var visible=catalog[collection].filter(function(item){return JSON.stringify(item).toLowerCase().includes(query);});
+  var sort=document.getElementById('contentSort').value;visible.sort(function(a,b){if(sort==='recent')return String(b.lastUpdate||b.date||b.expiryDate||'').localeCompare(String(a.lastUpdate||a.date||a.expiryDate||''));if(sort==='verified'&&!!a.verified!==!!b.verified)return a.verified?-1:1;return String(a.name||a.label||a.title||a.author||'').localeCompare(String(b.name||b.label||b.title||b.author||''),'ar');});
   document.getElementById('contentCount').textContent=visible.length+' عنصر ظاهر من '+catalog[collection].length;
   if(!visible.length){var empty=document.createElement('div');empty.className='empty-state';var heading=document.createElement('h3');heading.textContent='لا توجد عناصر مطابقة';var note=document.createElement('p');note.textContent='غيّر البحث أو أضف محتوى جديداً.';empty.append(heading,note);list.appendChild(empty);}
   visible.forEach(function(item){
@@ -31,11 +37,11 @@ window.createCMS=function(api,message,onCatalog){
     badge.textContent=collection==='apps'?(catalog.categories.find(function(x){return x.key===item.category;})||{}).label||item.category:collection==='categories'?catalog.apps.filter(function(x){return x.category===item.key;}).length+' تطبيق':collection==='reviews'?item.rating+' / 5':item.type==='coupon'?'كوبون':'عرض';
     var description=document.createElement('span');description.textContent=(item.description||item.comment||item.label_en||'').slice(0,110);
     button.append(kind,title,badge,description);
-    button.onclick=function(){if(!working){edit(item);list.querySelectorAll('.request').forEach(function(x){x.setAttribute('aria-pressed',x===button?'true':'false');});}};list.appendChild(button);
+    button.onclick=function(){if(!working&&canLeave()){edit(item);list.querySelectorAll('.request').forEach(function(x){x.setAttribute('aria-pressed',x===button?'true':'false');});}};list.appendChild(button);
   });
  }
 
- function edit(record){selected=record;panel.hidden=false;document.getElementById('contentEditorTitle').textContent=collection==='site'?'إعدادات الصفحة الرئيسية':record.name||record.label||record.title||record.author||'إضافة عنصر جديد';document.getElementById('contentEditorType').textContent=collectionNames[collection];form.replaceChildren();fields().forEach(function(field){var path=field[0],type=field[2]||'',label=document.createElement('label'),caption=document.createElement('span');caption.textContent=field[1];label.appendChild(caption);var input;
+ function edit(record){markDirty(false);selected=record;panel.hidden=false;document.getElementById('contentEditorTitle').textContent=collection==='site'?'إعدادات الصفحة الرئيسية':record.name||record.label||record.title||record.author||'إضافة عنصر جديد';document.getElementById('contentEditorType').textContent=collectionNames[collection];form.replaceChildren();var groups={};fields().forEach(function(field){var path=field[0],type=field[2]||'',label=document.createElement('label'),caption=document.createElement('span');caption.textContent=field[1];label.appendChild(caption);var input;
   if(type.includes('text'))input=document.createElement('textarea');else if(['category','app','platforms','promo-type','rating'].includes(type))input=document.createElement('select');else input=document.createElement('input');
   input.name=path;input.dataset.kind=type;if(type.includes('url')||type==='id'||path.endsWith('_en')||path.startsWith('en.'))input.dir='ltr';
   var value=valueAt(record,path);
@@ -47,19 +53,20 @@ window.createCMS=function(api,message,onCatalog){
   if(type==='id'){input.required=true;input.pattern='[A-Za-z0-9_-]{1,150}';input.readOnly=!!record[path];}
   if(type.startsWith('required')||['category','app','platforms','promo-type','rating'].includes(type))input.required=true;
   if(type.includes('text'))input.maxLength=3000;else if(input.tagName==='INPUT'&&input.type==='text')input.maxLength=path==='id'||path==='key'?150:300;
-  label.appendChild(input);form.appendChild(label);
+  label.appendChild(input);var group=collection==='site'?(path.startsWith('ar.')?'النصوص العربية':path.startsWith('en.')?'English content':'الظهور والتنزيل'):type.includes('url')?'الروابط والأيقونة':path.includes('_en')?'English content':['id','key','category','appId','platforms','type','rating','verified','date','lastUpdate','expiryDate'].includes(path)?'التنظيم وإعدادات النشر':'المحتوى الأساسي';if(!groups[group]){var fieldset=document.createElement('fieldset'),legend=document.createElement('legend'),grid=document.createElement('div');legend.textContent=group;grid.className='field-grid';fieldset.append(legend,grid);form.appendChild(fieldset);groups[group]=grid;}groups[group].appendChild(label);
  });
+ ['المحتوى الأساسي','التنظيم وإعدادات النشر','English content','الروابط والأيقونة','النصوص العربية','الظهور والتنزيل'].forEach(function(name){if(groups[name])form.appendChild(groups[name].parentNode);});
  var actions=document.createElement('div');actions.className='actions';var save=document.createElement('button');save.type='submit';save.textContent='حفظ ونشر';actions.appendChild(save);
  if(collection!=='site'&&(record.id||record.key)){var remove=document.createElement('button');remove.type='button';remove.className='danger';remove.textContent='حذف';remove.onclick=async function(){var warning=collection==='apps'?'حذف التطبيق سيحذف عروضه ومراجعاته أيضاً. هل تريد المتابعة؟':'هل تريد حذف هذا العنصر؟';if(!confirm(warning))return;await saveChange({action:'delete',id:record.id||record.key});};actions.appendChild(remove);}
- form.appendChild(actions);
+ form.appendChild(actions);if(matchMedia('(max-width:1100px)').matches)panel.scrollIntoView({behavior:'smooth',block:'start'});
  }
- async function saveChange(change){if(working)return;lock(true);form.querySelectorAll('button').forEach(function(b){b.disabled=true;});try{var data=await api('content',{method:'POST',body:JSON.stringify(Object.assign({collection:collection,version:version},change))});catalog=data.catalog;version=data.version;selected=null;panel.hidden=true;onCatalog(catalog);render();message('تم حفظ المحتوى ونشره. يظهر عند تحديث الموقع.');}catch(error){message(error.message,true);}finally{lock(false);form.querySelectorAll('button').forEach(function(b){b.disabled=false;});}}
+ async function saveChange(change){if(working)return;lock(true);form.querySelectorAll('button').forEach(function(b){b.disabled=true;});try{var data=await api('content',{method:'POST',body:JSON.stringify(Object.assign({collection:collection,version:version},change))});markDirty(false);catalog=data.catalog;version=data.version;selected=null;panel.hidden=true;onCatalog(catalog);render();message('تم حفظ المحتوى ونشره. يظهر عند تحديث الموقع.');}catch(error){message(error.message,true);}finally{lock(false);form.querySelectorAll('button').forEach(function(b){b.disabled=false;});}}
  form.onsubmit=function(event){event.preventDefault();if(!form.reportValidity())return;var record={};fields().forEach(function(field){var input=form.elements[field[0]],value=input.type==='checkbox'?input.checked:input.multiple?Array.from(input.selectedOptions).map(function(x){return x.value;}):input.value;if(field[2]==='rating')value=Number(value);setAt(record,field[0],value);});if(selected&&selected.sourceSubmission)record.sourceSubmission=selected.sourceSubmission;saveChange({action:'save',record:record});};
- document.getElementById('contentCollection').onchange=function(){if(working)return;collection=this.value;selected=null;panel.hidden=true;render();};
- document.getElementById('contentSearch').oninput=render;
- document.getElementById('contentAdd').onclick=function(){if(!catalog||working)return;var record={};if(collection!=='categories'){record.id=collection.slice(0,-1)+'-'+crypto.randomUUID();}if(collection==='reviews')record.date=new Date().toISOString().slice(0,10);edit(record);};
- async function load(){if(working)return;lock(true);try{var data=await api('content');catalog=data.catalog;version=data.version;panel.hidden=true;onCatalog(catalog);render();}catch(error){message(error.message,true);}finally{lock(false);}}
+ document.getElementById('contentCollection').onchange=function(){if(working)return;if(!canLeave()){this.value=collection;return;}markDirty(false);collection=this.value;selected=null;panel.hidden=true;render();};
+ document.getElementById('contentSearch').oninput=render;document.getElementById('contentSort').onchange=render;
+ document.getElementById('contentAdd').onclick=function(){if(!catalog||working||!canLeave())return;var record={};if(collection!=='categories'){record.id=collection.slice(0,-1)+'-'+crypto.randomUUID();}if(collection==='reviews')record.date=new Date().toISOString().slice(0,10);edit(record);};
+ async function load(){if(working||!canLeave())return;markDirty(false);lock(true);try{var data=await api('content');catalog=data.catalog;version=data.version;selected=null;panel.hidden=true;onCatalog(catalog);render();}catch(error){message(error.message,true);}finally{lock(false);}}
  document.getElementById('contentRefresh').onclick=load;
- return {load:load,reset:function(){lock(false);catalog=null;version=null;selected=null;list.replaceChildren();form.replaceChildren();panel.hidden=true;},published:function(item){if(!catalog)return null;return(catalog[item.publishedCollection]||[]).find(function(x){return x.id===item.publishedId;});}};
+ return {load:load,canLeave:canLeave,reset:function(){markDirty(false);lock(false);catalog=null;version=null;selected=null;list.replaceChildren();form.replaceChildren();panel.hidden=true;},published:function(item){if(!catalog)return null;return(catalog[item.publishedCollection]||[]).find(function(x){return x.id===item.publishedId;});}};
 };
 })();

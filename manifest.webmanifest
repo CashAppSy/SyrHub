@@ -39,5 +39,22 @@
   "display_override": [
     "standalone",
     "minimal-ui"
+  ],
+  "shortcuts": [
+    {
+      "name": "التطبيقات",
+      "short_name": "التطبيقات",
+      "url": "/#apps"
+    },
+    {
+      "name": "العروض",
+      "short_name": "العروض",
+      "url": "/#promosSection"
+    },
+    {
+      "name": "ساهم في الدليل",
+      "short_name": "ساهم",
+      "url": "/#contribute"
+    }
   ]
 }

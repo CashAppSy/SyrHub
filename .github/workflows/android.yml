@@ -5,6 +5,7 @@ on:
       site_url:
         description: Deployed HTTPS SyrHub URL
         required: true
+        default: 'https://syrhub.pages.dev/'
         type: string
 permissions:
   contents: read

@@ -18,13 +18,17 @@ public class MainActivity extends Activity {
         site=Uri.parse(getString(R.string.site_url));
         webView=new WebView(this);
         setContentView(webView);
+        webView.setOnApplyWindowInsetsListener((view,insets) -> {
+            view.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());
+            return insets;
+        });
         WebSettings settings=webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(false);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        settings.setUserAgentString(settings.getUserAgentString()+" SyrHubAndroid/1.08");
+        settings.setUserAgentString(settings.getUserAgentString()+" SyrHubAndroid/1.09");
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request) {
@@ -39,6 +43,15 @@ public class MainActivity extends Activity {
         });
         if(state==null)webView.loadUrl(site.toString());else webView.restoreState(state);
     }
+    @Override protected void onResume(){
+        super.onResume();
+        if(webView!=null){
+            webView.onResume();
+            // The website fetches the live catalog, including changes from the admin.
+            webView.evaluateJavascript("window.dispatchEvent(new Event('syh:resume'));",null);
+        }
+    }
+    @Override protected void onPause(){if(webView!=null)webView.onPause();super.onPause();}
     @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);webView.saveState(state);}
     @Override public void onBackPressed(){if(webView.canGoBack())webView.goBack();else super.onBackPressed();}
     @Override protected void onDestroy(){webView.destroy();super.onDestroy();}

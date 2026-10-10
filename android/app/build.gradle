@@ -1,5 +1,5 @@
 plugins { id 'com.android.application' }
-def siteUrl = providers.gradleProperty('siteUrl').orElse('').get()
+def siteUrl = providers.gradleProperty('siteUrl').orElse('https://syrhub.pages.dev/').get()
 def uri
 try { uri = new URI(siteUrl) } catch (Exception e) { throw new GradleException('Invalid siteUrl') }
 if (uri.scheme != 'https' || !uri.host || uri.userInfo || siteUrl.contains('"') || siteUrl.contains('\\')) {
@@ -12,8 +12,8 @@ android {
         applicationId 'com.syrhub.app'
         minSdk 26
         targetSdk 35
-        versionCode 108
-        versionName '1.08'
+        versionCode 109
+        versionName '1.09'
         resValue 'string', 'site_url', siteUrl
     }
 }

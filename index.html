@@ -1627,7 +1627,7 @@
     </div>
   </div>
 
-  <p class="result-count" id="resultCount" aria-live="polite"></p>
+  <div class="catalog-toolbar"><p class="result-count" id="resultCount" aria-live="polite"></p><div class="catalog-sync"><span id="catalogStatus" role="status" aria-live="polite"></span><button id="catalogRefresh" type="button" class="mini-chip" aria-label="تحديث المحتوى / Refresh content">↻</button></div></div>
   <div class="grid" id="grid"></div>
   <div class="empty-state" id="emptyState" style="display:none;">
     <div class="glyph" aria-hidden="true">🔍</div>
@@ -1643,7 +1643,7 @@
     <p data-i18n="suggestText">اقترحه عبر النموذج التالي وسنقوم بمراجعته وإضافته بعد التحقق من الرابط الرسمي.</p>
     <div class="suggest-actions">
       <button id="contributeOpen" class="btn btn-gold" type="button" data-i18n="contributeBtn">شارك معنا</button>
-      <a class="btn btn-outline-light" href="https://github.com/Ali-Mhd-Ibrahim/SyrHub" target="_blank" rel="noopener" data-i18n="githubBtn">💻 ساهم عبر GitHub</a>
+      <a class="btn btn-outline-light" href="https://github.com/CashAppSy/SyrHub" target="_blank" rel="noopener" data-i18n="githubBtn">💻 ساهم عبر GitHub</a>
     </div>
   </div>
 </section>
@@ -1669,7 +1669,7 @@
   </div>
   <p class="footer-brand">SyrHub</p>
   <p data-i18n="footerNote">مشروع مجتمعي مستقل وغير رسمي · جميع الروابط تؤدي إلى المصادر الرسمية لكل تطبيق</p>
-  <p><a href="https://github.com/Ali-Mhd-Ibrahim/SyrHub" target="_blank" rel="noopener" data-i18n="footerSource">شاهد المصدر على GitHub</a></p>
+  <p><a href="https://github.com/CashAppSy/SyrHub" target="_blank" rel="noopener" data-i18n="footerSource">شاهد المصدر على GitHub</a></p>
   <p id="footerRights"></p>
   <p class="footer-credit">👨‍💻 <span data-i18n="footerDeveloper">تم التطوير من قبل المهندس علي إبراهيم</span></p>
 </footer>
@@ -2928,7 +2928,7 @@
       for(var i = 0; i < keys.length; i++){
         if(urls[keys[i]]){ body += keys[i] + ': ' + urls[keys[i]] + '\n'; }
       }
-      var url = 'https://github.com/Ali-Mhd-Ibrahim/SyrHub/issues/new?title=' +
+      var url = 'https://github.com/CashAppSy/SyrHub/issues/new?title=' +
         encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
       try{ window.open(url, '_blank', 'noopener'); }catch(e2){ window.location.href = url; }
       trackAnalytics('report_broken_link', { app_id: app.id, app_name: appName(app) });
@@ -3871,7 +3871,7 @@
     }
 
     init();
-    var contentVersion = null;
+    var contentVersion = null, catalogRequest = null, catalogFetched = false;
     var originalI18N={ar:Object.assign({},I18N.ar),en:Object.assign({},I18N.en)};
     function applyCatalog(data){
       if(!data || !data.catalog || data.version===contentVersion){ return; }
@@ -3890,14 +3890,30 @@
       applyLang(lang);
     }
     try { applyCatalog(JSON.parse(localStorage.getItem('syh-catalog') || 'null')); } catch(e) {}
-    function refreshCatalog(){
-      if(document.hidden){return;}
-      fetch('/api/catalog', {cache:'no-store'}).then(function(response){if(!response.ok){throw new Error();}return response.json();}).then(function(data){applyCatalog(data);try{localStorage.setItem('syh-catalog',JSON.stringify(data));}catch(e){}}).catch(function(){/* Keep last successful catalog when offline. */});
+    function catalogStatus(state){
+      var node=document.getElementById('catalogStatus');
+      node.dataset.state=state;
+      var labels=lang==='en'?{loading:'Updating content…',live:'Content up to date',offline:'Offline · saved content',error:'Update unavailable · showing saved content'}:{loading:'جارٍ تحديث المحتوى…',live:'المحتوى محدّث',offline:'دون اتصال · محتوى محفوظ',error:'تعذّر التحديث · عرض المحتوى المحفوظ'};
+      node.textContent=labels[state];
     }
+    function refreshCatalog(){
+      if(document.hidden || catalogRequest){return catalogRequest;}
+      if(!navigator.onLine){catalogStatus('offline');return;}
+      var button=document.getElementById('catalogRefresh');button.disabled=true;
+      if(!catalogFetched)catalogStatus('loading');
+      catalogRequest=fetch('/api/catalog', {cache:'no-store',signal:AbortSignal.timeout(12000)}).then(function(response){if(!response.ok){throw new Error();}return response.json();}).then(function(data){applyCatalog(data);catalogFetched=true;catalogStatus('live');try{localStorage.setItem('syh-catalog',JSON.stringify(data));}catch(e){}}).catch(function(){catalogStatus(navigator.onLine?'error':'offline');}).finally(function(){catalogRequest=null;button.disabled=false;});
+      return catalogRequest;
+    }
+    document.getElementById('catalogRefresh').addEventListener('click',refreshCatalog);
     refreshCatalog();
-    setInterval(refreshCatalog,60000);
+    setInterval(refreshCatalog,15000);
     document.addEventListener('visibilitychange',refreshCatalog);
+    window.addEventListener('pageshow',refreshCatalog);
+    window.addEventListener('focus',refreshCatalog);
     window.addEventListener('online',refreshCatalog);
+    window.addEventListener('offline',function(){catalogStatus('offline');});
+    window.addEventListener('syh:resume',refreshCatalog);
+
   })();
 </script>
 
@@ -3905,7 +3921,9 @@
   /* تسجيل Service Worker — للعمل دون اتصال وغياب مانع الإعلانات */
   if('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')){
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js').catch(function(err){
+      navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(function(reg){
+        window.addEventListener('online', function(){reg.update().catch(function(){});});
+      }).catch(function(err){
         /* تجاهل أخطاء التسجيل — لا يجب أن تعطل الموقع */
       });
     });

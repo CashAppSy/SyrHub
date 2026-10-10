@@ -1,5 +1,5 @@
 /* SyrHub offline shell. Increment CACHE_NAME when public assets change. */
-var CACHE_NAME = 'syh-cache-v29';
+var CACHE_NAME = 'syh-cache-v30';
 
 var CORE_ASSETS = [
   './',
@@ -59,6 +59,8 @@ self.addEventListener('fetch', function(event){
 
   var url = new URL(request.url);
 
+  if(url.origin !== self.location.origin){return;}
+
   /* لا نعترض طلبات التتبع والإعلانات — تبقى حية دائماً */
   if(url.origin === 'https://www.googletagmanager.com' ||
      url.origin === 'https://www.google-analytics.com' ||
@@ -71,11 +73,12 @@ self.addEventListener('fetch', function(event){
   /* التصفح: نتصل بالشبكة أولاً مع الرجوع للنسخة المخزنة عند انقطاعها */
   if(request.mode === 'navigate'){
     event.respondWith(
-      fetch(request).then(function(response){
+      fetch(request, {signal:AbortSignal.timeout(8000)}).then(function(response){
+        if(!response.ok){return offlineFallback();}
         var copy = response.clone();
-        caches.open(CACHE_NAME).then(function(cache){
-          cache.put('./index.html', copy);
-        });
+        event.waitUntil(caches.open(CACHE_NAME).then(function(cache){
+          return cache.put('./index.html', copy);
+        }));
         return response;
       }).catch(function(){
         return offlineFallback();
