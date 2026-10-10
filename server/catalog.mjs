@@ -1,7 +1,4 @@
-import apps from '../data/apps.json' with {type:'json'};
-import categories from '../data/categories.json' with {type:'json'};
-import promotions from '../data/promotions.json' with {type:'json'};
-import reviews from '../data/reviews.json' with {type:'json'};
+import {apps,categories,promotions,reviews} from './catalog-seed.mjs';
 import {accessToken} from './submissions.mjs';
 export const seed=()=>structuredClone({apps,categories,promotions,reviews,site:{ar:{},en:{},showPromotions:true,showRecent:true,showContribute:true,apkUrl:''}});
 export const documentRoot=env=>'https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(env.FIREBASE_PROJECT_ID)+'/databases/(default)/documents';
