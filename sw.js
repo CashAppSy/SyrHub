@@ -1,10 +1,6 @@
-/* SyrHub Service Worker — v1.16.0
-   ⚠️ عند تغيير أي شيء في index.html/offline.html ارفع CACHE_NAME إلى vN+1 وفي sw.js نفسد القيم نفسها (FIREBASE_CONFIG). */
-var CACHE_NAME = 'syh-cache-v27';
+/* SyrHub offline shell. Increment CACHE_NAME when public assets change. */
+var CACHE_NAME = 'syh-cache-v28';
 
-/* ══════════════ 🔔 Firebase Cloud Messaging (إشعارات الخلفية) ══════════════
-   املأ القيم نفسها الموضوعة في index.html (FIREBASE) — عند بقائها فارغة
-   تبقى معالجة الإشعارات الخلفية معطّلة ولا يتغيّر سلوك الكاش إطلاقاً. */
 var CORE_ASSETS = [
   './',
   './index.html',
@@ -26,6 +22,9 @@ var CORE_ASSETS = [
 function offlineFallback(){
   return caches.match('./offline.html').then(function(res){
     return res || caches.match('./index.html');
+  }).then(function(res){
+    // Pages redirects .html paths; normalize cached redirect responses for navigation.
+    return res ? new Response(res.body, { status: res.status, headers: res.headers }) : Response.error();
   });
 }
 
