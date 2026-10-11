@@ -1,5 +1,5 @@
 /* SyrHub offline shell. Increment CACHE_NAME when public assets change. */
-var CACHE_NAME = 'syh-cache-v30';
+var CACHE_NAME = 'syh-cache-v31';
 
 var CORE_ASSETS = [
   './',
@@ -14,6 +14,7 @@ var CORE_ASSETS = [
   './storage.js',
   './enhancements.css',
   './contributions.js',
+  './account.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-512-maskable.png'
@@ -102,4 +103,16 @@ self.addEventListener('fetch', function(event){
       return offlineFallback();
     })
   );
+});
+
+self.addEventListener('push',function(event){
+ var payload;try{payload=event.data.json();}catch(e){return;}
+ var data=payload.data||payload.notification||payload;
+ if(!data.title||!data.body)return;
+ var target;try{target=new URL(data.href||'/',self.location.origin);if(target.origin!==self.location.origin)target=new URL('/',self.location.origin);}catch(e){return;}
+ event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(function(list){var visible=list.filter(function(client){return client.visibilityState==='visible';});if(visible.length){visible.forEach(function(client){client.postMessage({type:'syh:notification',data:data});});return;}return self.registration.showNotification(data.title,{body:data.body,icon:'/icons/icon-192.png',badge:'/icons/icon-192.png',tag:data.campaignId||'syrhub',data:{href:target.href,campaignId:data.campaignId||''},renotify:false});}));
+});
+self.addEventListener('notificationclick',function(event){
+ event.notification.close();var target=new URL(event.notification.data?.href||'/',self.location.origin);if(target.origin!==self.location.origin)return;if(event.notification.data?.campaignId)target.searchParams.set('syh_notification',event.notification.data.campaignId);var href=target.href;
+ event.waitUntil(self.clients.matchAll({type:'window',includeUncontrolled:true}).then(function(list){for(var client of list){if(new URL(client.url).origin===self.location.origin){return client.navigate(href).then(function(window){return window&&window.focus();});}}return self.clients.openWindow(href);}));
 });

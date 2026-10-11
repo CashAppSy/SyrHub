@@ -8,7 +8,8 @@
  function field(key,html){return '<label data-field="'+key+'"><span>'+text()[key]+'</span>'+html+'</label>';}
  function status(message,error){var el=form.querySelector('.form-status');el.textContent=message;el.dataset.error=error?'true':'false';}
  function loadTurnstile(){if(window.turnstile)return Promise.resolve();if(sdk)return sdk;sdk=new Promise(function(resolve,reject){var script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.onload=resolve;script.onerror=function(){sdk=null;script.remove();reject(new Error());};document.head.appendChild(script);});return sdk;}
- function show(selected,appId){
+ async function show(selected,appId){
+  try{await window.SyhAccount.requireUser();}catch(e){return;}
   if(submitting)return;
   var current=++generation;
   en=document.documentElement.lang==='en';type=selected;token='';configured=false;
@@ -24,7 +25,7 @@
    field('description','<textarea name="description" minlength="10" maxlength="3000" required></textarea>')+
    '<label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><p class="form-note">'+t.note+'</p><div class="verification"></div><p class="form-status" role="status" aria-live="polite"></p><div class="form-actions"><button class="btn btn-primary" type="submit" disabled>'+t.submit+'</button><button class="btn btn-ghost" type="button" data-back>'+t.back+'</button></div>';
   (window.APPS || []).forEach(function(app){var option=document.createElement('option');option.value=app.id;option.textContent=en?(app.name_en || app.name):app.name;form.elements.appId.appendChild(option);});
-  form.elements.appId.value=appId || '';
+  form.elements.appId.value=appId || '';var account=window.SyhAccount.user();form.elements.name.value=account.name||'';form.elements.email.value=account.email||'';form.elements.email.readOnly=true;
   ['title','appId','url','rating','code'].forEach(function(key){var visible=key==='title'?type==='app':key==='appId'?type!=='app':key==='url'?type!=='review':key==='rating'?type==='review':type==='promo';form.querySelector('[data-field="'+key+'"]').hidden=!visible;form.elements[key].disabled=!visible;form.elements[key].required=visible && key!=='code';});
   options.hidden=true;form.hidden=false;modal.classList.add('open');form.elements.name.focus();
   fetch('/api/submissions',{headers:{Accept:'application/json'}}).then(function(r){if(!r.ok)throw new Error();return r.json();}).then(function(config){
@@ -38,7 +39,7 @@
  document.getElementById('contributeOpen').addEventListener('click',function(){if(!submitting){form.hidden=true;options.hidden=false;}});
  form.addEventListener('click',function(event){if(event.target.closest('[data-back]') && !submitting){generation++;form.hidden=true;options.hidden=false;options.querySelector('a').focus();}});
  document.addEventListener('keydown',function(event){if(!modal.classList.contains('open'))return;if(event.key==='Tab'){var items=Array.prototype.filter.call(modal.querySelectorAll('a,button,input,select,textarea,[tabindex="0"]'),function(el){return !el.disabled && el.offsetParent!==null && !el.closest('.honeypot');}),first=items[0],last=items[items.length-1];if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}}if(event.key==='Escape' && opener){opener.focus();}});
- form.addEventListener('submit',function(event){event.preventDefault();if(submitting)return;if(!configured || !token){status(text().verify,true);return;}if(!form.reportValidity())return;var payload={type:type,turnstileToken:token};new FormData(form).forEach(function(value,key){payload[key]=value;});if(type==='review')payload.rating=Number(payload.rating);var button=form.querySelector('[type="submit"]');submitting=true;button.disabled=true;status(text().sending);
-  fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(r){if(r.status!==201)throw new Error();return r.json();}).then(function(result){if(!result.id || result.status!=='pending')throw new Error();form.reset();status(text().success);}).catch(function(){status(text().error,true);}).finally(function(){submitting=false;token='';if(widget!==null && window.turnstile)window.turnstile.reset(widget);});
+ form.addEventListener('submit',async function(event){event.preventDefault();try{await window.SyhAccount.requireUser();}catch(e){return;}if(submitting)return;if(!configured || !token){status(text().verify,true);return;}if(!form.reportValidity())return;var payload={type:type,turnstileToken:token};new FormData(form).forEach(function(value,key){payload[key]=value;});if(type==='review')payload.rating=Number(payload.rating);var button=form.querySelector('[type="submit"]');submitting=true;button.disabled=true;status(text().sending);
+  window.SyhAccount.token().then(function(idToken){return fetch('/api/submissions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+idToken},body:JSON.stringify(payload)});}).then(function(r){if(r.status!==201)throw new Error();return r.json();}).then(function(result){if(!result.id || result.status!=='pending')throw new Error();form.reset();status(text().success);}).catch(function(){status(text().error,true);}).finally(function(){submitting=false;token='';if(widget!==null && window.turnstile)window.turnstile.reset(widget);});
  });
 })();

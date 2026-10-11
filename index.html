@@ -1539,7 +1539,7 @@
       <li><a href="#contribute" data-i18n="navContribute">ساهم</a></li>
     </ul>
 
-    <div class="nav-actions">
+    <div class="nav-actions"><button id="accountOpen" class="icon-btn" type="button">دخول</button><button id="notificationsOpen" class="icon-btn" type="button" aria-label="الإشعارات / Notifications">🔔</button>
       <button id="langToggle" class="icon-btn" type="button" data-action="lang">EN</button>
       <button id="themeToggle" class="icon-btn" type="button" data-action="theme">
         <span class="icon-sun" aria-hidden="true">☀️</span>
@@ -2149,99 +2149,10 @@
     var scrollLockPos = 0;
     var compareOpen = false;
     var T;
-    /* ════════════ 🔔 إشعارات Firebase (FCM) ════════════
-       لتفعيلها: 1) أنشئ مشروعاً في console.firebase.google.com
-       2) أضف تطبيقاً من نوع Web ثم انسخ قيم firebaseConfig هنا
-       3) من Project settings → Cloud Messaging انسخ VAPID key في vapidKey
-       ملاحظة: املأ القيم نفسها أيضاً في sw.js (FIREBASE_CONFIG).
-       إذا بقيت أي قيمة فارغة تبقى الميزة معطّلة تلقائياً. */
-    var FIREBASE = {}; // Configure new-project push separately; forms use the server.
-    var FCM_ENABLED = !!(FIREBASE.apiKey && FIREBASE.projectId && FIREBASE.messagingSenderId && FIREBASE.appId && FIREBASE.vapidKey);
-    var __fcmMessaging = null;
-    var fcmToken = '';
-
-    function fcmInit(){
-      refreshNotifyUI();
-      if(!FCM_ENABLED || typeof firebase === 'undefined' || __fcmMessaging){ return; }
-      try{
-        firebase.initializeApp({
-          apiKey: FIREBASE.apiKey,
-          projectId: FIREBASE.projectId,
-          messagingSenderId: FIREBASE.messagingSenderId,
-          appId: FIREBASE.appId
-        });
-        __fcmMessaging = firebase.messaging();
-        __fcmMessaging.onMessage(function(payload){
-          var n = payload.notification || {};
-          try{ showNotifyToast(n.title || 'SyrHub', n.body || ''); }catch(e){}
-        });
-        try{ fcmToken = localStorage.getItem('syh-fcm-token') || ''; }catch(e){}
-        refreshNotifyUI();
-      }catch(e){}
-    }
-    function getFCMToken(cb){
-      if(!__fcmMessaging){ cb(''); return; }
-      try{
-        navigator.serviceWorker.register('sw.js').then(function(reg){
-          __fcmMessaging.getToken({ vapidKey: FIREBASE.vapidKey, serviceWorkerRegistration: reg })
-            .then(function(t){ cb(t || ''); })
-            .catch(function(){ cb(''); });
-        }).catch(function(){ cb(''); });
-      }catch(e){ cb(''); }
-    }
-    function toggleNotifications(){
-      var label = document.getElementById('sheetNotifyLabel');
-      if(!FCM_ENABLED){
-        if(label){ label.textContent = T.notifySetupNeeded; }
-        return;
-      }
-      if(!('Notification' in window) || !('serviceWorker' in navigator)){
-        if(label){ label.textContent = T.notifyUnsupported; }
-        return;
-      }
-      if(fcmToken){
-        try{
-          __fcmMessaging.deleteToken().then(function(){
-            fcmToken = '';
-            try{ localStorage.removeItem('syh-fcm-token'); }catch(e){}
-            refreshNotifyUI();
-          }).catch(function(){ refreshNotifyUI(); });
-        }catch(e){ refreshNotifyUI(); }
-        return;
-      }
-      Notification.requestPermission().then(function(p){
-        if(p === 'granted'){
-          getFCMToken(function(t){
-            if(t){ fcmToken = t; try{ localStorage.setItem('syh-fcm-token', t); }catch(e){} }
-            trackAnalytics('push_enabled', { granted: p === 'granted', has_token: !!t });
-            refreshNotifyUI();
-          });
-        } else {
-          trackAnalytics('push_denied', { granted: false });
-          if(label){ label.textContent = T.notifyDenied; }
-        }
-      }).catch(function(){
-        trackAnalytics('push_denied', { granted: false });
-      });
-    }
-    function refreshNotifyUI(){
-      var label = document.getElementById('sheetNotifyLabel');
-      var cpy = document.getElementById('sheetNotifyCopy');
-      if(!label){ return; }
-      if(!FCM_ENABLED){ label.textContent = T.notifySetupNeeded; return; }
-      label.textContent = fcmToken ? T.moreNotifyOn : T.moreNotify;
-      if(cpy){ cpy.style.display = fcmToken ? 'block' : 'none'; }
-    }
-    function copyFcmToken(){
-      if(!fcmToken){ return; }
-      writeClipboard(fcmToken, function(){});
-      var cpy = document.getElementById('sheetNotifyCopy');
-      if(cpy){
-        var original = cpy.textContent;
-        cpy.textContent = T.copied;
-        setTimeout(function(){ cpy.textContent = original; }, 1600);
-      }
-    }
+    function fcmInit(){}
+    function toggleNotifications(){if(window.SyhAccount)window.SyhAccount.notifications();}
+    function refreshNotifyUI(){var label=document.getElementById('sheetNotifyLabel');if(label)label.textContent=lang==='en'?'Notifications inbox':'صندوق الإشعارات';var copy=document.getElementById('sheetNotifyCopy');if(copy)copy.hidden=true;}
+    function copyFcmToken(){}
     function showNotifyToast(title, body){
       var t = document.createElement('div');
       t.className = 'notify-toast';
@@ -3939,6 +3850,7 @@
 
 <span class="sr-only" id="copyStatus" aria-live="polite"></span>
 
+<script src="account.js" defer></script>
 <script src="contributions.js" defer></script>
 </body>
 </html>

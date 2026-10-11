@@ -56,7 +56,7 @@ npm run dev
 
 ## PWA
 
-Android: Chrome → Install app. iPhone: Safari → Share → Add to Home Screen. اختبر الموقع أثناء الاتصال ثم عدم الاتصال. النماذج تحتاج الإنترنت ولا تُرسل تلقائياً لاحقاً. إشعارات Firebase القديمة أزيلت؛ إعادة تفعيل push للمشروع الجديد عمل مستقل.
+Android: Chrome → Install app. iPhone: Safari → Share → Add to Home Screen. اختبر الموقع أثناء الاتصال ثم عدم الاتصال. النماذج تحتاج الإنترنت ولا تُرسل تلقائياً لاحقاً. صندوق الإشعارات متاح للحسابات؛ إشعارات الجهاز تحتاج إعداد FCM وVAPID كما هو موضح أدناه.
 
 ## APK
 
@@ -116,3 +116,40 @@ gradle --no-daemon assembleDebug -PsiteUrl=https://YOUR_DEPLOYED_DOMAIN/
 لبناء APK افتح Actions → Build Android APK → Run workflow. الرابط الافتراضي الآن `https://syrhub.pages.dev/`. نزّل Artifact `SyrHub-debug-apk` بعد النجاح. هذا إصدار اختبار موقّع بمفتاح debug؛ الإصدار العام يحتاج مفتاح release ثابتاً ومحفوظاً بأمان. تغييرات كود Android نفسه تحتاج APK جديداً؛ تغييرات محتوى الأدمن لا تحتاجه.
 
 البناء المحلي: Android SDK 35 وbuild-tools 35.0.0 وGradle 8.11.1، ثم `cd android && gradle --no-daemon --max-workers=2 assembleDebug -PsiteUrl=https://syrhub.pages.dev/`. في بيئة cloud ذات مجلد مستخدم للقراءة فقط، عيّن `ANDROID_USER_HOME` و`GRADLE_USER_HOME` إلى مجلدات قابلة للكتابة و`ANDROID_HOME` إلى مسار SDK. مسار الناتج `android/app/build/outputs/apk/debug/app-debug.apk`.
+
+
+### الحسابات الاختيارية وحماية المساهمات
+
+- التصفح والبحث والمفضلة لا تحتاج تسجيل دخول. التسجيل بالبريد وكلمة المرور، الدخول والخروج واستعادة كلمة المرور متاحة من زر «دخول».
+- Firebase → Authentication → Sign-in method → فعّل **Email/Password**. من Settings → Authorized domains أضف `syrhub.pages.dev` وأي نطاق خاص تستخدمه.
+- تستخدم الحسابات متغير `FIREBASE_WEB_API_KEY` الموجود للإدارة؛ لا تضع مفتاح حساب الخدمة في الواجهة. جلسة المستخدم محفوظة في المتصفح وتتجدد؛ كلمة المرور لا تُحفظ.
+- كل اقتراح وتقييم وعرض يحتاج Firebase ID token صالحاً وTurnstile. يتحقق الخادم من الحساب ويرفض الحسابات المعطلة، ويضيف `userId` وبريد الحساب الفعلي إلى المستند الخاص. الموافقة لا تنشر هذه البيانات الخاصة.
+
+### صندوق الإشعارات وواجهة الأدمن
+
+1. الأدمن → **الإشعارات والنتائج** → **إشعار جديد**.
+2. أدخل العنوان والنص وصفحة الوجهة داخل الموقع، مثل `/#apps`، وشاهد المعاينة.
+3. احفظ المسودة، ثم **نشر وإرسال**. يظهر الإشعار في صندوق الحسابات، ويمكن أرشفته لإخفائه. الإشعار المنشور لا يُعدل؛ أنشئ رسالة جديدة للتصحيح. لا يمكن سحب إشعار سبق وصوله للجهاز.
+4. **تحديث النتائج** يعرض مشاهدات الصندوق والنقرات الفريدة لكل حساب، وعدد الطلبات التي قبلتها Firebase وطلبات الإرسال الفاشلة. قبول Firebase لا يعني تأكيد تسليم أو قراءة على الجهاز؛ لا توجد هنا إحصائية تسليم مؤكّد.
+5. الإرسال إلى الأجهزة على دفعات من 10 سجلات لتلائم حدود Pages Functions. إن ظهرت حالة «تحتاج متابعة الدفعة التالية»، اضغط **إرسال الدفعة التالية** ثم حدّث النتائج. لا تعِد نشر الحملة نفسها؛ يمنع الخادم إرسالها كحملة جديدة مرة ثانية. الأجهزة المعطّلة الاشتراك لا تُرسل لها الرسالة، وتُعطّل الرموز التي ترفضها FCM كغير مسجّلة.
+
+تُحفظ الحملات في `notifications`، والاشتراكات الخاصة في `notification_devices`، والمشاهدات والنقرات الفريدة في `notification_reads` و`notification_clicks`. الوصول عبر الخادم فقط؛ تبقى قواعد Firestore مغلقة أمام وصول المتصفح المباشر. لا تعرض لوحة النتائج رموز الأجهزة.
+
+### تفعيل إشعارات الجهاز (Web/PWA)
+
+1. Firebase → Project settings → General → Your apps → سجّل تطبيق Web إن لم يكن موجوداً. انسخ من firebaseConfig القيم العامة `messagingSenderId` و`appId`؛ يجب أن تكون من مشروع Firebase نفسه المستخدم للموقع.
+2. Project settings → Cloud Messaging → Web Push certificates → Generate key pair → انسخ المفتاح العام VAPID. لا تنشر مفتاحاً خاصاً.
+3. Cloudflare Pages → Settings → Variables and Secrets → Production أضف:
+   - `FIREBASE_MESSAGING_SENDER_ID`: قيمة `messagingSenderId`.
+   - `FIREBASE_WEB_APP_ID`: قيمة `appId`.
+   - `FIREBASE_VAPID_KEY`: المفتاح العام Web Push.
+   - أَبقِ `FIREBASE_WEB_API_KEY` و`FIREBASE_PROJECT_ID` وبقية أسرار الخادم الحالية.
+   يمكن حفظ القيم العامة كـSecrets إذا كانت الواجهة تسمح بإضافة Secrets فقط بسبب wrangler.toml. لا تحتاج تعديل Type.
+4. فعّل Firebase Cloud Messaging API (`fcm.googleapis.com`) في Google Cloud. حساب خدمة الخادم يحتاج صلاحية إرسال FCM؛ إن لم تكن موجودة، أضف الدور **Firebase Cloud Messaging API Admin** (`roles/firebasecloudmessaging.admin`) بالإضافة إلى Cloud Datastore User. لا تمنحه Owner.
+5. أعد النشر، ثم افحص `/api/config`: يجب أن يعرض `authConfigured: true` و`pushConfigured: true`، دون أي مفتاح خاص أو UID أدمن.
+6. من الموقع سجّل الدخول → جرس الإشعارات → **تفعيل إشعارات هذا الجهاز**. طلب الإذن يحصل باختيار المستخدم، ويمكن إيقاف الاشتراك من المكان نفسه. على iPhone يلزم PWA مثبتة على الشاشة الرئيسية وiOS يدعم Web Push.
+7. انشر حملة اختبار من الأدمن، وحدّث النتائج، وافتح الوجهة من الإشعار. اختبر والموقع في الخلفية ثم وهو مفتوح. الأحداث تتفادى عرض إشعار نظام مكرر عندما توجد نافذة ظاهرة.
+
+نسخة APK الحالية تعرض صندوق الإشعارات داخل التطبيق. إشعارات Android الأصلية عندما يكون APK مغلقاً تحتاج دمج Firebase Android Messaging وإعداد تطبيق Android وتوقيعه؛ ذلك غير مضمّن في غلاف WebView الحالي. إشعارات الخلفية الحالية متاحة عبر Web/PWA المدعومة فقط. تطوير الويب يتم تحميله في APK من الرابط الحي، ولا يلزم بناء APK جديد لإضافة تسجيل الدخول أو صندوق الإشعارات.
+
+الاختبارات الآلية تتحقق من الصلاحيات والنشر والإحصاءات بمحاكاة Firebase/FCM. الإرسال الحقيقي للجهاز يحتاج الإعدادات السابقة وتجربة جهاز فعلي.

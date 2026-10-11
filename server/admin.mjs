@@ -1,15 +1,12 @@
+import {userIdentity} from './user-auth.mjs';
 import {accessToken,validate} from './submissions.mjs';
 import {readCatalog,catalogWrite,commit,publishSubmission,changeCatalog} from './catalog.mjs';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const ready=env=>!!(env.FIREBASE_WEB_API_KEY && env.ADMIN_UIDS && env.FIREBASE_PROJECT_ID && env.FIREBASE_CLIENT_EMAIL && env.FIREBASE_PRIVATE_KEY);
 export async function authorize(request,env){
- const bearer=request.headers.get('Authorization');
- if(!bearer?.startsWith('Bearer ') || bearer.length>8192)return null;
- const response=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key='+encodeURIComponent(env.FIREBASE_WEB_API_KEY),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({idToken:bearer.slice(7)})});
- if(!response.ok)return null;
- const user=(await response.json()).users?.[0];
- if(!user || user.disabled || !env.ADMIN_UIDS.split(',').map(x=>x.trim()).filter(Boolean).includes(user.localId))return null;
- return user.localId;
+ const user=await userIdentity(request,env);
+ if(!user||!env.ADMIN_UIDS?.split(',').map(x=>x.trim()).filter(Boolean).includes(user.uid))return null;
+ return user.uid;
 }
 export function decode(document){
  const result={id:document.name.split('/').pop(),updateTime:document.updateTime};
