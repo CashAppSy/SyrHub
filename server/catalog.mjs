@@ -1,14 +1,15 @@
+import {withDemoData} from './demo-data.mjs';
 import {localMetadata} from './local-metadata.mjs';
 import {apps,categories,promotions,reviews} from './catalog-seed.mjs';
 import {accessToken} from './submissions.mjs';
-export const seed=()=>structuredClone({apps,categories,promotions,reviews,site:{ar:{},en:{},showPromotions:true,showRecent:true,showContribute:true,apkUrl:''}});
+export const seed=()=>withDemoData({apps,categories,promotions,reviews,site:{ar:{},en:{},showPromotions:true,showRecent:true,showContribute:true,apkUrl:'',showDemoApps:true}});
 export const documentRoot=env=>'https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(env.FIREBASE_PROJECT_ID)+'/databases/(default)/documents';
 export const catalogName=env=>'projects/'+env.FIREBASE_PROJECT_ID+'/databases/(default)/documents/cms/catalog';
 export async function readCatalog(env,token){
  const response=await fetch(documentRoot(env)+'/cms/catalog',{headers:{Authorization:'Bearer '+token}});
  if(response.status===404)return {catalog:seed(),version:null};
  if(!response.ok)throw new Error('Catalog unavailable');
- const doc=await response.json();return {catalog:JSON.parse(doc.fields.content.stringValue),version:doc.updateTime};
+ const doc=await response.json();return {catalog:withDemoData(JSON.parse(doc.fields.content.stringValue)),version:doc.updateTime};
 }
 export function catalogWrite(env,catalog,version,uid){
  const content=JSON.stringify(catalog);if(new TextEncoder().encode(content).length>700000)throw new Error('Catalog limit reached');
@@ -37,7 +38,7 @@ export function validateRecord(collection,input,catalog){
   if(!Array.isArray(input.platforms)||!input.platforms.length||input.platforms.some(x=>!['android','ios','web'].includes(x)))throw new Error('Choose at least one platform');
   record.platforms=[...new Set(input.platforms)];record.officialLink=url(input.officialLink,true);record.icon=url(input.icon);record.storeLinks={};
   for(const key of ['android','ios','web']){const link=url(input.storeLinks?.[key]);if(link)record.storeLinks[key]=link;}
-  record.verified=bool(input.verified);record.lastUpdate=date(input.lastUpdate,true);Object.assign(record,localMetadata(input,{text,date,url}));
+  record.verified=bool(input.verified);record.isDemo=bool(input.isDemo);record.lastUpdate=date(input.lastUpdate,true);Object.assign(record,localMetadata(input,{text,date,url}));
  }else if(collection==='promotions'||collection==='reviews'){
   record.appId=id(input.appId);if(!catalog.apps.some(x=>x.id===record.appId))throw new Error('Choose an existing app');
   if(collection==='promotions'){
@@ -56,7 +57,7 @@ export const siteKeys=['metaTitle','metaDesc','tagline','heroH1','heroSubtitle',
 export function validateSite(input){
  const result={ar:{},en:{}};
  for(const lang of ['ar','en'])for(const key of siteKeys){const value=text(input[lang]?.[key],key==='metaDesc'||key==='heroSubtitle'||key==='suggestText'?3000:300);if(value)result[lang][key]=value;}
- for(const key of ['showPromotions','showRecent','showContribute'])result[key]=input[key]===undefined?true:bool(input[key]);result.apkUrl=url(input.apkUrl);return result;
+ for(const key of ['showPromotions','showRecent','showContribute','showDemoApps'])result[key]=input[key]===undefined?true:bool(input[key]);result.apkUrl=url(input.apkUrl);return result;
 }
 export function changeCatalog(catalog,input){
  const next=structuredClone(catalog),collection=input.collection;
@@ -70,7 +71,7 @@ export function changeCatalog(catalog,input){
   if(collection==='apps'){next.promotions=next.promotions.filter(x=>x.appId!==target);next.reviews=next.reviews.filter(x=>x.appId!==target);}
  }else if(input.action==='save'){
   let candidate=input.record;
-  if(collection==='apps'&&candidate){const prior=next.apps.find(x=>x.id===candidate.id);candidate={...candidate};for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes'])if(candidate[key]===undefined&&prior)candidate[key]=prior[key];}
+  if(collection==='apps'&&candidate){const prior=next.apps.find(x=>x.id===candidate.id);candidate={...candidate};for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo'])if(candidate[key]===undefined&&prior)candidate[key]=prior[key];}
   const record=validateRecord(collection,candidate,next),index=next[collection].findIndex(x=>x[key]===record[key]);
   if(index<0)next[collection].push(record);else next[collection][index]=record;
  }else throw new Error('Invalid action');
@@ -81,7 +82,7 @@ export function publishSubmission(catalog,input,edited,submissionId){
  const prior=catalog[collection].find(x=>x.id===publishedId);
  let record;
  if(edited.type==='app')record={...prior,id:publishedId,name:edited.title,name_en:input.name_en??prior?.name_en,description:edited.description,description_en:input.description_en??prior?.description_en,category:input.category||prior?.category||'other',platforms:input.platforms||prior?.platforms||['web'],officialLink:edited.url,icon:input.icon??prior?.icon,storeLinks:input.storeLinks??prior?.storeLinks,verified:input.verified??prior?.verified??false,lastUpdate:input.lastUpdate??prior?.lastUpdate};
- if(edited.type==='app')for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes'])record[key]=input[key]??prior?.[key];
+ if(edited.type==='app')for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo'])record[key]=input[key]??prior?.[key];
  if(edited.type==='promo')record={...prior,id:publishedId,appId:edited.appId,type:edited.code?'coupon':'promotion',title:edited.title||'عرض جديد',title_en:input.name_en??prior?.title_en,description:edited.description,description_en:input.description_en??prior?.description_en,code:edited.code,discountLabel:input.discountLabel??prior?.discountLabel,link:edited.url,expiryDate:input.expiryDate??prior?.expiryDate,verified:input.verified??prior?.verified??false};
  if(edited.type==='review')record={...prior,id:publishedId,appId:edited.appId,author:edited.name,rating:edited.rating,comment:edited.description,comment_en:input.description_en??prior?.comment_en,date:prior?.date||new Date().toISOString().slice(0,10)};
  record.sourceSubmission=submissionId;
