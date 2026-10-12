@@ -1528,6 +1528,7 @@
 <script src="local-data.js"></script>
 </head>
 <body>
+<p class="demo-warning" id="catalogDemoNotice" role="note">نسخة تجريبية: جميع التطبيقات والتقييمات والعروض المعروضة بيانات اختبار وليست توصيات أو عروضاً مؤكدة.</p>
 
 <nav class="topbar" aria-label="الشريط العلوي">
   <div class="nav-inner">
@@ -2753,7 +2754,7 @@
         document.getElementById('detailName').textContent = appName(app);
         document.getElementById('detailCat').textContent = catLabel(cat);
         document.getElementById('detailVerified').textContent = T.verified;
-        document.getElementById('detailVerified').hidden = !app.verified;
+        document.getElementById('detailVerified').hidden = !app.verified || !!app.isDemo;
         document.getElementById('detailRating').innerHTML = rating.count > 0
           ? '<span class="stars" aria-label="' + rating.avg.toFixed(1) + '/5">' + starsHTML(rating.avg) + '</span>' +
             '<span class="detail-rating-num">' + rating.avg.toFixed(1) + '</span>' +
@@ -2981,7 +2982,7 @@
         '<article class="promo-card">' +
           '<div class="promo-head">' +
             (appN ? '<span class="promo-app">' + appIconHTML + appN + '</span>' : '') +
-            '<span class="promo-badge">' + (promo.discountLabel || T.specialOffer) + '</span>' +
+            '<span class="promo-badge">' + (promo.isDemo?(lang==='en'?'Demo offer':'عرض تجريبي'):(promo.discountLabel || T.specialOffer)) + '</span>' +
           '</div>' +
           '<h3>' + promoTitle(promo) + '</h3>' +
           '<p class="promo-desc">' + promoDesc(promo) + '</p>' +
@@ -3067,7 +3068,7 @@
       }
       return revs.map(function(r){
         return '<div class="review-item">' +
-          '<div class="review-head">' +
+          (r.isDemo?'<span class="store-demo">'+(lang==='en'?'Demo review':'تقييم تجريبي')+'</span>':'')+ '<div class="review-head">' +
             '<span class="author">' + r.author + '</span>' +
             '<span class="stars">' + starsHTML(r.rating) + '</span>' +
           '</div>' +
@@ -3084,7 +3085,7 @@
       var score=rating.count>0?'<span class="store-score">★ '+rating.avg.toFixed(1)+'</span><span class="store-review-count">('+rating.count+')</span>':'<span class="store-review-count">'+T.ratingCountNone+'</span>';
       var query=(document.getElementById('search').value||'').trim();
       return '<a class="card store-card" href="/apps/'+encodeURIComponent(app.id)+'" data-app="'+escHtml(app.id)+'" aria-label="'+escHtml(appName(app)+(lang==='en'?' — View app':' — عرض التطبيق'))+'">'+
-        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><div class="store-meta">'+demo+score+(app.verified?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></a>';
+        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><div class="store-meta">'+demo+score+(app.verified&&!app.isDemo?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></a>';
     }
 
     var lastSearchCount = 0;
@@ -3129,7 +3130,7 @@
       var availability=english?{unknown:'Not checked',reported:'Reported by users',verified:'Checked',unavailable:'Unavailable'}:{unknown:'لم يُتحقق',reported:'أبلغ عنه المستخدمون',verified:'تم التحقق',unavailable:'غير متاح'};
       var costs=english?{unknown:'Unknown',free:'Free',paid:'Paid',freemium:'Free with paid features'}:{unknown:'غير معروف',free:'مجاني',paid:'مدفوع',freemium:'مجاني مع ميزات مدفوعة'};
       var coverage=(app.cities||[]).map(function(key){if(key==='nationwide')return english?'Across Syria':'كل سوريا';var city=SyhLocal.cities.find(function(x){return x[0]===key;});return city?city[english?2:1]:'';}).filter(Boolean).join('، ');
-      if(app.isDemo){var warning=document.createElement('p');warning.className='demo-warning';warning.textContent=english?'Fictional test data — not a real service.':'بيانات تجريبية — تطبيق وهمي وليس خدمة حقيقية.';box.appendChild(warning);}
+      if(app.isDemo){var warning=document.createElement('p');warning.className='demo-warning';warning.textContent=english?'Demo listing — details and ratings are for testing, not verified service information.':'بيانات تجريبية — المعلومات والتقييمات المعروضة للاختبار ولا تمثل معلومات موثّقة عن الخدمة.';box.appendChild(warning);}
       var pairs=[[english?'Service coverage':'المدن المخدومة',coverage||costs.unknown],[english?'Availability in Syria':'العمل داخل سوريا',availability[app.availability||'unknown']],[english?'App cost':'تكلفة التطبيق',costs[app.cost||'unknown']],[english?'Payment methods':'طرق الدفع',(app.paymentMethods||[]).join('، ')||costs.unknown],[english?'Account required':'يحتاج حساباً',app.needsAccount==='yes'?(english?'Yes':'نعم'):app.needsAccount==='no'?(english?'No':'لا'):costs.unknown],[english?'Last checked':'آخر تحقق',app.lastChecked||availability.unknown]];
       pairs.forEach(function(pair){var cell=document.createElement('div'),label=document.createElement('span'),value=document.createElement('strong');label.textContent=pair[0];value.textContent=pair[1];cell.append(label,value);box.appendChild(cell);});
       if(app.verificationNotes){var note=document.createElement('p');note.textContent=app.verificationNotes;box.appendChild(note);}if(app.verificationSource){var source=document.createElement('a');source.href=app.verificationSource;source.target='_blank';source.rel='noopener';source.textContent=english?'Verification source ↗':'مصدر التحقق ↗';box.appendChild(source);}
@@ -3166,7 +3167,7 @@
       var filtered = (typeof APPS !== 'undefined' ? APPS : []).filter(function(app){
         var matchesCategory = activeCategory === 'all' || activeCategory === 'favorites' || app.category === activeCategory;
         var matchesPlatform = activePlatform === 'all' || (app.platforms || []).indexOf(activePlatform) !== -1;
-        var isVerified = !verifiedOnly || !!app.verified;
+        var isVerified = !verifiedOnly || (!!app.verified&&!app.isDemo);
         var city=activeCity||SyhLocal.parse(q).city;return matchesCategory&&matchesPlatform&&isVerified&&SyhLocal.serves(app,city);
       });
 
@@ -3743,6 +3744,7 @@
       var site=catalog.site || {};
       ['ar','en'].forEach(function(locale){ I18N[locale]=Object.assign({},originalI18N[locale],site[locale] || {}); });
       APK_LINK=site.apkUrl || '';
+      document.getElementById('catalogDemoNotice').hidden=site.demoMode===false;
       root.classList.toggle('hide-promotions', site.showPromotions===false);
       root.classList.toggle('hide-recent', site.showRecent===false);
       root.classList.toggle('hide-contribute', site.showContribute===false);

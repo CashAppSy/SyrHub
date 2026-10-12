@@ -40,7 +40,7 @@ export function validateRecord(collection,input,catalog){
   for(const key of ['android','ios','web']){const link=url(input.storeLinks?.[key]);if(link)record.storeLinks[key]=link;}
   record.verified=bool(input.verified);record.isDemo=bool(input.isDemo);record.lastUpdate=date(input.lastUpdate,true);Object.assign(record,localMetadata(input,{text,date,url}));
  }else if(collection==='promotions'||collection==='reviews'){
-  record.appId=id(input.appId);if(!catalog.apps.some(x=>x.id===record.appId))throw new Error('Choose an existing app');
+  record.isDemo=bool(input.isDemo);record.appId=id(input.appId);if(!catalog.apps.some(x=>x.id===record.appId))throw new Error('Choose an existing app');
   if(collection==='promotions'){
    if(!['coupon','promotion'].includes(input.type))throw new Error('Invalid promotion type');record.type=input.type;
    for(const key of ['title','title_en','description','description_en','discountLabel','code'])record[key]=text(input[key],key.includes('description')?3000:150,key==='title'||key==='description');
@@ -57,7 +57,7 @@ export const siteKeys=['metaTitle','metaDesc','tagline','heroH1','heroSubtitle',
 export function validateSite(input){
  const result={ar:{},en:{}};
  for(const lang of ['ar','en'])for(const key of siteKeys){const value=text(input[lang]?.[key],key==='metaDesc'||key==='heroSubtitle'||key==='suggestText'?3000:300);if(value)result[lang][key]=value;}
- for(const key of ['showPromotions','showRecent','showContribute','showDemoApps'])result[key]=input[key]===undefined?true:bool(input[key]);result.apkUrl=url(input.apkUrl);return result;
+ for(const key of ['showPromotions','showRecent','showContribute','showDemoApps','demoMode'])result[key]=input[key]===undefined?true:bool(input[key]);result.apkUrl=url(input.apkUrl);return result;
 }
 export function changeCatalog(catalog,input){
  const next=structuredClone(catalog),collection=input.collection;

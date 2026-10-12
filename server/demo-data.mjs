@@ -10,7 +10,9 @@ const examples=[
 export const demoApps=examples.map(([key,name,en,category,cities,needs,cost,paymentMethods,needsAccount])=>({id:'demo-'+key,name:'تجريبي — '+name,name_en:'Demo — '+en,category,description:'بيانات تجريبية لاختبار البحث والواجهة فقط. هذا تطبيق وهمي، وليس خدمة حقيقية أو توصية باستخدامها.',description_en:'Fictional sample for testing search and UI only. This is not a real service or recommendation.',platforms:['android','web'],officialLink:'https://example.com/'+key,storeLinks:{},icon:'',verified:false,isDemo:true,cities,needs,cost,paymentMethods,needsAccount,availability:'unknown',lastChecked:'',lastUpdate:'',verificationSource:'',verificationNotes:'المعلومات والمدن وطرق الدفع هنا أمثلة للاختبار، ولم يجرِ التحقق من خدمة فعلية.'}));
 export function withDemoData(catalog){
  const next=structuredClone(catalog);
- if(next.site?.showDemoApps===false){next.apps=next.apps.filter(x=>!x.isDemo);return next;}
+ next.site={...next.site,demoMode:next.site?.demoMode!==false};
+ if(next.site.demoMode)for(const collection of ['apps','promotions','reviews'])for(const record of next[collection])record.isDemo=true;
+ if(next.site?.showDemoApps===false){const hidden=new Set(next.apps.filter(x=>x.isDemo).map(x=>x.id));next.apps=next.apps.filter(x=>!x.isDemo);for(const key of ['reviews','promotions'])next[key]=next[key].filter(x=>!hidden.has(x.appId));return next;}
  for(const app of demoApps)if(next.categories.some(x=>x.key===app.category)&&!next.apps.some(x=>x.id===app.id))next.apps.push(structuredClone(app));
  return next;
 }

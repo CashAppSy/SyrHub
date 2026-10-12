@@ -13,7 +13,7 @@ var path = require('path');
 
 var ROOT = path.resolve(__dirname, '..');
 var DATA_DIR = path.join(ROOT, 'data');
-var SITE_URL = 'https://ali-mhd-ibrahim.github.io/SyrHub/';
+var SITE_URL = 'https://syrhub.pages.dev/';
 
 var PLATFORMS = ['android', 'ios', 'web'];
 
@@ -77,9 +77,9 @@ function main(){
   xml += '    <changefreq>weekly</changefreq>\n';
   xml += '    <priority>1.0</priority>\n';
   xml += '  </url>\n';
-  apps.forEach(function(app){
+  apps.filter(function(app){return !app.isDemo;}).forEach(function(app){
     xml += '  <url>\n';
-    xml += '    <loc>' + SITE_URL + '#app/' + encodeURIComponent(app.id) + '</loc>\n';
+    xml += '    <loc>' + SITE_URL + 'apps/' + encodeURIComponent(app.id) + '</loc>\n';
     if(app.lastUpdate){ xml += '    <lastmod>' + app.lastUpdate + '</lastmod>\n'; }
     xml += '    <priority>0.8</priority>\n';
     xml += '  </url>\n';

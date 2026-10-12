@@ -18,7 +18,8 @@ var PROMOTIONS = [
     "discountLabel": "توصيل مجاني",
     "link": "https://example.com/sufra-food",
     "expiryDate": "2026-12-31",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-sufra-2",
@@ -32,7 +33,8 @@ var PROMOTIONS = [
     "discountLabel": "خصومات نهاية الأسبوع",
     "link": "https://example.com/sufra-food",
     "expiryDate": "2026-10-01",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-raghela-1",
@@ -46,7 +48,8 @@ var PROMOTIONS = [
     "discountLabel": "خصم 10%",
     "link": "https://example.com/raghela-trans",
     "expiryDate": "2026-12-31",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-mihfaza-1",
@@ -60,7 +63,8 @@ var PROMOTIONS = [
     "discountLabel": "رصيد 500",
     "link": "https://example.com/mihfaza-pay",
     "expiryDate": "2026-11-30",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-souqoli-1",
@@ -74,7 +78,8 @@ var PROMOTIONS = [
     "discountLabel": "خصم 15%",
     "link": "https://example.com/souqoli-shop",
     "expiryDate": "2026-12-31",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-darsona-1",
@@ -88,7 +93,8 @@ var PROMOTIONS = [
     "discountLabel": "خصم 20%",
     "link": "https://example.com/darsona-edu",
     "expiryDate": "2026-09-15",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-tebibi-1",
@@ -102,7 +108,8 @@ var PROMOTIONS = [
     "discountLabel": "فحص مجاني",
     "link": "https://example.com/tebibi-health",
     "expiryDate": "2026-12-01",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   },
   {
     "id": "promo-shighl-1",
@@ -116,7 +123,8 @@ var PROMOTIONS = [
     "discountLabel": "تمييز الملف",
     "link": "https://example.com/shighl-jobs",
     "expiryDate": "2026-12-31",
-    "verified": false
+    "verified": false,
+    "isDemo": true
   }
 ];
 

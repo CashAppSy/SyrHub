@@ -13,7 +13,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-sufra-food-2",
@@ -22,7 +23,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-matalab-food-1",
@@ -31,7 +33,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-matalab-food-2",
@@ -40,7 +43,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-matalab-food-3",
@@ -49,7 +53,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-khott-food-1",
@@ -58,7 +63,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-khott-food-2",
@@ -67,7 +73,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-khott-food-3",
@@ -76,7 +83,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-khott-food-4",
@@ -85,7 +93,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-raghela-trans-1",
@@ -94,7 +103,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-raghela-trans-2",
@@ -103,7 +113,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-waseel-trans-1",
@@ -112,7 +123,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-waseel-trans-2",
@@ -121,7 +133,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-waseel-trans-3",
@@ -130,7 +143,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-tarheeb-trans-1",
@@ -139,7 +153,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-tarheeb-trans-2",
@@ -148,7 +163,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-tarheeb-trans-3",
@@ -157,7 +173,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-tarheeb-trans-4",
@@ -166,7 +183,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-mihfaza-pay-1",
@@ -175,7 +193,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-mihfaza-pay-2",
@@ -184,7 +203,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-faslah-pay-1",
@@ -193,7 +213,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-faslah-pay-2",
@@ -202,7 +223,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-faslah-pay-3",
@@ -211,7 +233,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-saraf-pay-1",
@@ -220,7 +243,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-saraf-pay-2",
@@ -229,7 +253,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-saraf-pay-3",
@@ -238,7 +263,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-saraf-pay-4",
@@ -247,7 +273,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-souqoli-shop-1",
@@ -256,7 +283,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-souqoli-shop-2",
@@ -265,7 +293,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-mutajari-shop-1",
@@ -274,7 +303,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-mutajari-shop-2",
@@ -283,7 +313,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-mutajari-shop-3",
@@ -292,7 +323,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-harij-shop-1",
@@ -301,7 +333,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-harij-shop-2",
@@ -310,7 +343,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-harij-shop-3",
@@ -319,7 +353,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-harij-shop-4",
@@ -328,7 +363,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-baytak-real-1",
@@ -337,7 +373,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-baytak-real-2",
@@ -346,7 +383,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-walid-real-1",
@@ -355,7 +393,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-walid-real-2",
@@ -364,7 +403,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-walid-real-3",
@@ -373,7 +413,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-gimm-real-1",
@@ -382,7 +423,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-gimm-real-2",
@@ -391,7 +433,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-gimm-real-3",
@@ -400,7 +443,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-gimm-real-4",
@@ -409,7 +453,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-darsona-edu-1",
@@ -418,7 +463,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-darsona-edu-2",
@@ -427,7 +473,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-momakabe-edu-1",
@@ -436,7 +483,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-momakabe-edu-2",
@@ -445,7 +493,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-momakabe-edu-3",
@@ -454,7 +503,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-lugha-edu-1",
@@ -463,7 +513,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-lugha-edu-2",
@@ -472,7 +523,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-lugha-edu-3",
@@ -481,7 +533,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-lugha-edu-4",
@@ -490,7 +543,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-tebibi-health-1",
@@ -499,7 +553,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-tebibi-health-2",
@@ -508,7 +563,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-shelahiyhti-health-1",
@@ -517,7 +573,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-shelahiyhti-health-2",
@@ -526,7 +583,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-shelahiyhti-health-3",
@@ -535,7 +593,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-siteheb-health-1",
@@ -544,7 +603,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-siteheb-health-2",
@@ -553,7 +613,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-siteheb-health-3",
@@ -562,7 +623,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-siteheb-health-4",
@@ -571,7 +633,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-shighl-jobs-1",
@@ -580,7 +643,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-shighl-jobs-2",
@@ -589,7 +653,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-hirfi-jobs-1",
@@ -598,7 +663,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-hirfi-jobs-2",
@@ -607,7 +673,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-hirfi-jobs-3",
@@ -616,7 +683,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-muhimat-jobs-1",
@@ -625,7 +693,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "يخدم غرضه لكن يوجد مجال لتحسين الأداء.",
     "comment_en": "It serves its purpose but performance can be improved.",
-    "date": "2026-05-11"
+    "date": "2026-05-11",
+    "isDemo": true
   },
   {
     "id": "rev-muhimat-jobs-2",
@@ -634,7 +703,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-muhimat-jobs-3",
@@ -643,7 +713,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-muhimat-jobs-4",
@@ -652,7 +723,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-taqso-weather-1",
@@ -661,7 +733,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "تجربة جيدة مقارنة بالبدائل المتاحة.",
     "comment_en": "A good experience compared to available alternatives.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   },
   {
     "id": "rev-taqso-weather-2",
@@ -670,7 +743,8 @@ var REVIEWS = [
     "rating": 2,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-hadaya-other-1",
@@ -679,7 +753,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "دعم فني سريع وسهل الوصول.",
     "comment_en": "Fast and accessible customer support.",
-    "date": "2026-02-08"
+    "date": "2026-02-08",
+    "isDemo": true
   },
   {
     "id": "rev-hadaya-other-2",
@@ -688,7 +763,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2026-03-22"
+    "date": "2026-03-22",
+    "isDemo": true
   },
   {
     "id": "rev-hadaya-other-3",
@@ -697,7 +773,8 @@ var REVIEWS = [
     "rating": 3,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2026-04-02"
+    "date": "2026-04-02",
+    "isDemo": true
   },
   {
     "id": "rev-tarjom-other-1",
@@ -706,7 +783,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "الملاحظات البسيطة التي أرسلتها امتلأت بسرعة بالتحديثات.",
     "comment_en": "The minor issues I reported were addressed quickly in updates.",
-    "date": "2025-11-20"
+    "date": "2025-11-20",
+    "isDemo": true
   },
   {
     "id": "rev-tarjom-other-2",
@@ -715,7 +793,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "متوافق مع الأجهزة المتوسطة ولا يستهلك الموارد.",
     "comment_en": "Works well on mid-range devices without heavy resource usage.",
-    "date": "2025-10-05"
+    "date": "2025-10-05",
+    "isDemo": true
   },
   {
     "id": "rev-tarjom-other-3",
@@ -724,7 +803,8 @@ var REVIEWS = [
     "rating": 5,
     "comment": "التطبيق بسيط ويعمل بشكل جيد.",
     "comment_en": "The app is simple and works well.",
-    "date": "2025-12-17"
+    "date": "2025-12-17",
+    "isDemo": true
   },
   {
     "id": "rev-tarjom-other-4",
@@ -733,7 +813,8 @@ var REVIEWS = [
     "rating": 4,
     "comment": "واجهة سهلة والتنقل مريح.",
     "comment_en": "Easy interface and comfortable navigation.",
-    "date": "2026-01-14"
+    "date": "2026-01-14",
+    "isDemo": true
   }
 ];
 

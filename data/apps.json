@@ -18,7 +18,8 @@
       "web": "https://example.com/sufra-food/web"
     },
     "verified": true,
-    "lastUpdate": "2026-01"
+    "lastUpdate": "2026-01",
+    "isDemo": true
   },
   {
     "id": "matalab-food",
@@ -38,7 +39,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-02"
+    "lastUpdate": "2026-02",
+    "isDemo": true
   },
   {
     "id": "khott-food",
@@ -58,7 +60,8 @@
       "web": "https://example.com/khott-food/web"
     },
     "verified": false,
-    "lastUpdate": "2026-03"
+    "lastUpdate": "2026-03",
+    "isDemo": true
   },
   {
     "id": "raghela-trans",
@@ -79,7 +82,8 @@
       "web": "https://example.com/raghela-trans/web"
     },
     "verified": true,
-    "lastUpdate": "2026-04"
+    "lastUpdate": "2026-04",
+    "isDemo": true
   },
   {
     "id": "waseel-trans",
@@ -99,7 +103,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-05"
+    "lastUpdate": "2026-05",
+    "isDemo": true
   },
   {
     "id": "tarheeb-trans",
@@ -119,7 +124,8 @@
       "web": "https://example.com/tarheeb-trans/web"
     },
     "verified": false,
-    "lastUpdate": "2026-06"
+    "lastUpdate": "2026-06",
+    "isDemo": true
   },
   {
     "id": "mihfaza-pay",
@@ -140,7 +146,8 @@
       "web": "https://example.com/mihfaza-pay/web"
     },
     "verified": true,
-    "lastUpdate": "2026-07"
+    "lastUpdate": "2026-07",
+    "isDemo": true
   },
   {
     "id": "faslah-pay",
@@ -160,7 +167,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-08"
+    "lastUpdate": "2026-08",
+    "isDemo": true
   },
   {
     "id": "saraf-pay",
@@ -180,7 +188,8 @@
       "web": "https://example.com/saraf-pay/web"
     },
     "verified": false,
-    "lastUpdate": "2026-01"
+    "lastUpdate": "2026-01",
+    "isDemo": true
   },
   {
     "id": "souqoli-shop",
@@ -201,7 +210,8 @@
       "web": "https://example.com/souqoli-shop/web"
     },
     "verified": true,
-    "lastUpdate": "2026-02"
+    "lastUpdate": "2026-02",
+    "isDemo": true
   },
   {
     "id": "mutajari-shop",
@@ -221,7 +231,8 @@
       "web": "https://example.com/mutajari-shop/web"
     },
     "verified": false,
-    "lastUpdate": "2026-03"
+    "lastUpdate": "2026-03",
+    "isDemo": true
   },
   {
     "id": "harij-shop",
@@ -241,7 +252,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-04"
+    "lastUpdate": "2026-04",
+    "isDemo": true
   },
   {
     "id": "baytak-real",
@@ -262,7 +274,8 @@
       "web": "https://example.com/baytak-real/web"
     },
     "verified": true,
-    "lastUpdate": "2026-05"
+    "lastUpdate": "2026-05",
+    "isDemo": true
   },
   {
     "id": "walid-real",
@@ -282,7 +295,8 @@
       "web": "https://example.com/walid-real/web"
     },
     "verified": false,
-    "lastUpdate": "2026-06"
+    "lastUpdate": "2026-06",
+    "isDemo": true
   },
   {
     "id": "gimm-real",
@@ -302,7 +316,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-07"
+    "lastUpdate": "2026-07",
+    "isDemo": true
   },
   {
     "id": "darsona-edu",
@@ -323,7 +338,8 @@
       "web": "https://example.com/darsona-edu/web"
     },
     "verified": true,
-    "lastUpdate": "2026-08"
+    "lastUpdate": "2026-08",
+    "isDemo": true
   },
   {
     "id": "momakabe-edu",
@@ -343,7 +359,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-01"
+    "lastUpdate": "2026-01",
+    "isDemo": true
   },
   {
     "id": "lugha-edu",
@@ -363,7 +380,8 @@
       "web": "https://example.com/lugha-edu/web"
     },
     "verified": false,
-    "lastUpdate": "2026-02"
+    "lastUpdate": "2026-02",
+    "isDemo": true
   },
   {
     "id": "tebibi-health",
@@ -384,7 +402,8 @@
       "web": "https://example.com/tebibi-health/web"
     },
     "verified": true,
-    "lastUpdate": "2026-03"
+    "lastUpdate": "2026-03",
+    "isDemo": true
   },
   {
     "id": "shelahiyhti-health",
@@ -404,7 +423,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-04"
+    "lastUpdate": "2026-04",
+    "isDemo": true
   },
   {
     "id": "siteheb-health",
@@ -424,7 +444,8 @@
       "web": "https://example.com/siteheb-health/web"
     },
     "verified": false,
-    "lastUpdate": "2026-05"
+    "lastUpdate": "2026-05",
+    "isDemo": true
   },
   {
     "id": "shighl-jobs",
@@ -445,7 +466,8 @@
       "web": "https://example.com/shighl-jobs/web"
     },
     "verified": true,
-    "lastUpdate": "2026-06"
+    "lastUpdate": "2026-06",
+    "isDemo": true
   },
   {
     "id": "hirfi-jobs",
@@ -465,7 +487,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-07"
+    "lastUpdate": "2026-07",
+    "isDemo": true
   },
   {
     "id": "muhimat-jobs",
@@ -485,7 +508,8 @@
       "web": "https://example.com/muhimat-jobs/web"
     },
     "verified": false,
-    "lastUpdate": "2026-08"
+    "lastUpdate": "2026-08",
+    "isDemo": true
   },
   {
     "id": "taqso-weather",
@@ -506,7 +530,8 @@
       "web": "https://example.com/taqso-weather/web"
     },
     "verified": true,
-    "lastUpdate": "2026-01"
+    "lastUpdate": "2026-01",
+    "isDemo": true
   },
   {
     "id": "hadaya-other",
@@ -526,7 +551,8 @@
       "web": ""
     },
     "verified": false,
-    "lastUpdate": "2026-02"
+    "lastUpdate": "2026-02",
+    "isDemo": true
   },
   {
     "id": "tarjom-other",
@@ -546,6 +572,7 @@
       "web": "https://example.com/tarjom-other/web"
     },
     "verified": false,
-    "lastUpdate": "2026-03"
+    "lastUpdate": "2026-03",
+    "isDemo": true
   }
 ]
