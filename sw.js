@@ -1,5 +1,5 @@
 /* SyrHub offline shell. Increment CACHE_NAME when public assets change. */
-var CACHE_NAME = 'syh-cache-v31';
+var CACHE_NAME = 'syh-cache-v32';
 
 var CORE_ASSETS = [
   './',

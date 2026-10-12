@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl" data-theme="light">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.classList.toggle('native-app',/SyrHubAndroid\//.test(navigator.userAgent));</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SyrHub — دليل التطبيقات السورية</title>
 <meta name="description" content="دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.">
@@ -1539,7 +1540,7 @@
       <li><a href="#contribute" data-i18n="navContribute">ساهم</a></li>
     </ul>
 
-    <div class="nav-actions"><button id="accountOpen" class="icon-btn" type="button">دخول</button><button id="notificationsOpen" class="icon-btn" type="button" aria-label="الإشعارات / Notifications">🔔</button>
+    <div class="nav-actions"><button id="nativeMore" class="icon-btn" type="button" aria-label="المزيد / More">⋯</button><button id="accountOpen" class="icon-btn" type="button">دخول</button><button id="notificationsOpen" class="icon-btn" type="button" aria-label="الإشعارات / Notifications">🔔</button>
       <button id="langToggle" class="icon-btn" type="button" data-action="lang">EN</button>
       <button id="themeToggle" class="icon-btn" type="button" data-action="theme">
         <span class="icon-sun" aria-hidden="true">☀️</span>
@@ -3277,6 +3278,7 @@
     /* ============ ربط الأحداث ============ */
     function init(){
       T = I18N[lang];
+      if(root.classList.contains('native-app')){document.querySelector('.brand img').src='icons/App-SyrHub-Icon.png';}
 
       /* فلاتر محفوظة (منصة + موثّق فقط) */
       try{
@@ -3588,6 +3590,7 @@
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
+      document.getElementById('nativeMore').onclick=function(){openSheet('moreSheet');};
       var bottomNav = document.getElementById('bottomNav');
       bottomNav.addEventListener('click', function(e){
         var it = e.target.closest('.bn-item');
