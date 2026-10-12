@@ -1,21 +1,24 @@
 import {userIdentity} from './user-auth.mjs';
 const json = (data,status=200) => new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 export function validate(data) {
-  if(!data || !['app','promo','review'].includes(data.type)) throw new Error('Invalid contribution type');
+  if(!data || !['app','promo','review','need','report'].includes(data.type)) throw new Error('Invalid contribution type');
   const result={type:data.type};
-  for(const [key,max] of Object.entries({name:100,email:254,title:150,appId:100,url:1000,description:3000,code:80})) {
+  for(const [key,max] of Object.entries({name:100,email:254,title:150,appId:100,url:1000,description:3000,code:80,city:100,reason:50})) {
     if(data[key] !== undefined && typeof data[key] !== 'string') throw new Error('Invalid field');
     result[key]=(data[key] || '').trim();
     if(result[key].length>max) throw new Error('Field too long');
   }
   if(!result.name || result.description.length<10) throw new Error('Name and description are required');
   if(result.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(result.email)) throw new Error('Invalid email');
-  if(result.type==='app' && !result.title) throw new Error('App name is required');
-  if(result.type!=='app' && !result.appId) throw new Error('App is required');
-  if(result.type!=='review') {
+  if(['app','need'].includes(result.type) && !result.title) throw new Error('App name is required');
+  if(['promo','review','report'].includes(result.type) && !result.appId) throw new Error('App is required');
+  if(result.type==='report'&&!['broken_link','outdated','unavailable','other'].includes(result.reason))throw new Error('Invalid report reason');
+  if(result.city&&!['nationwide','damascus','rif-dimashq','aleppo','homs','hama','latakia','tartus','idlib','raqqa','deir-ez-zor','hasakah','daraa','suwayda','quneitra'].includes(result.city))throw new Error('Invalid city');
+  if(['app','promo'].includes(result.type)||result.url) {
     let url;try{url=new URL(result.url);}catch{throw new Error('Official URL is required');}
     if(url.protocol!=='https:' || url.username || url.password) throw new Error('Use an HTTPS URL');
-  } else {
+  }
+  if(result.type==='review') {
     if(!Number.isInteger(data.rating) || data.rating<1 || data.rating>5) throw new Error('Invalid rating');
     result.rating=data.rating;
   }

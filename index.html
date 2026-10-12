@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="light">
 <head>
+<base href="/">
 <meta charset="UTF-8">
 <script>document.documentElement.classList.toggle('native-app',/SyrHubAndroid\//.test(navigator.userAgent));</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +22,13 @@
 <meta property="og:site_name" content="SyrHub">
 <meta property="og:title" content="SyrHub — دليل التطبيقات السورية">
 <meta property="og:description" content="دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.">
-<meta property="og:image" content="https://ali-mhd-ibrahim.github.io/SyrHub/SyrHub-Icon.png?v=2">
+<meta property="og:image" content="https://syrhub.pages.dev/icons/App-SyrHub-Icon.png">
 <meta property="og:image:width" content="512">
 <meta property="og:image:height" content="512">
 <meta property="og:locale" content="ar_SY">
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ali-mhd-ibrahim.github.io/SyrHub/SyrHub-Icon.png?v=2">
+<meta name="twitter:image" content="https://syrhub.pages.dev/icons/App-SyrHub-Icon.png">
 <meta name="twitter:title" content="SyrHub — دليل التطبيقات السورية">
 <meta name="twitter:description" content="دليل موحّد لأبرز التطبيقات المحلية السورية، مصنّفة وموثّقة بروابطها الرسمية.">
 
@@ -52,7 +53,7 @@
     try { t = localStorage.getItem('syh-theme'); l = localStorage.getItem('syh-lang'); } catch(e) {}
     if(!t){ t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
     r.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
-    l = l || 'ar';
+    l = new URL(location.href).searchParams.get('lang') || l || 'ar';
     l = l === 'en' ? 'en' : 'ar';
     r.setAttribute('lang', l);
     r.setAttribute('dir', l === 'en' ? 'ltr' : 'rtl');
@@ -1524,6 +1525,7 @@
   }
 </style>
 <link rel="stylesheet" href="enhancements.css">
+<script src="local-data.js"></script>
 </head>
 <body>
 
@@ -1571,7 +1573,7 @@
         </select>
       </div>
     </div>
-    <div class="filters-row" id="filtersRow">
+    <div class="filters-row" id="filtersRow"><label class="city-filter"><span data-i18n="cityFilterLabel">المدينة</span><select id="cityFilter"><option value="" data-i18n="allCities">كل المدن</option></select></label>
       <div class="filter-group">
         <span class="filter-label" data-i18n="platformFilterLabel">المنصة:</span>
         <div class="filter-options" id="platformFilter" role="group" data-i18n-aria="platformFilterAria">
@@ -1614,10 +1616,10 @@
 
   <div class="catalog-toolbar"><p class="result-count" id="resultCount" aria-live="polite"></p><div class="catalog-sync"><span id="catalogStatus" role="status" aria-live="polite"></span><button id="catalogRefresh" type="button" class="mini-chip" aria-label="تحديث المحتوى / Refresh content">↻</button></div></div>
   <div class="grid" id="grid"></div>
-  <div class="empty-state" id="emptyState" style="display:none;">
+  <p id="citySearchNote" class="local-search-note" role="status"></p><div class="empty-state" id="emptyState" style="display:none;">
     <div class="glyph" aria-hidden="true">🔍</div>
     <p class="empty-title" data-i18n="emptyTitle">لا توجد نتائج مطابقة</p>
-    <p data-i18n="emptyText">جرّب كلمة بحث أخرى أو فئة مختلفة.</p>
+    <p data-i18n="emptyText">جرّب كلمة بحث أخرى أو فئة مختلفة.</p><button class="btn btn-primary" id="requestNeed" type="button" data-i18n="requestNeed">اطلب تطبيقاً لهذه الحاجة</button>
   </div>
 </section>
 
@@ -1769,7 +1771,7 @@
     </div>
     <p class="detail-desc" id="detailDesc"></p>
     <div class="platforms" id="detailPlatforms"></div>
-    <div class="detail-update" id="detailUpdate" hidden></div>
+    <div class="detail-update" id="detailUpdate" hidden></div><section class="local-facts" id="detailLocalFacts"></section>
     <div class="detail-actions" id="detailActions"></div>
     <div class="detail-stores" id="detailStores"></div>
     <div class="detail-section" id="detailOffers">
@@ -1880,8 +1882,9 @@
         statCats:"فئة",
         statVerified:"موثّق",
         statOffers:"عرض نشط",
-        searchPlaceholder:"ابحث باسم التطبيق أو وصفه...",
+        searchPlaceholder:"ابحث بحاجتك أو المدينة: توصيل طعام في دمشق",
         searchLabel:"ابحث عن تطبيق",
+        cityFilterLabel:"المدينة",allCities:"كل المدن",requestNeed:"اطلب تطبيقاً لهذه الحاجة",citySearchNote:"يعرض البحث المدن المحدّدة فقط؛ التطبيقات دون بيانات مدينة لا تُفترض متاحة فيها.",
         filterLabel:"تصفية حسب الفئة",
         platformFilterLabel:"المنصة:",
         platformFilterAria:"تصفية حسب المنصة",
@@ -2014,8 +2017,9 @@
         statCats:"Categories",
         statVerified:"Verified",
         statOffers:"Active Offers",
-        searchPlaceholder:"Search by app name or description...",
+        searchPlaceholder:"Search a need or city: food delivery in Damascus",
         searchLabel:"Search apps",
+        cityFilterLabel:"City",allCities:"All cities",requestNeed:"Request an app for this need",citySearchNote:"Only documented coverage is matched. Apps without city information are not assumed to serve it.",
         filterLabel:"Filter by category",
         platformFilterLabel:"Platform:",
         platformFilterAria:"Filter by platform",
@@ -2143,12 +2147,12 @@
     var sortBy = 'rating';
     var activePlatform = 'all';
     var verifiedOnly = false;
-    var SITE_URL = 'https://ali-mhd-ibrahim.github.io/SyrHub/';
+    var SITE_URL = location.origin+'/';
     var currentDetail = null;
-    var prevHash = '';
+    var prevHash = '',returnRoute='/',activeCity='';
     var navStack = [];
     var scrollLockPos = 0;
-    var compareOpen = false;
+    var compareOpen = false,browseState=null;
     var T;
     function fcmInit(){}
     function toggleNotifications(){if(window.SyhAccount)window.SyhAccount.notifications();}
@@ -2280,6 +2284,7 @@
       sortSel.options[1].textContent = T.sortName;
 
       applyTheme(theme);
+      renderCityFilter();
       renderPlatformFilter();
       renderChips();
       render();
@@ -2311,7 +2316,7 @@
       updateMeta('og:description', p.desc);
       updateMeta('twitter:title', p.title);
       updateMeta('twitter:description', p.desc);
-      updateJsonLd(app);
+      updateJsonLd(app);var canonical=document.querySelector('link[rel=canonical]');if(!canonical){canonical=document.createElement('link');canonical.rel='canonical';document.head.appendChild(canonical);}canonical.href=app?location.origin+'/apps/'+encodeURIComponent(app.id):location.origin+'/';
     }
     function resetSeo(){
       document.title = T.metaTitle;
@@ -2320,7 +2325,7 @@
       updateMeta('og:description', T.metaDesc);
       updateMeta('twitter:title', T.metaTitle);
       updateMeta('twitter:description', T.metaDesc);
-      updateJsonLd(null);
+      updateJsonLd(null);var canonical=document.querySelector('link[rel=canonical]');if(canonical)canonical.href=location.origin+'/';
     }
     /* ============ بيانات منظمة (JSON-LD) للفهرسة ============ */
     function jsonLdFor(app){
@@ -2332,7 +2337,7 @@
         full.description = appDesc(app);
         full.applicationCategory = (catInfo(app.category).label_en || catInfo(app.category).label);
         full.operatingSystem = (app.platforms || []).join(', ');
-        full.url = app.officialLink || '';
+        full.url = location.origin+'/apps/'+encodeURIComponent(app.id);
         if(app.lastUpdate){ full.dateModified = app.lastUpdate; }
         if(app.icon){ full.image = app.icon; }
         if(r.count > 0){
@@ -2661,19 +2666,13 @@
       return (typeof APPS !== 'undefined') ? APPS.filter(function(a){ return a.id === id; })[0] : null;
     }
     function hashAppId(){
-      var h = (typeof window !== 'undefined' && window.location) ? window.location.hash : '';
-      var m = (h || '').match(/^#app\/(.+)$/);
-      if(!m){ return ''; }
-      try{ return decodeURIComponent(m[1]); }catch(e){ return m[1]; }
+      var match=location.hash.match(/^#app\/(.+)$/)||location.pathname.match(/^\/apps\/([^/]+)\/?$/);
+      if(!match)return '';try{return decodeURIComponent(match[1]);}catch(e){return '';}
     }
-    function setAppHash(id){
-      try{
-        var h = '#app/' + encodeURIComponent(id);
-        if(history.pushState){ history.pushState(null, '', h); }
-        else{ window.location.hash = h; }
-      }catch(e){
-        try{ window.location.hash = '#app/' + encodeURIComponent(id); }catch(e2){}
-      }
+    function setAppHash(id){history.pushState({syhDetail:true},'', '/apps/'+encodeURIComponent(id));}
+    function leaveApp(){
+      if(history.state&&history.state.syhDetail){history.back();return;}
+      history.replaceState(null,'',returnRoute||'/');handleRoute();
     }
     function detailStoreButtons(app){
       var links = app.storeLinks || {};
@@ -2760,7 +2759,7 @@
             '<span class="detail-rating-num">' + rating.avg.toFixed(1) + '</span>' +
             '<span class="rating-count">(' + rating.count + ' ' + T.reviewCount(rating.count) + ')</span>'
           : '<span class="rating-count">' + T.ratingCountNone + '</span>';
-        document.getElementById('detailDesc').textContent = appDesc(app);
+        document.getElementById('detailDesc').textContent = appDesc(app);renderLocalFacts(app);
         document.getElementById('detailPlatforms').innerHTML = (app.platforms || []).map(function(p){ return '<span>' + platformLabel(p) + '</span>'; }).join('');
         var updEl = document.getElementById('detailUpdate');
         if(updEl){
@@ -2813,7 +2812,7 @@
       }catch(e){ /* لا تكسر التصفح عند أي خطأ في التفاصيل */ }
     }
     function showDetails(appId){
-      try{ scrollLockPos = (window.pageYOffset || document.documentElement.scrollTop || 0); }catch(e){}
+      if(!currentDetail){try{scrollLockPos=location.pathname.startsWith('/apps/')?(browseState?.scroll||0):(window.pageYOffset||0);}catch(e){}}
       renderDetails(appId);
       var panel = document.getElementById('detailView');
       if(panel){ panel.hidden = false; }
@@ -2829,22 +2828,7 @@
       currentDetail = null;
       resetSeo();
     }
-    function reportBrokenLink(){
-      var app = findByAppId(currentDetail);
-      if(!app){ return; }
-      var title = '[Broken link] ' + appName(app);
-      var body = 'App: ' + appName(app) + ' (' + app.id + ')\n';
-      body += 'Official link: ' + (app.officialLink || '') + '\n';
-      var urls = app.storeLinks || {};
-      var keys = ['android', 'ios', 'web'];
-      for(var i = 0; i < keys.length; i++){
-        if(urls[keys[i]]){ body += keys[i] + ': ' + urls[keys[i]] + '\n'; }
-      }
-      var url = 'https://github.com/CashAppSy/SyrHub/issues/new?title=' +
-        encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-      try{ window.open(url, '_blank', 'noopener'); }catch(e2){ window.location.href = url; }
-      trackAnalytics('report_broken_link', { app_id: app.id, app_name: appName(app) });
-    }
+    function reportBrokenLink(){if(currentDetail)window.dispatchEvent(new CustomEvent('syh:contribute',{detail:{type:'report',appId:currentDetail}}));}
     function hashIsCompare(){
       return (typeof window !== 'undefined' && window.location && window.location.hash) === '#compare';
     }
@@ -2932,7 +2916,7 @@
     function shareApp(appId){
       var app = findByAppId(appId);
       if(!app){ return; }
-      var url = location.origin + location.pathname + '#app/' + encodeURIComponent(appId);
+      var url = location.origin+'/apps/'+encodeURIComponent(appId);
       var finish = function(method){
         trackAnalytics('share_app', { app_id: appId, method: method, page: '#app/' + appId });
         var btn = document.getElementById('detailShare');
@@ -2958,11 +2942,11 @@
     function openApp(appId){
       try{ SyhStorage.addRecentlyViewed(appId); }
       catch(e){}
-      renderRecent();
+      if(!currentDetail)saveBrowseState();renderRecent();
       var app = findByAppId(appId);
       if(hashAppId() !== appId){
         var current = (typeof window !== 'undefined' && window.location) ? window.location.hash : '';
-        prevHash = current;
+        prevHash = current;if(!location.pathname.startsWith('/apps/'))returnRoute=location.pathname+location.search+location.hash;
         if(current !== '' && navStack[navStack.length - 1] !== current){
           navStack.push(current);
         }
@@ -3098,8 +3082,8 @@
       var icon=app.icon?'<img class="app-icon" src="'+escHtml(app.icon)+'" alt="" loading="lazy" decoding="async" width="64" height="64">':escHtml(cat.icon);
       var score=rating.count>0?'<span class="store-score">★ '+rating.avg.toFixed(1)+'</span><span class="store-review-count">('+rating.count+')</span>':'<span class="store-review-count">'+T.ratingCountNone+'</span>';
       var query=(document.getElementById('search').value||'').trim();
-      return '<article class="card store-card" data-app="'+escHtml(app.id)+'" role="button" tabindex="0" aria-label="'+escHtml(appName(app)+(lang==='en'?' — View app':' — عرض التطبيق'))+'">'+
-        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><div class="store-meta">'+score+(app.verified?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></article>';
+      return '<a class="card store-card" href="/apps/'+encodeURIComponent(app.id)+'" data-app="'+escHtml(app.id)+'" aria-label="'+escHtml(appName(app)+(lang==='en'?' — View app':' — عرض التطبيق'))+'">'+
+        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><div class="store-meta">'+score+(app.verified?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></a>';
     }
 
     var lastSearchCount = 0;
@@ -3133,23 +3117,20 @@
       var dIdx = (disp + '').toLowerCase().indexOf(ql);
       return dIdx !== -1 ? hlWrap(disp, ql) : escHtml(disp);
     }
-    function searchScore(app, q){
-      var ql = q.toLowerCase();
-      var m = function(v){ return (v || '').toLowerCase(); };
-      var names = [appName(app), app.name || '', app.name_en || ''];
-      var score = 0, i;
-      for(i = 0; i < names.length; i++){
-        if(!names[i]){ continue; }
-        var n = m(names[i]);
-        if(n === ql){ score = Math.max(score, 100); }
-        else if(n.indexOf(ql) === 0){ score = Math.max(score, 85); }
-        else if(n.indexOf(ql) !== -1){ score = Math.max(score, 65); }
-      }
-      var cat = catInfo(app.category);
-      if(m(cat.label).indexOf(ql) !== -1 || m(cat.label_en).indexOf(ql) !== -1){ score = Math.max(score, 45); }
-      if(m(appDesc(app)).indexOf(ql) !== -1 || m(app.description || '').indexOf(ql) !== -1){ score = Math.max(score, 30); }
-      if((app.platforms || []).indexOf(q) !== -1){ score = Math.max(score, 20); }
-      return score;
+    function searchScore(app,q){return SyhLocal.score(app,q,CATEGORIES,activeCity);}
+    function saveBrowseState(){
+      var state={query:document.getElementById('search').value,category:activeCategory,city:activeCity,platform:activePlatform,sort:sortBy,verified:verifiedOnly,scroll:currentDetail?scrollLockPos:window.scrollY};
+      browseState=state;try{sessionStorage.setItem('syh-browse',JSON.stringify(state));}catch(e){}
+    }
+    function renderCityFilter(){var select=document.getElementById('cityFilter');select.replaceChildren();var all=document.createElement('option');all.value='';all.textContent=T.allCities;select.appendChild(all);SyhLocal.cities.forEach(function(city){var option=document.createElement('option');option.value=city[0];option.textContent=city[lang==='en'?2:1];select.appendChild(option);});select.value=activeCity;}
+    function renderLocalFacts(app){
+      var box=document.getElementById('detailLocalFacts');box.replaceChildren();var english=lang==='en';
+      var availability=english?{unknown:'Not checked',reported:'Reported by users',verified:'Checked',unavailable:'Unavailable'}:{unknown:'لم يُتحقق',reported:'أبلغ عنه المستخدمون',verified:'تم التحقق',unavailable:'غير متاح'};
+      var costs=english?{unknown:'Unknown',free:'Free',paid:'Paid',freemium:'Free with paid features'}:{unknown:'غير معروف',free:'مجاني',paid:'مدفوع',freemium:'مجاني مع ميزات مدفوعة'};
+      var coverage=(app.cities||[]).map(function(key){if(key==='nationwide')return english?'Across Syria':'كل سوريا';var city=SyhLocal.cities.find(function(x){return x[0]===key;});return city?city[english?2:1]:'';}).filter(Boolean).join('، ');
+      var pairs=[[english?'Service coverage':'المدن المخدومة',coverage||costs.unknown],[english?'Availability in Syria':'العمل داخل سوريا',availability[app.availability||'unknown']],[english?'App cost':'تكلفة التطبيق',costs[app.cost||'unknown']],[english?'Payment methods':'طرق الدفع',(app.paymentMethods||[]).join('، ')||costs.unknown],[english?'Account required':'يحتاج حساباً',app.needsAccount==='yes'?(english?'Yes':'نعم'):app.needsAccount==='no'?(english?'No':'لا'):costs.unknown],[english?'Last checked':'آخر تحقق',app.lastChecked||availability.unknown]];
+      pairs.forEach(function(pair){var cell=document.createElement('div'),label=document.createElement('span'),value=document.createElement('strong');label.textContent=pair[0];value.textContent=pair[1];cell.append(label,value);box.appendChild(cell);});
+      if(app.verificationNotes){var note=document.createElement('p');note.textContent=app.verificationNotes;box.appendChild(note);}if(app.verificationSource){var source=document.createElement('a');source.href=app.verificationSource;source.target='_blank';source.rel='noopener';source.textContent=english?'Verification source ↗':'مصدر التحقق ↗';box.appendChild(source);}
     }
     function searchCompare(a, b){
       if(b._s !== a._s){ return b._s - a._s; }
@@ -3184,7 +3165,7 @@
         var matchesCategory = activeCategory === 'all' || activeCategory === 'favorites' || app.category === activeCategory;
         var matchesPlatform = activePlatform === 'all' || (app.platforms || []).indexOf(activePlatform) !== -1;
         var isVerified = !verifiedOnly || !!app.verified;
-        return matchesCategory && matchesPlatform && isVerified;
+        var city=activeCity||SyhLocal.parse(q).city;return matchesCategory&&matchesPlatform&&isVerified&&SyhLocal.serves(app,city);
       });
 
       if(activeCategory === 'favorites'){
@@ -3207,6 +3188,8 @@
         lastSearchCount = filtered.length;
         sorted = sortApps(filtered);
       }
+      document.getElementById('citySearchNote').textContent=(activeCity||SyhLocal.parse(q).city)?T.citySearchNote:'';
+      if(!currentDetail)saveBrowseState();
       grid.innerHTML = sorted.map(function(app, i){ return cardHTML(app, i); }).join('');
       resultCount.textContent = T.resultCount(sorted.length);
       var emptyTitle = emptyState.querySelector('.empty-title');
@@ -3242,6 +3225,9 @@
         if(localStorage.getItem('syh-verified') === '1'){ verifiedOnly = true; }
       }catch(err){}
 
+      try{browseState=JSON.parse(sessionStorage.getItem('syh-browse'));if(browseState){document.getElementById('search').value=String(browseState.query||'').slice(0,500);activeCategory=browseState.category==='favorites'||CATEGORIES.some(function(x){return x.key===browseState.category;})?browseState.category:'all';activeCity=SyhLocal.cities.some(function(x){return x[0]===browseState.city;})?browseState.city:'';sortBy=browseState.sort==='name'?'name':'rating';activePlatform=['android','ios','web'].includes(browseState.platform)?browseState.platform:'all';verifiedOnly=!!browseState.verified;scrollLockPos=Number(browseState.scroll)||0;}}catch(e){}
+      document.getElementById('cityFilter').onchange=function(){activeCity=this.value;render();};
+      window.addEventListener('scroll',function(){if(!currentDetail&&!location.pathname.startsWith('/apps/'))saveBrowseState();},{passive:true});
       /* شارات النسخ — APK (أندرويد) + PWA (الآيفون) أسفل يمين الموقع */
       var badgeApk = document.getElementById('badgeApk');
       var badgePwa = document.getElementById('badgePwa');
@@ -3378,7 +3364,7 @@
       grid.addEventListener('keydown',function(e){var card=e.target.closest('.store-card');if(card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openApp(card.dataset.app);}});
       grid.addEventListener('click', function(e){
         var card = e.target.closest('.card');
-        if(card){
+        if(card){e.preventDefault();
           var appNameText = card.querySelector('h3').textContent.trim();
           var appCatText = card.querySelector('.cat-tag').textContent.trim();
           if(e.target.closest('.btn-primary')){
@@ -3465,8 +3451,7 @@
       var detailView = document.getElementById('detailView');
       var detailFav = document.getElementById('detailFav');
       var navToPrev = function(){
-        var target = navStack.length ? navStack.pop() : '';
-        try{ window.location.hash = target; }catch(e){ closeDetails(); }
+        leaveApp();
       };
       document.getElementById('detailBack').addEventListener('click', navToPrev);
       detailFav.addEventListener('click', function(){
@@ -3533,8 +3518,7 @@
       }
       function navHome(){
         if(currentDetail){
-          var t = (prevHash && prevHash.indexOf('#app/') !== 0) ? prevHash : '';
-          try{ window.location.hash = t; }catch(e){ closeDetails(); }
+          history.replaceState(null,'',returnRoute||'/');handleRoute();
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -3738,11 +3722,14 @@
       });
 
       applyLang(lang);
-      window.addEventListener('hashchange', handleRoute);
+      window.addEventListener('hashchange', handleRoute);window.addEventListener('popstate',handleRoute);
       handleRoute();
     }
 
+    var pageBootstrap=null;try{var element=document.getElementById('syh-bootstrap');if(element)pageBootstrap=JSON.parse(element.textContent);}catch(e){}
+    if(pageBootstrap){APPS=pageBootstrap.catalog.apps;CATEGORIES=pageBootstrap.catalog.categories;PROMOTIONS=pageBootstrap.catalog.promotions;REVIEWS=pageBootstrap.catalog.reviews;}
     init();
+    var ssr=document.getElementById('serverAppPage');if(ssr)ssr.hidden=true;
     var contentVersion = null, catalogRequest = null, catalogFetched = false;
     var originalI18N={ar:Object.assign({},I18N.ar),en:Object.assign({},I18N.en)};
     function applyCatalog(data){
@@ -3758,10 +3745,10 @@
       root.classList.toggle('hide-recent', site.showRecent===false);
       root.classList.toggle('hide-contribute', site.showContribute===false);
       if(activeCategory!=='all' && activeCategory!=='favorites' && !CATEGORIES.some(function(c){return c.key===activeCategory;})){activeCategory='all';}
-      if(currentDetail && !findByAppId(currentDetail)){closeDetails();}
+      if(currentDetail && !findByAppId(currentDetail)){history.replaceState(null,'',returnRoute||'/');closeDetails();}
       applyLang(lang);
     }
-    try { applyCatalog(JSON.parse(localStorage.getItem('syh-catalog') || 'null')); } catch(e) {}
+    try { applyCatalog(pageBootstrap||JSON.parse(localStorage.getItem('syh-catalog') || 'null')); } catch(e) {}
     function catalogStatus(state){
       var node=document.getElementById('catalogStatus');
       node.dataset.state=state;
@@ -3793,7 +3780,7 @@
   /* تسجيل Service Worker — للعمل دون اتصال وغياب مانع الإعلانات */
   if('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')){
     window.addEventListener('load', function(){
-      navigator.serviceWorker.register('sw.js', {updateViaCache:'none'}).then(function(reg){
+      navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(reg){
         window.addEventListener('online', function(){reg.update().catch(function(){});});
       }).catch(function(err){
         /* تجاهل أخطاء التسجيل — لا يجب أن تعطل الموقع */
