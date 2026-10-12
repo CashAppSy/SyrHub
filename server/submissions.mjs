@@ -1,3 +1,4 @@
+import {validateListing} from './owner-listing.mjs';
 import {userIdentity} from './user-auth.mjs';
 const json = (data,status=200) => new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 export function validate(data) {
@@ -22,6 +23,7 @@ export function validate(data) {
     if(!Number.isInteger(data.rating) || data.rating<1 || data.rating>5) throw new Error('Invalid rating');
     result.rating=data.rating;
   }
+  if(data.listing!==undefined){if(result.type!=='app')throw new Error('Listing details require an app request');result.listingDetails=JSON.stringify(validateListing(data.listing));}
   return result;
 }
 const base64url = bytes => btoa(String.fromCharCode(...new Uint8Array(bytes))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');

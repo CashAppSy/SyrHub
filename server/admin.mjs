@@ -39,6 +39,7 @@ export async function handleAdmin(request,env,id){
    input=JSON.parse(new TextDecoder().decode(bytes));edited=validate(input);
    if(!(edited.type==='need'||edited.type==='report'?['pending','in_progress','resolved','rejected']:['pending','approved','rejected']).includes(input.status))throw new Error('Invalid status');
    if(typeof input.updateTime!=='string' || !/^\d{4}-\d{2}-\d{2}T[\d:.]+Z$/.test(input.updateTime))throw new Error('Version required');
+   if(input.responseNote!==undefined&&(typeof input.responseNote!=='string'||input.responseNote.length>2000))throw new Error('Invalid public response');
    if(typeof input.moderationNote!=='string' || input.moderationNote.length>2000)throw new Error('Invalid moderation note');
   }catch(error){return json({error:error.message},400);}
   const existingResponse=await fetch(base+'/'+id,{headers:{Authorization:'Bearer '+token}});
@@ -47,7 +48,7 @@ export async function handleAdmin(request,env,id){
   const existing=await existingResponse.json(),previous=decode(existing);
   if(existing.updateTime!==input.updateTime)return json({error:'This request changed. Refresh before saving.'},409);
   if(previous.type!==edited.type)return json({error:'Submission type cannot be changed'},400);
-  const fields={},values={...edited,status:input.status,moderationNote:input.moderationNote.trim(),reviewedBy:uid};
+  const fields={},values={...edited,status:input.status,moderationNote:input.moderationNote.trim(),responseNote:(input.responseNote??previous.responseNote??'').trim(),reviewedBy:uid};
   let catalogUpdate=null;
   if(input.status==='approved' || previous.publishedId){
     const current=await readCatalog(env,token);let next;

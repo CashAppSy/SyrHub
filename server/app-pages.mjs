@@ -21,7 +21,7 @@ export function renderAppPage(data,id,origin,english=false){
 }
 export async function appPage(request,env,id){const response=await publicCatalog(env);if(!response.ok)return new Response('Content temporarily unavailable',{status:503,headers:{'Retry-After':'60','Cache-Control':'no-store'}});const url=new URL(request.url);return renderAppPage(await response.json(),id,url.origin,url.searchParams.get('lang')==='en');}
 export function renderSitemap(data,origin){
- const urls=[{url:origin+'/'},...data.catalog.apps.filter(app=>!app.isDemo).map(app=>({url:origin+'/apps/'+encodeURIComponent(app.id),date:app.lastChecked||app.lastUpdate}))];
+ const urls=[{url:origin+'/'},{url:origin+'/owners'},...data.catalog.apps.filter(app=>!app.isDemo).map(app=>({url:origin+'/apps/'+encodeURIComponent(app.id),date:app.lastChecked||app.lastUpdate}))];
  return '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(x=>'<url><loc>'+escape(x.url)+'</loc>'+(/^\d{4}-\d{2}-\d{2}$/.test(x.date||'')?'<lastmod>'+x.date+'</lastmod>':'')+'</url>').join('')+'</urlset>';
 }
 export async function sitemap(request,env){const response=await publicCatalog(env);if(!response.ok)return new Response('Sitemap temporarily unavailable',{status:503,headers:{'Retry-After':'60'}});return new Response(renderSitemap(await response.json(),new URL(request.url).origin),{headers:{'Content-Type':'application/xml; charset=utf-8','Cache-Control':'no-store'}});}

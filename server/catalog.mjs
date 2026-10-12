@@ -38,6 +38,7 @@ export function validateRecord(collection,input,catalog){
   if(!Array.isArray(input.platforms)||!input.platforms.length||input.platforms.some(x=>!['android','ios','web'].includes(x)))throw new Error('Choose at least one platform');
   record.platforms=[...new Set(input.platforms)];record.officialLink=url(input.officialLink,true);record.icon=url(input.icon);record.storeLinks={};
   for(const key of ['android','ios','web']){const link=url(input.storeLinks?.[key]);if(link)record.storeLinks[key]=link;}
+  const screenshots=input.screenshots??[];if(!Array.isArray(screenshots)||screenshots.length>5)throw new Error('Maximum five screenshots');record.screenshots=screenshots.map(value=>url(value,true));
   record.verified=bool(input.verified);record.isDemo=bool(input.isDemo);record.lastUpdate=date(input.lastUpdate,true);Object.assign(record,localMetadata(input,{text,date,url}));
  }else if(collection==='promotions'||collection==='reviews'){
   record.isDemo=bool(input.isDemo);record.appId=id(input.appId);if(!catalog.apps.some(x=>x.id===record.appId))throw new Error('Choose an existing app');
@@ -71,7 +72,7 @@ export function changeCatalog(catalog,input){
   if(collection==='apps'){next.promotions=next.promotions.filter(x=>x.appId!==target);next.reviews=next.reviews.filter(x=>x.appId!==target);}
  }else if(input.action==='save'){
   let candidate=input.record;
-  if(collection==='apps'&&candidate){const prior=next.apps.find(x=>x.id===candidate.id);candidate={...candidate};for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo'])if(candidate[key]===undefined&&prior)candidate[key]=prior[key];}
+  if(collection==='apps'&&candidate){const prior=next.apps.find(x=>x.id===candidate.id);candidate={...candidate};for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo','screenshots'])if(candidate[key]===undefined&&prior)candidate[key]=prior[key];}
   const record=validateRecord(collection,candidate,next),index=next[collection].findIndex(x=>x[key]===record[key]);
   if(index<0)next[collection].push(record);else next[collection][index]=record;
  }else throw new Error('Invalid action');
@@ -82,7 +83,7 @@ export function publishSubmission(catalog,input,edited,submissionId){
  const prior=catalog[collection].find(x=>x.id===publishedId);
  let record;
  if(edited.type==='app')record={...prior,id:publishedId,name:edited.title,name_en:input.name_en??prior?.name_en,description:edited.description,description_en:input.description_en??prior?.description_en,category:input.category||prior?.category||'other',platforms:input.platforms||prior?.platforms||['web'],officialLink:edited.url,icon:input.icon??prior?.icon,storeLinks:input.storeLinks??prior?.storeLinks,verified:input.verified??prior?.verified??false,lastUpdate:input.lastUpdate??prior?.lastUpdate};
- if(edited.type==='app')for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo'])record[key]=input[key]??prior?.[key];
+ if(edited.type==='app')for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo','screenshots'])record[key]=input[key]??prior?.[key];
  if(edited.type==='promo')record={...prior,id:publishedId,appId:edited.appId,type:edited.code?'coupon':'promotion',title:edited.title||'عرض جديد',title_en:input.name_en??prior?.title_en,description:edited.description,description_en:input.description_en??prior?.description_en,code:edited.code,discountLabel:input.discountLabel??prior?.discountLabel,link:edited.url,expiryDate:input.expiryDate??prior?.expiryDate,verified:input.verified??prior?.verified??false};
  if(edited.type==='review')record={...prior,id:publishedId,appId:edited.appId,author:edited.name,rating:edited.rating,comment:edited.description,comment_en:input.description_en??prior?.comment_en,date:prior?.date||new Date().toISOString().slice(0,10)};
  record.sourceSubmission=submissionId;

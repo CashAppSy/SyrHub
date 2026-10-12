@@ -1,5 +1,5 @@
 /* SyrHub offline shell. Increment CACHE_NAME when public assets change. */
-var CACHE_NAME = 'syh-cache-v36';
+var CACHE_NAME = 'syh-cache-v37';
 
 var CORE_ASSETS = [
   './',
@@ -15,6 +15,10 @@ var CORE_ASSETS = [
   './enhancements.css',
   './contributions.js',
   './account.js',
+  './landing.js',
+  './owners',
+  './owners.js',
+  './owners.css',
   './local-data.js',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -79,7 +83,7 @@ self.addEventListener('fetch', function(event){
         if(!response.ok){return response;}
         var copy = response.clone();
         event.waitUntil(caches.open(CACHE_NAME).then(function(cache){
-          return cache.put(new URL(request.url).pathname.startsWith('/apps/')?request:'./index.html', copy);
+          var path=new URL(request.url).pathname;return cache.put(path==='/'||path==='/index.html'?'./index.html':request, copy);
         }));
         return response;
       }).catch(function(){
