@@ -1592,23 +1592,7 @@
   </div>
 </div>
 
-<section class="promos-section" id="promosSection" style="display:none;">
-  <div class="promos-heading">
-    <span class="flame" aria-hidden="true">🔥</span>
-    <h2 data-i18n="promoHeading">عروض وكوبونات حالية</h2>
-  </div>
-  <div class="promos-scroller" id="promosScroller"></div>
-</section>
-
-<section class="promos-section" id="recentSection" style="display:none;">
-  <div class="promos-heading">
-    <span aria-hidden="true">🕘</span>
-    <h2 data-i18n="recentHeading">شاهدت مؤخرًا</h2>
-  </div>
-  <div class="promos-scroller" id="recentScroller"></div>
-</section>
-
-<section id="apps" class="apps-section">
+<section id="apps" class="apps-section"><h2 class="store-section-heading" data-i18n="navApps">التطبيقات</h2>
   <div class="stats-strip" role="list" aria-label="statistics">
     <div class="stat" role="listitem">
       <span class="stat-num" id="statApps">0</span>
@@ -1635,6 +1619,22 @@
     <p class="empty-title" data-i18n="emptyTitle">لا توجد نتائج مطابقة</p>
     <p data-i18n="emptyText">جرّب كلمة بحث أخرى أو فئة مختلفة.</p>
   </div>
+</section>
+
+<section class="promos-section" id="promosSection" style="display:none;">
+  <div class="promos-heading">
+    <span class="flame" aria-hidden="true">🔥</span>
+    <h2 data-i18n="promoHeading">عروض وكوبونات حالية</h2>
+  </div>
+  <div class="promos-scroller" id="promosScroller"></div>
+</section>
+
+<section class="promos-section" id="recentSection" style="display:none;">
+  <div class="promos-heading">
+    <span aria-hidden="true">🕘</span>
+    <h2 data-i18n="recentHeading">شاهدت مؤخرًا</h2>
+  </div>
+  <div class="promos-scroller" id="recentScroller"></div>
 </section>
 
 <section class="suggest-section" id="contribute">
@@ -1704,7 +1704,7 @@
   <div class="modal sheet" role="dialog" aria-modal="true" aria-label="more">
     <button class="sheet-close" id="sheetClose" type="button" data-i18n-aria="sheetCloseAria">×</button>
     <h2 data-i18n="moreSheetTitle">المزيد</h2>
-    <div class="sheet-options">
+    <div class="sheet-options"><button id="storeOffers" class="sheet-opt" type="button"><span class="so-ico" aria-hidden="true">◇</span><span data-i18n="navOffers">العروض</span></button><button id="storeCompare" class="sheet-opt" type="button"><span class="so-ico" aria-hidden="true">⇄</span><span data-i18n="navCompare">مقارنة</span></button>
       <button class="sheet-opt" type="button" data-sheet="favorites"><span class="so-ico" aria-hidden="true">★</span><span data-i18n="moreFavorites">المفضلة</span></button>
       <button class="sheet-opt" type="button" id="sheetTheme"><span class="so-ico" aria-hidden="true">🌙</span><span id="sheetThemeLabel" data-i18n="moreTheme">الوضع الليلي</span></button>
       <button class="sheet-opt" type="button" id="sheetLang"><span class="so-ico" aria-hidden="true">🌐</span><span data-i18n="moreLanguage">English</span></button>
@@ -3094,57 +3094,12 @@
     }
 
     function cardHTML(app, index){
-      var cat = catInfo(app.category);
-      var links = app.storeLinks || {};
-      var primaryLink = links.android || links.ios || links.web || app.officialLink;
-      var rating = computeRating(app.id);
-      var reviewsId = 'reviews-' + app.id;
-      var ratingHTML = rating.count > 0
-        ? '<span class="rating-num">' + rating.avg.toFixed(1) + '</span>' +
-          '<span class="rating-count">(' + rating.count + ' ' + T.reviewCount(rating.count) + ')</span>'
-        : '<span class="rating-count">' + T.ratingCountNone + '</span>';
-      var iconHTML = '<div class="card-icon" aria-hidden="true">' +
-        (app.icon
-          ? '<img class="app-icon" src="' + app.icon + '" alt="" loading="lazy" decoding="async" width="44" height="44">'
-          : cat.icon) +
-      '</div>';
-      return '' +
-        '<article class="card" data-app="' + app.id + '" style="animation-delay:' + Math.min(index * 35, 400) + 'ms">' +
-          '<div class="card-top">' +
-            iconHTML +
-            (app.verified ? '<span class="verified-tag">' + T.verified + '</span>' : '') +
-          '</div>' +
-          '<div>' +
-            '<h3>' + (function(){
-            var sq = (document.getElementById('search').value || '').trim();
-            return highlightName(app, sq);
-          })() + '</h3>' +
-            '<span class="cat-tag">' + catLabel(cat) + '</span>' +
-          '</div>' +
-          '<div class="rating-row">' +
-            '<span class="stars ' + (rating.count === 0 ? 'stars-muted' : '') + '" aria-label="' + (rating.avg.toFixed(1) || '0') + '/5">' + starsHTML(rating.avg) + '</span>' +
-            ratingHTML +
-          '</div>' +
-          '<p class="desc">' + appDesc(app) + '</p>' +
-          '<div class="platforms">' +
-            (app.platforms || []).map(function(p){ return '<span>' + platformLabel(p) + '</span>'; }).join('') +
-          '</div>' +
-          '<div class="card-actions">' +
-            '<a class="btn btn-primary" href="' + primaryLink + '" target="_blank" rel="noopener">' + T.install + '</a>' +
-            '<a class="btn btn-ghost" href="' + app.officialLink + '" target="_blank" rel="noopener">' + T.officialSite + '</a>' +
-          '</div>' +
-          '<div class="card-extra">' +
-            favoriteBtnHTML(app) +
-            compareBtnHTML(app) +
-          '</div>' +
-          '<div class="card-meta">' +
-            '<button class="toggle-reviews-btn" type="button" data-target="' + reviewsId + '">' + T.showReviews(rating.count) + '</button>' +
-            '<a class="btn-review" href="' + FORMS.review + '" data-app="' + app.id + '">' + T.reviewCta + '</a>' +
-          '</div>' +
-          '<div class="reviews-panel" id="' + reviewsId + '">' +
-            reviewsListHTML(app.id) +
-          '</div>' +
-        '</article>';
+      var cat=catInfo(app.category),rating=computeRating(app.id);
+      var icon=app.icon?'<img class="app-icon" src="'+escHtml(app.icon)+'" alt="" loading="lazy" decoding="async" width="64" height="64">':escHtml(cat.icon);
+      var score=rating.count>0?'<span class="store-score">★ '+rating.avg.toFixed(1)+'</span><span class="store-review-count">('+rating.count+')</span>':'<span class="store-review-count">'+T.ratingCountNone+'</span>';
+      var query=(document.getElementById('search').value||'').trim();
+      return '<article class="card store-card" data-app="'+escHtml(app.id)+'" role="button" tabindex="0" aria-label="'+escHtml(appName(app)+(lang==='en'?' — View app':' — عرض التطبيق'))+'">'+
+        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><div class="store-meta">'+score+(app.verified?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></article>';
     }
 
     var lastSearchCount = 0;
@@ -3420,6 +3375,7 @@
       });
 
       var grid = document.getElementById('grid');
+      grid.addEventListener('keydown',function(e){var card=e.target.closest('.store-card');if(card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openApp(card.dataset.app);}});
       grid.addEventListener('click', function(e){
         var card = e.target.closest('.card');
         if(card){
@@ -3591,6 +3547,8 @@
         }
       }
       document.getElementById('nativeMore').onclick=function(){openSheet('moreSheet');};
+      document.getElementById('storeOffers').onclick=function(){closeSheet();promoScroll();};
+      document.getElementById('storeCompare').onclick=function(){closeSheet('moreSheet');renderCompareSheet();openSheet('compareSheet');};
       var bottomNav = document.getElementById('bottomNav');
       bottomNav.addEventListener('click', function(e){
         var it = e.target.closest('.bn-item');
