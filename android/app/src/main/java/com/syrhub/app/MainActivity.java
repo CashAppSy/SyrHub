@@ -8,6 +8,9 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.graphics.Color;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -20,18 +23,34 @@ public class MainActivity extends Activity {
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
         site=Uri.parse(getString(R.string.site_url));
-        webView=new WebView(this);
-        setContentView(webView);
         if(Build.VERSION.SDK_INT>=30)getWindow().setDecorFitsSystemWindows(false);
-        webView.setOnApplyWindowInsetsListener((view,insets) -> {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+        FrameLayout root=new FrameLayout(this);
+        root.setBackgroundColor(Color.WHITE);
+        webView=new WebView(this);
+        root.addView(webView,new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT));
+        // Reserve system space on the parent layout. WebView padding does not
+        // reliably move the HTML viewport away from Android system overlays.
+        root.setOnApplyWindowInsetsListener((view,insets) -> {
+            int left,top,right,bottom;
             if(Build.VERSION.SDK_INT>=30){
-                android.graphics.Insets safe=insets.getInsets(WindowInsets.Type.statusBars() | WindowInsets.Type.displayCutout() | WindowInsets.Type.ime());
-                view.setPadding(safe.left,safe.top,safe.right,safe.bottom);
+                android.graphics.Insets bars=insets.getInsetsIgnoringVisibility(WindowInsets.Type.statusBars() | WindowInsets.Type.displayCutout());
+                android.graphics.Insets keyboard=insets.getInsets(WindowInsets.Type.ime() | WindowInsets.Type.navigationBars());
+                left=Math.max(bars.left,keyboard.left);top=bars.top;
+                right=Math.max(bars.right,keyboard.right);bottom=Math.max(bars.bottom,keyboard.bottom);
             }else{
-                view.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());
+                left=insets.getSystemWindowInsetLeft();top=insets.getSystemWindowInsetTop();
+                right=insets.getSystemWindowInsetRight();bottom=insets.getSystemWindowInsetBottom();
             }
-            return insets;
+            FrameLayout.LayoutParams layout=(FrameLayout.LayoutParams)webView.getLayoutParams();
+            if(layout.leftMargin!=left || layout.topMargin!=top || layout.rightMargin!=right || layout.bottomMargin!=bottom){
+                layout.setMargins(left,top,right,bottom);
+                webView.setLayoutParams(layout);
+            }
+            return Build.VERSION.SDK_INT>=30?WindowInsets.CONSUMED:insets.consumeSystemWindowInsets();
         });
+        setContentView(root);
+        root.post(root::requestApplyInsets);
         hideNavigationBar();
         WebSettings settings=webView.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -44,7 +63,7 @@ public class MainActivity extends Activity {
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(false);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        settings.setUserAgentString(settings.getUserAgentString()+" SyrHubAndroid/1.10");
+        settings.setUserAgentString(settings.getUserAgentString()+" SyrHubAndroid/1.11");
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request) {
