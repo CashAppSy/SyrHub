@@ -1,16 +1,19 @@
 import {validateDownload} from './download-metadata.mjs';
-import {withDemoData} from './demo-data.mjs';
+import {cleanCatalog,relatedDeletes} from './catalog-cleanup.mjs';
 import {localMetadata} from './local-metadata.mjs';
 import {apps,categories,promotions,reviews} from './catalog-seed.mjs';
 import {accessToken} from './submissions.mjs';
-export const seed=()=>withDemoData({apps,categories,promotions,reviews,site:{ar:{},en:{},showPromotions:true,showRecent:true,showContribute:true,apkUrl:'',showDemoApps:true}});
+export const seed=()=>({apps:structuredClone(apps),categories:structuredClone(categories),promotions:structuredClone(promotions),reviews:structuredClone(reviews),site:{catalogSchema:2,ar:{},en:{},showPromotions:true,showRecent:true,showContribute:true,apkUrl:''}});
 export const documentRoot=env=>'https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(env.FIREBASE_PROJECT_ID)+'/databases/(default)/documents';
 export const catalogName=env=>'projects/'+env.FIREBASE_PROJECT_ID+'/databases/(default)/documents/cms/catalog';
-export async function readCatalog(env,token){
+export async function readCatalog(env,token,attempt=0){
  const response=await fetch(documentRoot(env)+'/cms/catalog',{headers:{Authorization:'Bearer '+token}});
- if(response.status===404)return {catalog:seed(),version:null};
- if(!response.ok)throw new Error('Catalog unavailable');
- const doc=await response.json();return {catalog:withDemoData(JSON.parse(doc.fields.content.stringValue)),version:doc.updateTime};
+ if(!response.ok&&response.status!==404)throw new Error('Catalog unavailable');
+ const document=response.status===404?null:await response.json(),raw=document?JSON.parse(document.fields.content.stringValue):{...seed(),site:{}};
+ const cleanup=cleanCatalog(raw);if(!cleanup.changed)return {catalog:cleanup.catalog,version:document.updateTime};
+ const deletes=await relatedDeletes(env,token,cleanup);
+ // Delete related private records in bounded batches, then atomically replace the catalog.
+ try{for(let offset=0;offset<deletes.length;offset+=400)await commit(env,token,deletes.slice(offset,offset+400));const result=await commit(env,token,[catalogWrite(env,cleanup.catalog,document?.updateTime||null,'catalog-cleanup')]);return {catalog:cleanup.catalog,version:result.writeResults[0].updateTime};}catch(error){if(error.status===409&&attempt<2)return readCatalog(env,token,attempt+1);throw error;}
 }
 export function catalogWrite(env,catalog,version,uid){
  const content=JSON.stringify(catalog);if(new TextEncoder().encode(content).length>700000)throw new Error('Catalog limit reached');
@@ -41,9 +44,9 @@ export function validateRecord(collection,input,catalog){
   for(const key of ['android','ios','web']){const link=url(input.storeLinks?.[key]);if(link)record.storeLinks[key]=link;}
   const screenshots=input.screenshots??[];if(!Array.isArray(screenshots)||screenshots.length>5)throw new Error('Maximum five screenshots');record.screenshots=screenshots.map(value=>url(value,true));
   record.download=validateDownload(input.download);if(record.download.enabled&&!record.platforms.includes('android'))throw new Error('APK requires Android platform');
-  record.verified=bool(input.verified);record.isDemo=bool(input.isDemo);record.lastUpdate=date(input.lastUpdate,true);Object.assign(record,localMetadata(input,{text,date,url}));
+  record.verified=bool(input.verified);record.lastUpdate=date(input.lastUpdate,true);Object.assign(record,localMetadata(input,{text,date,url}));
  }else if(collection==='promotions'||collection==='reviews'){
-  record.isDemo=bool(input.isDemo);record.appId=id(input.appId);if(!catalog.apps.some(x=>x.id===record.appId))throw new Error('Choose an existing app');
+  record.appId=id(input.appId);if(!catalog.apps.some(x=>x.id===record.appId))throw new Error('Choose an existing app');
   if(collection==='promotions'){
    if(!['coupon','promotion'].includes(input.type))throw new Error('Invalid promotion type');record.type=input.type;
    for(const key of ['title','title_en','description','description_en','discountLabel','code'])record[key]=text(input[key],key.includes('description')?3000:150,key==='title'||key==='description');
@@ -60,7 +63,7 @@ export const siteKeys=['metaTitle','metaDesc','tagline','heroH1','heroSubtitle',
 export function validateSite(input){
  const result={ar:{},en:{}};
  for(const lang of ['ar','en'])for(const key of siteKeys){const value=text(input[lang]?.[key],key==='metaDesc'||key==='heroSubtitle'||key==='suggestText'?3000:300);if(value)result[lang][key]=value;}
- for(const key of ['showPromotions','showRecent','showContribute','showDemoApps','demoMode'])result[key]=input[key]===undefined?true:bool(input[key]);result.apkUrl=url(input.apkUrl);return result;
+ for(const key of ['showPromotions','showRecent','showContribute'])result[key]=input[key]===undefined?true:bool(input[key]);result.apkUrl=url(input.apkUrl);result.catalogSchema=2;return result;
 }
 export function changeCatalog(catalog,input){
  const next=structuredClone(catalog),collection=input.collection;
@@ -74,7 +77,7 @@ export function changeCatalog(catalog,input){
   if(collection==='apps'){next.promotions=next.promotions.filter(x=>x.appId!==target);next.reviews=next.reviews.filter(x=>x.appId!==target);}
  }else if(input.action==='save'){
   let candidate=input.record;
-  if(collection==='apps'&&candidate){const prior=next.apps.find(x=>x.id===candidate.id);candidate={...candidate};for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo','screenshots','download'])if(candidate[key]===undefined&&prior)candidate[key]=prior[key];}
+  if(collection==='apps'&&candidate){const prior=next.apps.find(x=>x.id===candidate.id);candidate={...candidate};for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','screenshots','download'])if(candidate[key]===undefined&&prior)candidate[key]=prior[key];}
   const record=validateRecord(collection,candidate,next),index=next[collection].findIndex(x=>x[key]===record[key]);
   if(index<0)next[collection].push(record);else next[collection][index]=record;
  }else throw new Error('Invalid action');
@@ -85,7 +88,7 @@ export function publishSubmission(catalog,input,edited,submissionId){
  const prior=catalog[collection].find(x=>x.id===publishedId);
  let record;
  if(edited.type==='app')record={...prior,id:publishedId,name:edited.title,name_en:input.name_en??prior?.name_en,description:edited.description,description_en:input.description_en??prior?.description_en,category:input.category||prior?.category||'other',platforms:input.platforms||prior?.platforms||['web'],officialLink:edited.url,icon:input.icon??prior?.icon,storeLinks:input.storeLinks??prior?.storeLinks,verified:input.verified??prior?.verified??false,lastUpdate:input.lastUpdate??prior?.lastUpdate};
- if(edited.type==='app')for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','isDemo','screenshots','download'])record[key]=input[key]??prior?.[key];
+ if(edited.type==='app')for(const key of ['cities','cost','needsAccount','availability','needs','paymentMethods','lastChecked','verificationSource','verificationNotes','screenshots','download'])record[key]=input[key]??prior?.[key];
  if(edited.type==='promo')record={...prior,id:publishedId,appId:edited.appId,type:edited.code?'coupon':'promotion',title:edited.title||'عرض جديد',title_en:input.name_en??prior?.title_en,description:edited.description,description_en:input.description_en??prior?.description_en,code:edited.code,discountLabel:input.discountLabel??prior?.discountLabel,link:edited.url,expiryDate:input.expiryDate??prior?.expiryDate,verified:input.verified??prior?.verified??false};
  if(edited.type==='review')record={...prior,id:publishedId,appId:edited.appId,author:edited.name,rating:edited.rating,comment:edited.description,comment_en:input.description_en??prior?.comment_en,date:prior?.date||new Date().toISOString().slice(0,10)};
  record.sourceSubmission=submissionId;
@@ -93,7 +96,7 @@ export function publishSubmission(catalog,input,edited,submissionId){
 }
 export async function publicCatalog(env){
  const headers={'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'};
- try{if(!env.FIREBASE_PROJECT_ID||!env.FIREBASE_CLIENT_EMAIL||!env.FIREBASE_PRIVATE_KEY)return new Response(JSON.stringify({catalog:seed(),version:'seed:store-v2'}),{headers});
- const data=await readCatalog(env,await accessToken(env));return new Response(JSON.stringify({catalog:data.catalog,version:(data.version||'seed')+':store-v2'}),{headers});
+ try{if(!env.FIREBASE_PROJECT_ID||!env.FIREBASE_CLIENT_EMAIL||!env.FIREBASE_PRIVATE_KEY)return new Response(JSON.stringify({catalog:seed(),version:'seed:catalog-v2'}),{headers});
+ const data=await readCatalog(env,await accessToken(env));return new Response(JSON.stringify({catalog:data.catalog,version:(data.version||'seed')+':catalog-v2'}),{headers});
  }catch{return new Response(JSON.stringify({error:'Content temporarily unavailable'}),{status:503,headers});}
 }

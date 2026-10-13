@@ -1567,8 +1567,7 @@
 <article class="launch-card launch-owner"><span class="launch-card-icon" aria-hidden="true">▦</span><h3 data-i18n="ownerHeading">لديك تطبيق يخدم سوريا؟</h3><p data-i18n="ownerCopy">قدّم تطبيقك للمراجعة واحصل على صفحة منظّمة لروابطه وخدماته، مع متابعة طلبك من حسابك.</p><a class="btn btn-primary" href="/owners" data-i18n="ownerCTA">تعرّف على مزايا الإدراج</a></article>
 <article class="launch-card"><span class="launch-card-icon" aria-hidden="true">◷</span><h3 data-i18n="trackHeading">كل مساهمة لها حالة واضحة</h3><p data-i18n="trackCopy">تابع طلبات الإدراج والاقتراحات والتقييمات، واطّلع على قرار الفريق وملاحظته.</p><button class="btn btn-ghost" type="button" id="launchRequests" data-i18n="trackCTA">تابع طلباتي</button></article>
 </div><div class="launch-principles"><span data-i18n="principleBrowse">تصفح دون تسجيل</span><span data-i18n="principleReview">مراجعة قبل النشر</span><span data-i18n="principleFree">إدراج مجاني خلال الإطلاق</span></div></section>
-<section class="launch-section launch-preview"><div><span class="launch-eyebrow" data-i18n="previewEyebrow">شاهد كيف سيبدو الدليل</span><h2 data-i18n="previewHeading">استعرض نموذج التجربة</h2><p id="catalogDemoNotice" class="demo-warning" data-i18n="previewCopy">التطبيقات والتقييمات والعروض الحالية بيانات تجريبية للاختبار، وليست توصيات أو عروضاً مؤكدة.</p></div><a href="#apps" class="btn btn-ghost" id="previewDirectory" data-i18n="previewCTA">استعرض نموذج الدليل</a></section>
-<div id="directoryPreview" hidden>
+<div id="directoryPreview">
 <section class="store-discovery"><div class="store-discovery-heading"><span class="launch-eyebrow" data-i18n="storeEyebrow">اكتشف ما يناسب يومك</span><h2 data-i18n="browseCategories">تصفّح حسب الخدمة</h2><p data-i18n="storeIntro">ابحث عن التطبيق المناسب، وتعرّف على خدماته وروابطه قبل اختياره.</p></div><div id="storeCategories" class="store-categories" aria-label="أقسام التطبيقات / App categories"></div></section>
 <div class="controls-wrap">
   <div class="controls">
@@ -1629,7 +1628,7 @@
   <p id="citySearchNote" class="local-search-note" role="status"></p><div class="empty-state" id="emptyState" style="display:none;">
     <div class="glyph" aria-hidden="true">🔍</div>
     <p class="empty-title" data-i18n="emptyTitle">لا توجد نتائج مطابقة</p>
-    <p data-i18n="emptyText">جرّب كلمة بحث أخرى أو فئة مختلفة.</p><button class="btn btn-primary" id="requestNeed" type="button" data-i18n="requestNeed">اطلب تطبيقاً لهذه الحاجة</button>
+    <p data-i18n="emptyText">جرّب كلمة بحث أخرى أو فئة مختلفة.</p><a class="btn btn-ghost" href="/owners#listing" id="emptyListing" hidden data-i18n="listCTA">أضف تطبيقك مجاناً</a><button class="btn btn-primary" id="requestNeed" type="button" data-i18n="requestNeed">اطلب تطبيقاً لهذه الحاجة</button>
   </div>
 </section>
 
@@ -1682,7 +1681,7 @@
     </button>
   </div>
   <p class="footer-brand">SyrHub</p>
-  <p data-i18n="footerNote">مشروع مجتمعي مستقل · نراجع بيانات التطبيقات قبل النشر، ونميّز أمثلة الاختبار بوضوح</p>
+  <p data-i18n="footerNote">مشروع مجتمعي مستقل · نراجع بيانات التطبيقات وروابطها قبل النشر</p>
   <p><a href="https://github.com/CashAppSy/SyrHub" target="_blank" rel="noopener" data-i18n="footerSource">شاهد المصدر على GitHub</a></p>
   <p id="footerRights"></p>
   <p class="footer-credit">👨‍💻 <span data-i18n="footerDeveloper">تم التطوير من قبل المهندس علي إبراهيم</span></p>
@@ -1901,10 +1900,6 @@ trackCTA:"تابع طلباتي",
 principleBrowse:"تصفح دون تسجيل",
 principleReview:"مراجعة قبل النشر",
 principleFree:"إدراج مجاني خلال الإطلاق",
-previewEyebrow:"شاهد كيف سيبدو الدليل",
-previewHeading:"استعرض نموذج التجربة",
-previewCopy:"التطبيقات والتقييمات والعروض الحالية بيانات تجريبية للاختبار، وليست توصيات أو عروضاً مؤكدة.",
-previewCTA:"استعرض نموذج الدليل",
 
         dir:'rtl',
         metaTitle:"SyrHub — دليل التطبيقات السورية",
@@ -2011,7 +2006,7 @@ previewCTA:"استعرض نموذج الدليل",
         compareNotVerified:"غير موثّق",
         recHeading:"تطبيقات مشابهة",
         githubBtn:"💻 ساهم عبر GitHub",
-        footerNote:"مشروع مجتمعي مستقل · نراجع بيانات التطبيقات قبل النشر، ونميّز أمثلة الاختبار بوضوح",
+        footerNote:"مشروع مجتمعي مستقل · نراجع بيانات التطبيقات وروابطها قبل النشر",
         footerSource:"شاهد المصدر على GitHub",
         footerRights:function(y){ return '© ' + y + ' SyrHub — صُنع بفخر للمجتمع السوري'; },
         footerDeveloper:"تم التطوير من قبل المهندس علي إبراهيم",
@@ -2063,10 +2058,6 @@ trackCTA:"Track my requests",
 principleBrowse:"Browse without signing in",
 principleReview:"Reviewed before publication",
 principleFree:"Free listings during launch",
-previewEyebrow:"Explore the directory experience",
-previewHeading:"Preview the experience",
-previewCopy:"Current apps, ratings and offers are test data, not recommendations or confirmed offers.",
-previewCTA:"Preview the directory",
 
         dir:'ltr',
         metaTitle:"SyrHub — Syrian Apps Directory",
@@ -2174,7 +2165,7 @@ previewCTA:"Preview the directory",
         compareNotVerified:"Unverified",
         recHeading:"Similar apps",
         githubBtn:"💻 Contribute on GitHub",
-        footerNote:"An independent community project · app details are reviewed before publication and test examples are clearly labeled",
+        footerNote:"An independent community project · app details and official links are reviewed before publication",
         footerSource:"View the source on GitHub",
         footerRights:function(y){ return '© ' + y + ' SyrHub — proudly made for the Syrian community'; },
         footerDeveloper:"Developed by Engineer Ali Ibrahim",
@@ -2405,7 +2396,7 @@ previewCTA:"Preview the directory",
         full.url = location.origin+'/apps/'+encodeURIComponent(app.id);
         if(app.lastUpdate){ full.dateModified = app.lastUpdate; }
         if(app.icon){ full.image = app.icon; }
-        if(r.count > 0&&!app.isDemo){
+        if(r.count > 0){
           full.aggregateRating = {
             '@type': 'AggregateRating',
             ratingValue: r.avg.toFixed(1),
@@ -2461,8 +2452,7 @@ previewCTA:"Preview the directory",
       return app ? appName(app) : '';
     }
     function computeRating(appId){
-      var ratedApp=(typeof APPS!=='undefined'?APPS:[]).find(function(a){return a.id===appId;});
-      var revs = (typeof REVIEWS !== 'undefined') ? REVIEWS.filter(function(r){ return r.appId === appId && (ratedApp?.isDemo||!r.isDemo); }) : [];
+      var revs = (typeof REVIEWS !== 'undefined') ? REVIEWS.filter(function(r){ return r.appId === appId; }) : [];
       if(revs.length === 0) return { avg: 0, count: 0 };
       var sum = revs.reduce(function(s, r){ return s + r.rating; }, 0);
       return { avg: sum / revs.length, count: revs.length };
@@ -2816,12 +2806,12 @@ previewCTA:"Preview the directory",
         var links = app.storeLinks || {};
         var apple=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
         var primaryLink = (apple?links.ios:links.android) || links.web || app.officialLink;
-        var hasAPK=!apple&&!app.isDemo&&app.platforms?.includes('android')&&app.download?.enabled&&app.download.url&&app.download.version&&app.download.publisher;
+        var hasAPK=!apple&&app.platforms?.includes('android')&&app.download?.enabled&&app.download.url&&app.download.version&&app.download.publisher;
         document.getElementById('detailIcon').innerHTML = app.icon ? '<img src="' + app.icon + '" alt="" loading="lazy" decoding="async">' : cat.icon;
         document.getElementById('detailName').textContent = appName(app);
         document.getElementById('detailCat').textContent = catLabel(cat);
         document.getElementById('detailVerified').textContent = T.verified;
-        document.getElementById('detailVerified').hidden = !app.verified || !!app.isDemo;
+        document.getElementById('detailVerified').hidden = !app.verified;
         document.getElementById('detailRating').innerHTML = rating.count > 0
           ? '<span class="stars" aria-label="' + rating.avg.toFixed(1) + '/5">' + starsHTML(rating.avg) + '</span>' +
             '<span class="detail-rating-num">' + rating.avg.toFixed(1) + '</span>' +
@@ -3051,7 +3041,7 @@ previewCTA:"Preview the directory",
         '<article class="promo-card">' +
           '<div class="promo-head">' +
             (appN ? '<span class="promo-app">' + appIconHTML + appN + '</span>' : '') +
-            '<span class="promo-badge">' + (promo.isDemo?(lang==='en'?'Demo offer':'عرض تجريبي'):(promo.discountLabel || T.specialOffer)) + '</span>' +
+            '<span class="promo-badge">' + (promo.discountLabel || T.specialOffer) + '</span>' +
           '</div>' +
           '<h3>' + promoTitle(promo) + '</h3>' +
           '<p class="promo-desc">' + promoDesc(promo) + '</p>' +
@@ -3133,7 +3123,7 @@ previewCTA:"Preview the directory",
       var box=document.getElementById('storeCategories');box.replaceChildren();CATEGORIES.forEach(function(cat){var button=document.createElement('button'),icon=document.createElement('span'),title=document.createElement('strong');button.type='button';button.className='store-category';button.setAttribute('aria-pressed',String(activeCategory===cat.key));icon.textContent=cat.icon;icon.className='store-category-icon';title.textContent=catLabel(cat);button.append(icon,title);button.onclick=function(){activeCategory=cat.key;renderChips();render();document.getElementById('apps').scrollIntoView({behavior:'smooth',block:'start'});};box.appendChild(button);});
     }
     function renderRatingBreakdown(app,reviews){
-      var box=document.getElementById('detailRatingBreakdown');box.replaceChildren();var included=reviews.filter(function(r){return app.isDemo||!r.isDemo;});box.hidden=!included.length;if(box.hidden)return;var summary=document.createElement('div'),score=document.createElement('strong'),label=document.createElement('span'),bars=document.createElement('div');summary.className='rating-summary';score.textContent=(included.reduce(function(n,r){return n+r.rating;},0)/included.length).toFixed(1);label.textContent=app.isDemo?(lang==='en'?'Demo ratings':'تقييمات تجريبية'):(lang==='en'?'User ratings':'تقييمات المستخدمين');summary.append(score,label);bars.className='rating-bars';[5,4,3,2,1].forEach(function(value){var row=document.createElement('div'),text=document.createElement('span'),meter=document.createElement('meter'),count=document.createElement('span'),total=included.filter(function(r){return r.rating===value;}).length;text.textContent=value+' ★';meter.min=0;meter.max=included.length;meter.value=total;meter.setAttribute('aria-label',value+' '+(lang==='en'?'stars':'نجوم'));count.textContent=total;row.append(text,meter,count);bars.appendChild(row);});box.append(summary,bars);
+      var box=document.getElementById('detailRatingBreakdown');box.replaceChildren();var included=reviews;box.hidden=!included.length;if(box.hidden)return;var summary=document.createElement('div'),score=document.createElement('strong'),label=document.createElement('span'),bars=document.createElement('div');summary.className='rating-summary';score.textContent=(included.reduce(function(n,r){return n+r.rating;},0)/included.length).toFixed(1);label.textContent=(lang==='en'?'User ratings':'تقييمات المستخدمين');summary.append(score,label);bars.className='rating-bars';[5,4,3,2,1].forEach(function(value){var row=document.createElement('div'),text=document.createElement('span'),meter=document.createElement('meter'),count=document.createElement('span'),total=included.filter(function(r){return r.rating===value;}).length;text.textContent=value+' ★';meter.min=0;meter.max=included.length;meter.value=total;meter.setAttribute('aria-label',value+' '+(lang==='en'?'stars':'نجوم'));count.textContent=total;row.append(text,meter,count);bars.appendChild(row);});box.append(summary,bars);
     }
     /* ============ بطاقات التطبيقات ============ */
     function reviewsListHTML(appId){
@@ -3143,7 +3133,7 @@ previewCTA:"Preview the directory",
       }
       return revs.map(function(r){
         return '<div class="review-item">' +
-          (r.isDemo?'<span class="store-demo">'+(lang==='en'?'Demo review':'تقييم تجريبي')+'</span>':'')+ '<div class="review-head">' +
+          '<div class="review-head">' +
             '<span class="author">' + r.author + '</span>' +
             '<span class="stars">' + starsHTML(r.rating) + '</span>' +
           '</div>' +
@@ -3155,13 +3145,12 @@ previewCTA:"Preview the directory",
 
     function cardHTML(app, index){
       var cat=catInfo(app.category),rating=computeRating(app.id);
-      var demo=app.isDemo?'<span class="store-demo">'+(lang==='en'?'Demo data':'بيانات تجريبية')+'</span>':'';
       var icon=app.icon?'<img class="app-icon" src="'+escHtml(app.icon)+'" alt="" loading="lazy" decoding="async" width="64" height="64">':escHtml(cat.icon);
       var score=rating.count>0?'<span class="store-score">★ '+rating.avg.toFixed(1)+'</span><span class="store-review-count">('+rating.count+')</span>':'<span class="store-review-count">'+T.ratingCountNone+'</span>';
-      var download=!app.isDemo&&app.platforms?.includes('android')&&app.download?.enabled?'<span class="store-apk-badge">↓ APK</span>':'';
+      var download=app.platforms?.includes('android')&&app.download?.enabled?'<span class="store-apk-badge">↓ APK</span>':'';
       var query=(document.getElementById('search').value||'').trim();
       return '<a class="card store-card" href="/apps/'+encodeURIComponent(app.id)+'" data-app="'+escHtml(app.id)+'" aria-label="'+escHtml(appName(app)+(lang==='en'?' — View app':' — عرض التطبيق'))+'">'+
-        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><p class="store-card-description">'+escHtml(appDesc(app))+'</p><div class="store-meta">'+demo+download+score+(app.verified&&!app.isDemo?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></a>';
+        '<div class="card-icon">'+icon+'</div><div class="store-info"><h3>'+highlightName(app,query)+'</h3><span class="cat-tag">'+escHtml(catLabel(cat))+'</span><p class="store-card-description">'+escHtml(appDesc(app))+'</p><div class="store-meta">'+download+score+(app.verified?'<span class="store-verified">✓ '+T.verified+'</span>':'')+'</div><div class="store-platforms">'+(app.platforms||[]).map(platformLabel).map(escHtml).join(' · ')+'</div></div><span class="store-chevron" aria-hidden="true">'+(lang==='en'?'›':'‹')+'</span></a>';
     }
 
     var lastSearchCount = 0;
@@ -3206,7 +3195,6 @@ previewCTA:"Preview the directory",
       var availability=english?{unknown:'Not checked',reported:'Reported by users',verified:'Checked',unavailable:'Unavailable'}:{unknown:'لم يُتحقق',reported:'أبلغ عنه المستخدمون',verified:'تم التحقق',unavailable:'غير متاح'};
       var costs=english?{unknown:'Unknown',free:'Free',paid:'Paid',freemium:'Free with paid features'}:{unknown:'غير معروف',free:'مجاني',paid:'مدفوع',freemium:'مجاني مع ميزات مدفوعة'};
       var coverage=(app.cities||[]).map(function(key){if(key==='nationwide')return english?'Across Syria':'كل سوريا';var city=SyhLocal.cities.find(function(x){return x[0]===key;});return city?city[english?2:1]:'';}).filter(Boolean).join('، ');
-      if(app.isDemo){var warning=document.createElement('p');warning.className='demo-warning';warning.textContent=english?'Demo listing — details and ratings are for testing, not verified service information.':'بيانات تجريبية — المعلومات والتقييمات المعروضة للاختبار ولا تمثل معلومات موثّقة عن الخدمة.';box.appendChild(warning);}
       var pairs=[[english?'Service coverage':'المدن المخدومة',coverage||costs.unknown],[english?'Availability in Syria':'العمل داخل سوريا',availability[app.availability||'unknown']],[english?'App cost':'تكلفة التطبيق',costs[app.cost||'unknown']],[english?'Payment methods':'طرق الدفع',(app.paymentMethods||[]).join('، ')||costs.unknown],[english?'Account required':'يحتاج حساباً',app.needsAccount==='yes'?(english?'Yes':'نعم'):app.needsAccount==='no'?(english?'No':'لا'):costs.unknown],[english?'Last checked':'آخر تحقق',app.lastChecked||availability.unknown]];
       pairs=pairs.filter(function(pair,index){return index===1||(index===0?!!coverage:index===2?app.cost&&app.cost!=='unknown':index===3?(app.paymentMethods||[]).length>0:index===4?['yes','no'].includes(app.needsAccount):!!app.lastChecked);});
       pairs.forEach(function(pair){var cell=document.createElement('div'),label=document.createElement('span'),value=document.createElement('strong');label.textContent=pair[0];value.textContent=pair[1];cell.append(label,value);box.appendChild(cell);});
@@ -3244,7 +3232,7 @@ previewCTA:"Preview the directory",
       var filtered = (typeof APPS !== 'undefined' ? APPS : []).filter(function(app){
         var matchesCategory = activeCategory === 'all' || activeCategory === 'favorites' || app.category === activeCategory;
         var matchesPlatform = activePlatform === 'all' || (app.platforms || []).indexOf(activePlatform) !== -1;
-        var isVerified = !verifiedOnly || (!!app.verified&&!app.isDemo);
+        var isVerified = !verifiedOnly || (!!app.verified);
         var city=activeCity||SyhLocal.parse(q).city;return matchesCategory&&matchesPlatform&&isVerified&&SyhLocal.serves(app,city);
       });
 
@@ -3274,7 +3262,8 @@ previewCTA:"Preview the directory",
       resultCount.textContent = T.resultCount(sorted.length);
       var emptyTitle = emptyState.querySelector('.empty-title');
       var emptyText = emptyState.querySelectorAll('p')[1];
-      if(sorted.length === 0 && activeCategory === 'favorites'){
+      var noCatalog=APPS.length===0;document.getElementById('emptyListing').hidden=!noCatalog;
+      if(noCatalog){emptyTitle.textContent=lang==='en'?'Be among the first apps in the directory':'كن من أوائل التطبيقات في الدليل';emptyText.textContent=lang==='en'?'We are accepting app listings. Add your app, or tell us what service you need.':'نستقبل طلبات إدراج التطبيقات. أضف تطبيقك أو أخبرنا بالخدمة التي تحتاجها.';}else if(sorted.length === 0 && activeCategory === 'favorites'){
         emptyTitle.textContent = T.favLabel;
         emptyText.textContent = T.favEmpty;
       } else {
@@ -3285,12 +3274,12 @@ previewCTA:"Preview the directory",
     }
 
     function renderStats(){
-      var apps = (typeof APPS !== 'undefined' ? APPS : []).filter(function(app){return !app.isDemo;});
+      var apps = (typeof APPS !== 'undefined' ? APPS : []);
       var cats = (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []);
       document.getElementById('statApps').textContent = apps.length;
       document.getElementById('statCats').textContent = cats.length;
       document.getElementById('statVerified').textContent = apps.filter(function(a){ return a.verified; }).length;
-      document.getElementById('statOffers').textContent = activePromos().filter(function(promo){return !promo.isDemo;}).length;
+      document.getElementById('statOffers').textContent = activePromos().length;
     }
 
     /* ============ ربط الأحداث ============ */
@@ -3807,6 +3796,7 @@ previewCTA:"Preview the directory",
       handleRoute();
     }
 
+    try{if(localStorage.getItem('syh-catalog-reset-v2')!=='done'){['syh-catalog','syh-favorites','syh-recent','syh-compare'].forEach(function(key){localStorage.removeItem(key);});sessionStorage.removeItem('syh-browse');localStorage.setItem('syh-catalog-reset-v2','done');}}catch(e){}
     var pageBootstrap=null;try{var element=document.getElementById('syh-bootstrap');if(element)pageBootstrap=JSON.parse(element.textContent);}catch(e){}
     if(pageBootstrap){APPS=pageBootstrap.catalog.apps;CATEGORIES=pageBootstrap.catalog.categories;PROMOTIONS=pageBootstrap.catalog.promotions;REVIEWS=pageBootstrap.catalog.reviews;}
     init();
@@ -3814,7 +3804,7 @@ previewCTA:"Preview the directory",
     var contentVersion = null, catalogRequest = null, catalogFetched = false;
     var originalI18N={ar:Object.assign({},I18N.ar),en:Object.assign({},I18N.en)};
     function applyCatalog(data){
-      if(!data || !data.catalog || data.version===contentVersion){ return; }
+      if(!data || !data.catalog || data.catalog.site?.catalogSchema!==2 || data.version===contentVersion){ return; }
       var catalog=data.catalog;
       if(!Array.isArray(catalog.apps)||!Array.isArray(catalog.categories)||!Array.isArray(catalog.promotions)||!Array.isArray(catalog.reviews)){return;}
       contentVersion=data.version;
@@ -3822,10 +3812,8 @@ previewCTA:"Preview the directory",
       var site=catalog.site || {};
       ['ar','en'].forEach(function(locale){ I18N[locale]=Object.assign({},originalI18N[locale],site[locale] || {}); });
       APK_LINK=site.apkUrl || '';
-      document.getElementById('catalogDemoNotice').hidden=site.demoMode===false;
-      root.classList.toggle('demo-catalog',site.demoMode!==false);
-      document.querySelector('.stats-strip').hidden=site.demoMode!==false;
-      window.dispatchEvent(new CustomEvent('syh:catalog',{detail:{demoMode:site.demoMode!==false}}));
+      document.querySelector('.stats-strip').hidden=catalog.apps.length===0;
+      window.dispatchEvent(new CustomEvent('syh:catalog',{detail:{count:catalog.apps.length}}));
       root.classList.toggle('hide-promotions', site.showPromotions===false);
       root.classList.toggle('hide-recent', site.showRecent===false);
       root.classList.toggle('hide-contribute', site.showContribute===false);

@@ -1,8 +1,9 @@
+import {fixtureCatalog as seed} from './fixtures.mjs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {validate,handle} from '../server/submissions.mjs';
 import {handleMySubmissions,requestSummary} from '../server/my-submissions.mjs';
-import {seed,publishSubmission,validateRecord} from '../server/catalog.mjs';
+import {publishSubmission,validateRecord} from '../server/catalog.mjs';
 const listing={name_en:'Local app',category:'other',organization:'Team',contact:'team@example.org',role:'owner',platforms:['web'],cities:['damascus'],icon:'https://example.org/icon.png',storeLinks:{web:'https://example.org/'},screenshots:['https://example.org/screen.png'],notes:'Contact us for further information'};
 const contribution={type:'app',name:'Owner',title:'My app',url:'https://example.org',description:'A local app serving people in Damascus',listing};
 async function environment(){const {privateKey}=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);return {FIREBASE_WEB_API_KEY:'public',FIREBASE_PROJECT_ID:'project',FIREBASE_CLIENT_EMAIL:'service@example.org',FIREBASE_PRIVATE_KEY:'-----BEGIN PRIVATE KEY-----\n'+Buffer.from(await crypto.subtle.exportKey('pkcs8',privateKey)).toString('base64')+'\n-----END PRIVATE KEY-----',TURNSTILE_SITE_KEY:'site',TURNSTILE_SECRET_KEY:'secret'};}

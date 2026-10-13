@@ -14,7 +14,7 @@ const out = path.join(root, 'dist');
 fs.mkdirSync(out, {recursive:true});
 for (const file of ['index.html','owners.html','owners.js','owners.css','landing.js','downloads-ui.js','offline.html','sw.js','manifest.webmanifest','storage.js','apps-data.js','promotions-data.js','reviews-data.js','SyrHub-Icon.png','enhancements.css','contributions.js','account.js','local-data.js','_headers']) fs.copyFileSync(path.join(root,file),path.join(out,file));
 const sitemapApps=JSON.parse(fs.readFileSync(path.join(root,'data','apps.json'),'utf8'));
-fs.writeFileSync(path.join(out,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://syrhub.pages.dev/</loc></url><url><loc>https://syrhub.pages.dev/owners</loc></url>'+sitemapApps.filter(app=>!app.isDemo).map(app=>'<url><loc>https://syrhub.pages.dev/apps/'+encodeURIComponent(app.id)+'</loc></url>').join('')+'</urlset>');
+fs.writeFileSync(path.join(out,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://syrhub.pages.dev/</loc></url><url><loc>https://syrhub.pages.dev/owners</loc></url>'+sitemapApps.map(app=>'<url><loc>https://syrhub.pages.dev/apps/'+encodeURIComponent(app.id)+'</loc></url>').join('')+'</urlset>');
 fs.cpSync(path.join(root,'admin'),path.join(out,'admin'),{recursive:true});
 fs.cpSync(path.join(root,'icons'),path.join(out,'icons'),{recursive:true});
 console.log('Web/PWA assets prepared in dist/');

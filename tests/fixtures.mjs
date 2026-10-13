@@ -1,0 +1,2 @@
+import {seed} from '../server/catalog.mjs';
+export function fixtureCatalog(){const catalog=seed();catalog.apps=[{id:'fixture-app',name:'Fixture app',name_en:'Fixture app',category:'delivery',description:'Food delivery for testing',description_en:'Food delivery for testing',platforms:['android','web'],officialLink:'https://fixture.example.org',storeLinks:{},verified:false,cities:[],cost:'unknown',availability:'unknown'}];return catalog;}

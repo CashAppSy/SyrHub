@@ -55,7 +55,7 @@ function main(){
       if(PLATFORMS.indexOf(p) === -1){ errors.push(app.id + ': منصة غير معروفة "' + p + '"'); }
     });
     if(app.officialLink && /example\.com|example\.org/.test(app.officialLink)){
-      console.log('  ⚠️ تنبيه: ' + app.id + ' يستخدم رابطاً تجريبياً (example.com) — استبدله قبل النشر.');
+      console.log('  ⚠️ تنبيه: ' + app.id + ' يستخدم نطاق example.com المحجوز للأمثلة — استبدله برابط الناشر.');
     }
   });
 
@@ -78,7 +78,7 @@ function main(){
   xml += '    <priority>1.0</priority>\n';
   xml += '  </url>\n';
   xml += '  <url><loc>' + SITE_URL + 'owners</loc><priority>0.8</priority></url>\n';
-  apps.filter(function(app){return !app.isDemo;}).forEach(function(app){
+  apps.forEach(function(app){
     xml += '  <url>\n';
     xml += '    <loc>' + SITE_URL + 'apps/' + encodeURIComponent(app.id) + '</loc>\n';
     if(app.lastUpdate){ xml += '    <lastmod>' + app.lastUpdate + '</lastmod>\n'; }
@@ -87,7 +87,7 @@ function main(){
   });
   xml += '</urlset>\n';
   fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
-  console.log('→ sitemap.xml (' + (apps.filter(function(app){return !app.isDemo;}).length + 2) + ' عنواناً)');
+  console.log('→ sitemap.xml (' + (apps.length + 2) + ' عنواناً)');
 
   console.log('— تم البناء بنجاح.');
 }

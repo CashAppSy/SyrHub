@@ -7,7 +7,6 @@ export async function handleDownload(request,env,id){
  const response=await publicCatalog(env);if(!response.ok)return new Response('Download information temporarily unavailable',{status:503,headers:{'Cache-Control':'no-store'}});
  const {catalog}=await response.json(),app=catalog.apps.find(x=>x.id===id);
  if(!app)return new Response('Application not found',{status:404});
- if(app.isDemo)return new Response('Demo listings do not offer real downloads',{status:409,headers:{'Cache-Control':'no-store'}});
  let download;try{download=validateDownload(app.download);}catch{return new Response('Invalid download information',{status:503});}
  if(!app.platforms?.includes('android')||!download.enabled)return new Response('No approved APK download is available',{status:404});
  // The admin's saved catalog is the authority; query parameters cannot replace the target.
