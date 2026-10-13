@@ -1562,15 +1562,9 @@
 <div class="launch-actions"><a class="btn btn-gold" href="#apps" data-i18n="discoverCTA">اكتشف التطبيقات</a><a class="btn btn-outline-light" href="/owners#listing" data-i18n="listCTA">أضف تطبيقك مجاناً</a></div>
 </header>
 
-<section class="launch-section" aria-labelledby="launchHeading"><div class="launch-heading"><span class="launch-eyebrow" data-i18n="launchEyebrow">دليل نبنيه معاً</span><h2 id="launchHeading" data-i18n="launchHeading">ابدأ بما يهمّك</h2><p data-i18n="launchIntro">للمستخدم الذي يبحث عن خدمة، ولصاحب التطبيق الذي يريد تعريف الناس بها.</p></div><div class="launch-cards">
-<article class="launch-card"><span class="launch-card-icon" aria-hidden="true">⌕</span><h3 data-i18n="userHeading">تبحث عن تطبيق مناسب؟</h3><p data-i18n="userCopy">أخبرنا بالخدمة والمدينة التي تحتاجها. تساعد طلباتكم في تحديد أول التطبيقات التي نضيفها.</p><button class="btn btn-primary" type="button" id="launchNeed" data-i18n="needCTA">أخبرنا بما تحتاجه</button></article>
-<article class="launch-card launch-owner"><span class="launch-card-icon" aria-hidden="true">▦</span><h3 data-i18n="ownerHeading">لديك تطبيق يخدم سوريا؟</h3><p data-i18n="ownerCopy">قدّم تطبيقك للمراجعة واحصل على صفحة منظّمة لروابطه وخدماته، مع متابعة طلبك من حسابك.</p><a class="btn btn-primary" href="/owners" data-i18n="ownerCTA">تعرّف على مزايا الإدراج</a></article>
-<article class="launch-card"><span class="launch-card-icon" aria-hidden="true">◷</span><h3 data-i18n="trackHeading">كل مساهمة لها حالة واضحة</h3><p data-i18n="trackCopy">تابع طلبات الإدراج والاقتراحات والتقييمات، واطّلع على قرار الفريق وملاحظته.</p><button class="btn btn-ghost" type="button" id="launchRequests" data-i18n="trackCTA">تابع طلباتي</button></article>
-</div><div class="launch-principles"><span data-i18n="principleBrowse">تصفح دون تسجيل</span><span data-i18n="principleReview">مراجعة قبل النشر</span><span data-i18n="principleFree">إدراج مجاني خلال الإطلاق</span></div></section>
 <div id="directoryPreview">
-<section class="store-discovery"><div class="store-discovery-heading"><span class="launch-eyebrow" data-i18n="storeEyebrow">اكتشف ما يناسب يومك</span><h2 data-i18n="browseCategories">تصفّح حسب الخدمة</h2><p data-i18n="storeIntro">ابحث عن التطبيق المناسب، وتعرّف على خدماته وروابطه قبل اختياره.</p></div><div id="storeCategories" class="store-categories" aria-label="أقسام التطبيقات / App categories"></div></section>
 <div class="controls-wrap">
-  <div class="controls">
+  <div class="controls"><h2 class="filter-heading" data-i18n="browseCategories">تصفّح حسب الخدمة</h2>
     <div class="search-row">
       <label for="search" class="sr-only" data-i18n="searchLabel">ابحث عن تطبيق</label>
       <input type="text" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="ابحث باسم التطبيق أو وصفه...">
@@ -1878,28 +1872,11 @@
     /* ============ الترجمة ============ */
     var I18N = {
       ar: {
-storeEyebrow:"اكتشف ما يناسب يومك",
 browseCategories:"تصفّح حسب الخدمة",
-storeIntro:"ابحث عن التطبيق المناسب، وتعرّف على خدماته وروابطه قبل اختياره.",
 
 ownerLink:"لأصحاب التطبيقات",
 discoverCTA:"اكتشف التطبيقات",
 listCTA:"أضف تطبيقك مجاناً",
-launchEyebrow:"دليل نبنيه معاً",
-launchHeading:"ابدأ بما يهمّك",
-launchIntro:"للمستخدم الذي يبحث عن خدمة، ولصاحب التطبيق الذي يريد تعريف الناس بها.",
-userHeading:"تبحث عن تطبيق مناسب؟",
-userCopy:"أخبرنا بالخدمة والمدينة التي تحتاجها. تساعد طلباتكم في تحديد أول التطبيقات التي نضيفها.",
-needCTA:"أخبرنا بما تحتاجه",
-ownerHeading:"لديك تطبيق يخدم سوريا؟",
-ownerCopy:"قدّم تطبيقك للمراجعة واحصل على صفحة منظّمة لروابطه وخدماته، مع متابعة طلبك من حسابك.",
-ownerCTA:"تعرّف على مزايا الإدراج",
-trackHeading:"كل مساهمة لها حالة واضحة",
-trackCopy:"تابع طلبات الإدراج والاقتراحات والتقييمات، واطّلع على قرار الفريق وملاحظته.",
-trackCTA:"تابع طلباتي",
-principleBrowse:"تصفح دون تسجيل",
-principleReview:"مراجعة قبل النشر",
-principleFree:"إدراج مجاني خلال الإطلاق",
 
         dir:'rtl',
         metaTitle:"SyrHub — دليل التطبيقات السورية",
@@ -2036,28 +2013,11 @@ principleFree:"إدراج مجاني خلال الإطلاق",
         }
       },
       en: {
-storeEyebrow:"Discover apps for your day",
 browseCategories:"Browse by service",
-storeIntro:"Find the right app and explore its services and official links before you choose.",
 
 ownerLink:"For app owners",
 discoverCTA:"Discover apps",
 listCTA:"List your app for free",
-launchEyebrow:"A directory built together",
-launchHeading:"Start with what matters to you",
-launchIntro:"For people looking for a service, and teams who want to introduce their app.",
-userHeading:"Looking for the right app?",
-userCopy:"Tell us what service and city you need. Your requests help us choose the first apps to include.",
-needCTA:"Tell us what you need",
-ownerHeading:"Does your app serve Syria?",
-ownerCopy:"Submit your app for review and get an organized page for its services and official links. Track the request from your account.",
-ownerCTA:"Explore listing benefits",
-trackHeading:"Every contribution has a clear status",
-trackCopy:"Track listings, suggestions and reviews, including the team’s decision and feedback.",
-trackCTA:"Track my requests",
-principleBrowse:"Browse without signing in",
-principleReview:"Reviewed before publication",
-principleFree:"Free listings during launch",
 
         dir:'ltr',
         metaTitle:"SyrHub — Syrian Apps Directory",
@@ -3116,12 +3076,9 @@ principleFree:"Free listings during launch",
       favChip.className = 'chip' + (activeCategory === 'favorites' ? ' active' : '');
       favChip.dataset.key = 'favorites';
       favChip.innerHTML = '<span>★</span><span>' + T.favLabel + '</span>';
-      wrap.appendChild(favChip);renderStoreCategories();
+      wrap.appendChild(favChip);
     }
 
-    function renderStoreCategories(){
-      var box=document.getElementById('storeCategories');box.replaceChildren();CATEGORIES.forEach(function(cat){var button=document.createElement('button'),icon=document.createElement('span'),title=document.createElement('strong');button.type='button';button.className='store-category';button.setAttribute('aria-pressed',String(activeCategory===cat.key));icon.textContent=cat.icon;icon.className='store-category-icon';title.textContent=catLabel(cat);button.append(icon,title);button.onclick=function(){activeCategory=cat.key;renderChips();render();document.getElementById('apps').scrollIntoView({behavior:'smooth',block:'start'});};box.appendChild(button);});
-    }
     function renderRatingBreakdown(app,reviews){
       var box=document.getElementById('detailRatingBreakdown');box.replaceChildren();var included=reviews;box.hidden=!included.length;if(box.hidden)return;var summary=document.createElement('div'),score=document.createElement('strong'),label=document.createElement('span'),bars=document.createElement('div');summary.className='rating-summary';score.textContent=(included.reduce(function(n,r){return n+r.rating;},0)/included.length).toFixed(1);label.textContent=(lang==='en'?'User ratings':'تقييمات المستخدمين');summary.append(score,label);bars.className='rating-bars';[5,4,3,2,1].forEach(function(value){var row=document.createElement('div'),text=document.createElement('span'),meter=document.createElement('meter'),count=document.createElement('span'),total=included.filter(function(r){return r.rating===value;}).length;text.textContent=value+' ★';meter.min=0;meter.max=included.length;meter.value=total;meter.setAttribute('aria-label',value+' '+(lang==='en'?'stars':'نجوم'));count.textContent=total;row.append(text,meter,count);bars.appendChild(row);});box.append(summary,bars);
     }
@@ -3422,7 +3379,6 @@ principleFree:"Free listings during launch",
         document.querySelectorAll('#chips .chip').forEach(function(c){
           c.classList.toggle('active', c === btn);
         });
-        renderStoreCategories();
         trackAnalytics('filter_category', {
           category: btn.dataset.key,
           category_label: btn.textContent.trim()
@@ -3874,6 +3830,5 @@ principleFree:"Free listings during launch",
 <script src="downloads-ui.js" defer></script>
 <script src="account.js" defer></script>
 <script src="contributions.js" defer></script>
-<script src="landing.js" defer></script>
 </body>
 </html>
