@@ -1,3 +1,4 @@
+import {validateDownload} from './download-metadata.mjs';
 import local from '../local-data.js';
 // Submitted URLs and claims are reviewed; they do not prove ownership or verification.
 export function validateListing(input){
@@ -9,5 +10,6 @@ export function validateListing(input){
  if(!result.organization||!result.contact||!['owner','team','community'].includes(result.role)||!result.category||!result.platforms.length)throw new Error('Complete organization, contact, role, category and platforms');
  result.storeLinks={};for(const key of ['android','ios','web']){const value=input.storeLinks?.[key]??'';if(typeof value!=='string')throw new Error('Invalid store URL');const safe=url(value);if(safe)result.storeLinks[key]=safe;}
  const shots=input.screenshots??[];if(!Array.isArray(shots)||shots.length>5||shots.some(x=>typeof x!=='string'||!x))throw new Error('Maximum five screenshot URLs');result.screenshots=shots.map(url);
+ if(input.download!==undefined){result.download=validateDownload({...input.download,enabled:false});if(result.download.url&&!result.platforms.includes('android'))throw new Error('APK requires Android');}
  result.notes=str('notes',1500);return result;
 }

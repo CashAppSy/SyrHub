@@ -1,5 +1,8 @@
 package com.syrhub.app;
 import android.app.Activity;
+import android.app.DownloadManager;
+import android.os.Environment;
+import android.widget.Toast;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -63,13 +66,27 @@ public class MainActivity extends Activity {
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(false);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
-        settings.setUserAgentString(settings.getUserAgentString()+" SyrHubAndroid/1.11");
+        settings.setUserAgentString(settings.getUserAgentString()+" SyrHubAndroid/1.12");
         webView.setWebChromeClient(new WebChromeClient());
+        webView.setDownloadListener((url,userAgent,contentDisposition,mimeType,contentLength) -> {
+            Uri target=Uri.parse(url);
+            if("application/vnd.android.package-archive".equals(mimeType) || (target.getPath()!=null && target.getPath().toLowerCase(java.util.Locale.ROOT).endsWith(".apk"))) {
+                startApkDownload(target,"SyrHub-application.apk");
+            } else {
+                openExternal(target);
+            }
+        });
         webView.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request) {
                 Uri target=request.getUrl();
                 if(!request.isForMainFrame())return false;
-                if("https".equals(target.getScheme()) && site.getHost().equals(target.getHost()) && target.getPort()==site.getPort())return false;
+                if("https".equals(target.getScheme()) && site.getHost().equals(target.getHost()) && target.getPort()==site.getPort()) {
+                    String path=target.getPath();
+                    if(path!=null && path.matches("/api/downloads/[A-Za-z0-9_-]{1,150}")) {
+                        startApkDownload(target,path.substring(path.lastIndexOf('/')+1)+".apk");return true;
+                    }
+                    return false;
+                }
                 if("https".equals(target.getScheme()) || "mailto".equals(target.getScheme())) {
                     try { startActivity(new Intent(Intent.ACTION_VIEW,target)); } catch(ActivityNotFoundException ignored) {}
                 }
@@ -77,6 +94,25 @@ public class MainActivity extends Activity {
             }
         });
         if(state==null)webView.loadUrl(site.toString());else webView.restoreState(state);
+    }
+    private void openExternal(Uri target){
+        if(!"https".equals(target.getScheme()))return;
+        try{startActivity(new Intent(Intent.ACTION_VIEW,target));}catch(ActivityNotFoundException ignored){Toast.makeText(this,"لا يوجد تطبيق لفتح الرابط / No app can open this link",Toast.LENGTH_LONG).show();}
+    }
+    private void startApkDownload(Uri target,String fileName){
+        if(!"https".equals(target.getScheme()) || target.getHost()==null || target.getUserInfo()!=null)return;
+        try{
+            DownloadManager manager=(DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+            DownloadManager.Request download=new DownloadManager.Request(target);
+            download.setTitle(fileName);
+            download.setDescription("تنزيل تطبيق عبر SyrHub / Downloading from SyrHub");
+            download.setMimeType("application/vnd.android.package-archive");
+            download.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            // App-specific external storage needs no broad storage permission on Android 8+.
+            download.setDestinationInExternalFilesDir(this,Environment.DIRECTORY_DOWNLOADS,System.currentTimeMillis()+"-"+fileName);
+            manager.enqueue(download);
+            Toast.makeText(this,"بدأ التنزيل. تابع حالته في الإشعارات / Download started. Check notifications",Toast.LENGTH_LONG).show();
+        }catch(RuntimeException error){openExternal(target);}
     }
     private void hideNavigationBar(){
         if(Build.VERSION.SDK_INT>=30){
